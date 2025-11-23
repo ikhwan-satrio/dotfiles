@@ -187,11 +187,10 @@ window-rule {
     default-column-width { fixed 800; }
 }
 
-// Cursor configuration
-window-rule {
-  geometry-corner-radius 5
-  clip-to-geometry true
-}
+// window-rule {
+//   geometry-corner-radius 5
+//   clip-to-geometry true
+// }
 
 // Animation settings (similar to Hyprland's bezier curves)
 animations {
