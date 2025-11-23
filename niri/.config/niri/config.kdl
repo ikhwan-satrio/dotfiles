@@ -261,7 +261,7 @@ environment {
 binds {
     
     // Terminal
-    Mod+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
+    Mod+Return hotkey-overlay-title="Open Terminal" { spawn "ghostty" "+new-window"; }
     
     // Applications
     Mod+E hotkey-overlay-title="File Manager" { spawn "app2unit" "--" "nautilus"; }
