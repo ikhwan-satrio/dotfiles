@@ -53,6 +53,23 @@ if status is-interactive
         end
     end
 
+    function toggle_conservation_mode
+        set -l path /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+
+        if test -f $path
+            set -l current_status (cat $path)
+            if test $current_status -eq 1
+                echo "Conservation Mode: OFF"
+                echo 0 | sudo tee $path
+            else
+                echo "Conservation Mode: ON"
+                echo 1 | sudo tee $path
+            end
+        else
+            echo "File $path tidak ditemukan. Apakah Conservation Mode didukung?"
+        end
+    end
+
     # For jumping between prompts in foot terminal
     function mark_prompt_start --on-event fish_prompt
         echo -en "\e]133;A\e\\"
