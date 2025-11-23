@@ -1,57 +1,54 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# format = """
-# $username\
-#  $directory\
-# $c\
-# $cpp\
-# $python\
-# $rust\
-# $shell\
-# $git_branch\
-# $package\
-# $battery\
-# $cmd_duration \
-#  $character\
-# """
-
+# Format prompt utama Anda
+# Menambahkan $git_status sebelum $character
 format = """
 $shell \
 $directory \
+$git_status\
 $git_branch \
-$character\
+$golang\
+$nodejs\
+$python\
+$bun\
+$character
 """
 
-# Inserts a blank line between shell prompts
+# Jangan tambahkan baris kosong antara prompt
 add_newline = false
 
-# Replace the '❯' symbol in the prompt with '➜'
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[](bold green) [](bold yellow) [ ](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-error_symbol = '[ ✗](bold red) '
+# Ganti simbol '❯' dengan simbol khusus saat perintah berhasil atau gagal
+[character]
+success_symbol = ' [](bold green) [](bold yellow) [](bold green)'
+error_symbol = ' [ ✗](bold red)'
 
+# Contoh modul kustom (Anda bisa menambahkan logika khusus di sini jika diperlukan)
 [custom.ghost_pertama]
 format = '(bold green)'
 
-# Disable the package module, hiding it from the prompt completely
 [package]
-disabled = true
+disabled = false
 
+# Modul C
 [c]
 format = 'via [$name $version]($style)'
 
+# Modul C++
 [cpp]
 disabled = false
 format = 'via [$name $version]($style)'
 
+# Modul durasi perintah (tampilkan jika perintah memakan waktu lebih dari 500ms)
 [cmd_duration]
 min_time = 500
 format = 'on [$duration](bold yellow)'
 
+# Modul Python
 [python]
 symbol = '🐍 '
-pyenv_version_name = true
+pyenv_version_name = true # Gunakan nama versi dari pyenv jika diaktifkan
 
+# Modul Shell (menampilkan indikator shell yang sedang digunakan)
 [shell]
 fish_indicator = '󰈺 '
 zsh_indicator = ''
@@ -60,15 +57,17 @@ unknown_indicator = '_'
 style = 'cyan bold'
 disabled = false
 
+# Modul Rust
 [rust]
 format = 'via [⚙️ $version](red bold)'
 
+# Modul Baterai (menampilkan status baterai)
 [battery]
 full_symbol = '🔋 '
 charging_symbol = '⚡️ '
 discharging_symbol = '💀 '
 
-
+# Modul Username (menampilkan nama pengguna)
 [username]
 style_user = 'white bold'
 style_root = 'black bold'
@@ -76,3 +75,90 @@ format = '[$user]($style) '
 disabled = false
 show_always = true
 aliases = { "corpuser034g" = "matchai" }
+
+# Modul Git Status (menampilkan informasi status repositori seperti jumlah file yang dimodifikasi, diverged, dll.)
+[git_status]
+# Format default biasanya menampilkan simbol dan jumlah perubahan jika ada
+# Contoh format yang menampilkan jumlah secara eksplisit (opsional):
+# format = '([\[$all_status$ahead_behind\]]($style))'
+# Format default seringkali cukup informatif:
+format = '([\[$all_status$ahead_behind\]]($style))'
+# Anda bisa menyesuaikan format sesuai preferensi
+# $all_status mencakup added, deleted, renamed, modified, etc.
+# $ahead_behind menunjukkan apakah branch lokal Anda ahead/behind dari remote
+
+# Modul Direktori (menampilkan path direktori kerja)
+[directory]
+# format = "[$path]($style)[$read_only]($read_only_style) "
+# truncate_to_repo = false # Nonaktifkan jika ingin path lengkap
+# truncated_digits = 3 # Jumlah direktori yang dipotong
+
+# Modul Git Branch (menampilkan cabang Git saat ini)
+[git_branch]
+format = "[$branch $symbol]($style)"
+# symbol = "🌱 " # Anda bisa menambahkan simbol
+
+# Modul Node.js
+[nodejs]
+disabled = false                        # Aktifkan jika Anda sering menggunakan Node.js
+format = 'via [🤖 $version](bold green)'
+
+# Modul Go
+[golang]
+disabled = false                       # Aktifkan jika Anda menggunakan Go
+format = 'via [🐹 $version](bold cyan)'
+
+# Modul Java
+[java]
+disabled = false                      # Aktifkan jika Anda menggunakan Java
+format = 'via [☕ $version](bold red)'
+
+# Modul Julia
+[julia]
+disabled = false                         # Aktifkan jika Anda menggunakan Julia
+format = 'via [ஃ $version](bold purple)'
+
+# Modul Lua
+[lua]
+disabled = false                       # Aktifkan jika Anda menggunakan Lua
+format = 'via [🌙 $version](bold blue)'
+
+[bun]
+disabled = false                             # Aktifkan jika Anda menggunakan Lua
+format = 'via [$symbol $version](bold gray)'
+
+# Modul Perl
+[perl]
+disabled = false                       # Aktifkan jika Anda menggunakan Perl
+format = 'via [🦪 $version](bold blue)'
+
+# Modul PHP
+[php]
+disabled = false                                       # Aktifkan jika Anda menggunakan PHP
+format = 'via [ "<?php " $version " ?>"](bold purple)'
+
+# Modul Swift
+[swift]
+disabled = false                         # Aktifkan jika Anda menggunakan Swift
+format = 'via [🐦 $version](bold yellow)'
+
+# Modul Zig
+[zig]
+disabled = false                         # Aktifkan jika Anda menggunakan Zig
+format = 'via [↯ $version](bold yellow)'
+
+# Modul Docker Context (menampilkan konteks Docker yang sedang aktif)
+[docker_context]
+disabled = false                       # Aktifkan jika Anda sering menggunakan Docker
+format = 'via [🐳 $context](bold blue)'
+
+# Modul Time (menampilkan waktu saat prompt muncul)
+[time]
+disabled = false               # Aktifkan jika Anda ingin melihat waktu
+format = 'at [$time]($style) '
+time_format = '%T'             # Contoh: 14:03:05
+
+# Modul Status (menampilkan kode keluaran perintah sebelumnya jika bukan 0)
+[status]
+disabled = false                                             # Aktifkan untuk melihat status error
+format = '[$common_meanings$signal_name$maybe_int]($style) '
