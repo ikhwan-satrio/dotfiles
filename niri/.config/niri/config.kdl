@@ -398,5 +398,6 @@ debug {
 }
 
 cursor {
-  xcursor-theme "catppuccin-mocha-lavender-cursors"
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 22
 }
