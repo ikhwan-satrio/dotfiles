@@ -367,15 +367,15 @@ binds {
     XF86MonBrightnessDown { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     // Media controls
-    XF86AudioRaiseVolume hotkey-overlay-title="Volume Up" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume hotkey-overlay-title="Volume Down" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute hotkey-overlay-title="Toggle Mute" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86AudioMicMute hotkey-overlay-title="Toggle Mic Mute" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
-    XF86AudioPlay hotkey-overlay-title="Play/Pause" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
-    XF86AudioPause hotkey-overlay-title="Play/Pause" { spawn "playerctl" "play-pause"; }
-    XF86AudioNext hotkey-overlay-title="Next Track" { spawn "playerctl" "next"; }
-    XF86AudioPrev hotkey-overlay-title="Previous Track" { spawn "playerctl" "previous"; }
-    Mod+Shift+P hotkey-overlay-title="Play/Pause Media" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioMicMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    XF86AudioPlay { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioPause { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    Mod+Shift+P { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
     
     // Niri specific
     Mod+Shift+R hotkey-overlay-title="Reload Config" { spawn "niri" "msg" "action" "reload-config"; }
