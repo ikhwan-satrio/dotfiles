@@ -6,6 +6,6 @@ window-padding-y = 10
 background-opacity = 1
 adjust-cell-height = 0
 font-thicken = false
-theme = TokyoNight Night
+theme = noctalia
 shell-integration = fish
 quit-after-last-window-closed = true 
