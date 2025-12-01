@@ -1,0 +1,33 @@
+
+animations {
+    //slowdown 1.0
+    
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    
+    // window-movement {
+    //     duration-ms 200
+    //     curve "ease-in-expo"
+    // }
+    //
+    workspace-switch {
+      spring damping-ratio=0.8 stiffness=400 epsilon=0.0001
+    }
+    //
+    // horizontal-view-movement {
+    //     duration-ms 200
+    //     curve "ease-in-expo"
+    // }
+    //
+    // window-resize {
+    //     duration-ms 150
+    //     curve "ease-in-expo"
+    // }
+}

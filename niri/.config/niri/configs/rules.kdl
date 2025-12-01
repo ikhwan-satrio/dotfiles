@@ -1,0 +1,129 @@
+
+// Set the overview wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
+window-rule {
+    match app-id="guifetch"
+    default-column-width {}
+    open-floating true
+}
+
+window-rule {
+    match app-id="yad"
+    open-floating true
+}
+
+window-rule {
+    match app-id="zenity"
+    open-floating true
+}
+
+window-rule {
+    match app-id="wev"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.FileRoller"
+    open-floating true
+}
+
+window-rule {
+    match app-id="file-roller"
+    open-floating true
+}
+
+window-rule {
+    match app-id="system-config-printer"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.pulseaudio.pavucontrol"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="yad-icon-browser"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="nwg-look"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="com.github.wwmm.easyeffects"
+    default-column-width { proportion 0.5; }
+    default-window-height { fixed 600; }
+    open-floating true
+}
+
+window-rule {
+    match title="^(Select|Open)( a)? (File|Folder)(s)?$"
+    open-floating true
+}
+
+window-rule {
+    match title="^File (Operation|Upload)( Progress)?$"
+    open-floating true
+}
+
+window-rule {
+    match title="Properties$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Export Image as PNG$"
+    open-floating true
+}
+
+window-rule {
+    match title="^GIMP Crash Debug$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Save As$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Library$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^brave-browser$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="^org.vinegarhq.Sober$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="^kitty$"
+    default-column-width { proportion 1.0; }
+}
+
+// Floating windows (Niri handles this differently)
+window-rule {
+    match app-id="^(blueberry.py|nm-connection-editor)$"
+    default-column-width { fixed 800; }
+}
+
+window-rule {
+  geometry-corner-radius 3
+  clip-to-geometry true
+}
+
