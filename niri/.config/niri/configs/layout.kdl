@@ -1,7 +1,7 @@
 
 layout {
     // Gaps similar to Hyprland config (5px inside, 10px outside)
-    gaps 8.5
+    gaps 7
     
     center-focused-column "never"
     
