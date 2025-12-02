@@ -119,7 +119,9 @@ binds {
     Mod+Shift+P { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
     
     // Niri specific
-    Mod+Shift+R hotkey-overlay-title="Reload Config" { spawn "niri" "msg" "action" "reload-config"; }
+    Mod+Shift+R hotkey-overlay-title="Reload Config" { 
+        spawn "sh" "-c" "qs -c noctalia-shell kill && QT_QPA_PLATFORMTHEME=qt6ct qs -c noctalia-shell -d"; 
+    }
     Mod+Shift+O hotkey-overlay-title="Toggle Overview" { toggle-overview; }
     Mod+Slash hotkey-overlay-title="Show All Keybinds" { 
         show-hotkey-overlay; 

@@ -14,7 +14,8 @@ layout {
     default-column-width { proportion 1.0; }
     
     focus-ring {
-        width 1.5
+      off  
+      width 1.5
         active-gradient from="#c77dff" to="#4cc9f0" angle=45 relative-to="workspace-view"
         inactive-color "#45475a"
     }
