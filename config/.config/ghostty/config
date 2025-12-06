@@ -9,3 +9,7 @@ font-thicken = false
 theme = noctalia
 shell-integration = fish
 quit-after-last-window-closed = true 
+
+keybind=ctrl+shift+backslash=new_split:right
+keybind=ctrl+shift+minus=new_split:down
+keybind=ctrl+enter=ignore

@@ -40,6 +40,12 @@ if status is-interactive
         set -gx JAVA_HOME (java -XshowSettings:properties -version 2>&1 | grep "java.home" | awk '{print $3}')
     end
 
+    # --- Golang ---
+    if type -q go
+        set -gx GOPATH "$HOME/go"
+        set -gx PATH "$GOPATH/bin" $PATH
+    end
+
     function toggle_screen_timeout
         # Cek apakah service sedang aktif (running)
         if systemctl --user is-active --quiet swayidle-niri.service
