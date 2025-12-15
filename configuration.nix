@@ -89,6 +89,7 @@
     ghostty
     brave
     eza
+    localsend
 
     # niri support
     nautilus
@@ -111,8 +112,6 @@
     wget
     git
     neovim
-    nixfmt-rfc-style
-    nil
   ];
 
   environment.variables = {
