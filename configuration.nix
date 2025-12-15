@@ -1,10 +1,9 @@
 { config, pkgs, inputs, ... }:  
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.noctalia.nixosModules.default  # Import Noctalia NixOS module
-    ];
+  ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   
   boot.loader.systemd-boot.enable = true;
@@ -13,14 +12,25 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   
-  # Services yang diperlukan Noctalia
-  hardware.bluetooth.enable = true;  # Required untuk Bluetooth
+  hardware.bluetooth.enable = true;  # Required untuk Bluetooth 
   services.power-profiles-daemon.enable = true;  # Required untuk Power Profile
   services.upower.enable = true;  # Required untuk Battery
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;  # GNOME Virtual File System
   
-  # Enable Noctalia systemd service
+  services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+  };
+
   services.noctalia-shell.enable = true;
-  
+ 
+  # Flatpak support
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+
   time.timeZone = "Asia/Jakarta";
   
   i18n.defaultLocale = "en_US.UTF-8";
@@ -68,25 +78,23 @@
     zoxide
     starship
     stow
-    firefox
     fastfetch
     gnome-disk-utility
     nautilus
     ghostty
+    polkit_gnome
+    qt6Packages.qt6ct
+    brave
+    xwayland-satellite
+    app2unit
+    papirus-icon-theme
+    bibata-cursors
  ];
   
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
   ];
-  
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;  # GNOME Virtual File System
-  
-  services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-  };
-  
+   
   system.stateVersion = "25.11";  # Ubah dari 25.11 ke 24.11 (versi stable terakhir)
 }

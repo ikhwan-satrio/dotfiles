@@ -11,7 +11,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosConfigurations.awesomebox = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";  # Tambahkan baris ini
       specialArgs = { inherit inputs; };
       modules = [
