@@ -110,6 +110,10 @@
     neovim
   ];
 
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono

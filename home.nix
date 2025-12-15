@@ -35,10 +35,6 @@
 
   };
 
-  home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-  };
-
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
 }
