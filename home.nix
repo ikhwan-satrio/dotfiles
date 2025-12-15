@@ -16,11 +16,9 @@
 
   programs.zapzap.enable = true;
 
-  home.file = {
-    ".config/vesktop/themes" = {
-      source = "./vesktop-themes";
-      recursive = true;
-    };
+  home.file.".config/vesktop/themes" = {
+    source = ./vesktop-themes;
+    recursive = true;
   };
 
   programs.vesktop = {
