@@ -14,6 +14,8 @@
     bibata-cursors
   ];
 
+  programs.zapzap.enable = true;
+
   gtk = {
     enable = true;
     iconTheme = {
