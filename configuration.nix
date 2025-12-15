@@ -86,14 +86,19 @@
     starship
     stow
     fastfetch
-    gnome-disk-utility
-    nautilus
     ghostty
+    brave
+    eza
+
+    # niri support
+    nautilus
+    gnome-disk-utility
     polkit_gnome
     qt6Packages.qt6ct
-    brave
     xwayland-satellite
     app2unit
+
+    # themes
     papirus-icon-theme
     bibata-cursors
 
