@@ -12,7 +12,10 @@
 
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations.awesomebox = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";  # Tambahkan baris ini
+      specialArgs = { inherit inputs; };
       modules = [
+        ./configuration.nix
         ./noctalia.nix
       ];
     };

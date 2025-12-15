@@ -2,12 +2,7 @@
 {
   # install package
   environment.systemPackages = with pkgs; [
-    inputs.noctalia.packages.${system}.default
-    alacritty
-    kitty
-    git
-    curl
-    fish
-    neovim
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # ... maybe other stuff
   ];
 }
