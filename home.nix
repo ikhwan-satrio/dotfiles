@@ -15,6 +15,7 @@
   ];
 
   programs.zapzap.enable = true;
+  programs.brave.enable = true;
 
   home.file.".config/vesktop/themes" = {
     source = ./vesktop-themes;

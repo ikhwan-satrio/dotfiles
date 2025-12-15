@@ -78,7 +78,6 @@
 
   environment.systemPackages = with pkgs; [
     nodejs_22
-    alacritty
     fish
     rustc
     cargo
@@ -87,7 +86,6 @@
     stow
     fastfetch
     ghostty
-    brave
     eza
     localsend
 
