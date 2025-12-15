@@ -72,7 +72,8 @@
     fastfetch
     gnome-disk-utility
     nautilus
-  ];
+    ghostty
+ ];
   
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code

@@ -1,4 +1,3 @@
-
 binds {
     
     // Terminal
@@ -7,8 +6,8 @@ binds {
     // Applications
     Mod+E hotkey-overlay-title="File Manager" { spawn "app2unit" "--" "nautilus"; }
     Mod+B hotkey-overlay-title="Browser" { spawn "app2unit" "--" "zen-browser"; }
-    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-    Mod+R hotkey-overlay-title="Application Launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+R hotkey-overlay-title="Application Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     
     // Window management
     Mod+Q hotkey-overlay-title="Close Window" { close-window; }
@@ -97,30 +96,30 @@ binds {
     Mod+Print hotkey-overlay-title="Screenshot Window" { screenshot-window; }
     
     // Session management
-    Mod+Shift+Q hotkey-overlay-title="Session Menu" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+Shift+Q hotkey-overlay-title="Session Menu" { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
     
     // Wallpaper
-    Mod+W hotkey-overlay-title="Wallpaper Picker" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
-    Mod+Shift+W hotkey-overlay-title="Random Wallpaper" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "random"; }
+    Mod+W hotkey-overlay-title="Wallpaper Picker" { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+Shift+W hotkey-overlay-title="Random Wallpaper" { spawn "noctalia-shell" "ipc" "call" "wallpaper" "random"; }
    
     // Brightness controls
-    XF86MonBrightnessUp { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     // Media controls
-    XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86AudioMicMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
-    XF86AudioPlay { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioMicMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    XF86AudioPlay { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
     XF86AudioPause { spawn "playerctl" "play-pause"; }
     XF86AudioNext { spawn "playerctl" "next"; }
     XF86AudioPrev { spawn "playerctl" "previous"; }
-    Mod+Shift+P { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    Mod+Shift+P { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
     
     // Niri specific
     Mod+Shift+R hotkey-overlay-title="Reload Config" { 
-        spawn "sh" "-c" "qs -c noctalia-shell kill && QT_QPA_PLATFORMTHEME=qt6ct qs -c noctalia-shell -d"; 
+        spawn "sh" "-c" "noctalia-shell kill && QT_QPA_PLATFORMTHEME=qt6ct noctalia-shell -d"; 
     }
     Mod+Shift+O hotkey-overlay-title="Toggle Overview" { toggle-overview; }
     Mod+Slash hotkey-overlay-title="Show All Keybinds" { 
