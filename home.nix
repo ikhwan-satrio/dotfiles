@@ -7,7 +7,37 @@
   home.packages = with pkgs; [
     nixfmt-rfc-style
     nil
+    lua-language-server
+
+    #themes
+    papirus-icon-theme
+    bibata-cursors
   ];
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+  };
+
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+  };
 
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;

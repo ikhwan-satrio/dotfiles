@@ -99,10 +99,6 @@
     xwayland-satellite
     app2unit
 
-    # themes
-    papirus-icon-theme
-    bibata-cursors
-
     # neovim
     wl-clipboard
     lua5_1
@@ -113,10 +109,6 @@
     git
     neovim
   ];
-
-  environment.variables = {
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
