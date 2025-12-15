@@ -15,7 +15,7 @@
       system = "x86_64-linux";  # Tambahkan baris ini
       specialArgs = { inherit inputs; };
       modules = [
-        ./noctalia.nix
+        ./configuration.nix
       ];
     };
   };

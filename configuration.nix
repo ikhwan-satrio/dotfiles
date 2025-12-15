@@ -1,0 +1,91 @@
+{ config, pkgs, inputs, ... }:  
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      inputs.noctalia.nixosModules.default  # Import Noctalia NixOS module
+    ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  
+  networking.hostName = "nixos"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  
+  # Services yang diperlukan Noctalia
+  hardware.bluetooth.enable = true;  # Required untuk Bluetooth
+  services.power-profiles-daemon.enable = true;  # Required untuk Power Profile
+  services.upower.enable = true;  # Required untuk Battery
+  
+  # Enable Noctalia systemd service
+  services.noctalia-shell.enable = true;
+  
+  time.timeZone = "Asia/Jakarta";
+  
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "id_ID.UTF-8";
+    LC_IDENTIFICATION = "id_ID.UTF-8";
+    LC_MEASUREMENT = "id_ID.UTF-8";
+    LC_MONETARY = "id_ID.UTF-8";
+    LC_NAME = "id_ID.UTF-8";
+    LC_NUMERIC = "id_ID.UTF-8";
+    LC_PAPER = "id_ID.UTF-8";
+    LC_TELEPHONE = "id_ID.UTF-8";
+    LC_TIME = "id_ID.UTF-8";
+  };
+ 
+  programs.fish.enable = true;
+  programs.niri.enable = true;
+  
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+  
+  # Define a user account. Don't forget to set a password with 'passwd'.
+  users.users.wanto = {
+    isNormalUser = true;
+    description = "wanto";
+    extraGroups = [ "networkmanager" "wheel" "storage" ];
+    packages = with pkgs; [];
+    shell = pkgs.fish;
+  };
+  
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+    nodejs_22
+    alacritty
+    wl-clipboard
+    lua5_1
+    luarocks
+    fish
+    rustc
+    cargo
+    zoxide
+    starship
+    stow
+    firefox
+    fastfetch
+    gnome-disk-utility
+    nautilus
+  ];
+  
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+  ];
+  
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;  # GNOME Virtual File System
+  
+  services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+  };
+  
+  system.stateVersion = "25.11";  # Ubah dari 25.11 ke 24.11 (versi stable terakhir)
+}
