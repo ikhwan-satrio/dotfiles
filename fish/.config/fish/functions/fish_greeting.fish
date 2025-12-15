@@ -1,3 +1,3 @@
 function fish_greeting
-  fastfetch --config hypr
+  fastfetch --config arch
 end
