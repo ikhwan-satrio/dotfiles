@@ -28,7 +28,6 @@
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true; # Required untuk Bluetooth
-  services.blueman.enable = true;
   services.power-profiles-daemon.enable = true; # Required untuk Power Profile
   services.upower.enable = true; # Required untuk Battery
   services.udisks2.enable = true;
