@@ -2,6 +2,7 @@ local wez = require 'wezterm'
 local module = {}
 
 function module.apply_to_config(config)
+  -- Hapus spasi berlebih di akhir URL
   local bar = wez.plugin.require 'https://github.com/adriankarlen/bar.wezterm'
   bar.apply_to_config(config, {
     position = 'bottom',
