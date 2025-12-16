@@ -41,7 +41,7 @@
       qt6Packages.qtsvg
       qt6Packages.qtmultimedia
       qt6Packages.qtvirtualkeyboard
-      pkgs.sddm-astronaut
+      sddm-astronaut
     ];
     theme = "sddm-astronaut-theme";
   };
