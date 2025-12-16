@@ -8,7 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    inputs.noctalia.nixosModules.default # Import Noctalia NixOS module
+    inputs.noctalia.nixosModules.default
   ];
 
   nix.settings.experimental-features = [
@@ -58,7 +58,7 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
-    config.common.default = "*"; # Atau bisa spesifik per compositor
+    config.common.default = "*";
   };
 
   services.pipewire = {
@@ -70,7 +70,7 @@
 
   # Load bluetooth modules
   services.pulseaudio = {
-    enable = false; # Matikan jika pakai pipewire
+    enable = false;
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
 
