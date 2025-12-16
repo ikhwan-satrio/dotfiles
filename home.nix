@@ -22,6 +22,7 @@
     nixfmt-rfc-style
     nil
     lua-language-server
+    stylua
 
     # themes
     papirus-icon-theme
