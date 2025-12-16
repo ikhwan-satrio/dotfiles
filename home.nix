@@ -23,11 +23,21 @@
     nil
     lua-language-server
     stylua
+    dconf
 
     # themes
     papirus-icon-theme
     bibata-cursors
   ];
+
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
 
   # XDG Base Directory
   xdg.enable = true;
