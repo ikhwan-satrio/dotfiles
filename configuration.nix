@@ -130,6 +130,7 @@
     xwayland-satellite
     app2unit
     matugen
+    swappy
 
     # neovim
     wl-clipboard

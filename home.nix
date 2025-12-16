@@ -28,6 +28,92 @@
     bibata-cursors
   ];
 
+  # XDG Base Directory
+  xdg.enable = true;
+
+  # XDG User Directories (Documents, Downloads, dll)
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true; # Auto-create folders
+
+    desktop = "${config.home.homeDirectory}/Desktop";
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
+
+    publicShare = "${config.home.homeDirectory}/Public";
+    templates = "${config.home.homeDirectory}/Templates";
+  };
+
+  # XDG MIME Types (default applications)
+  xdg.mimeApps = {
+    enable = true;
+
+    defaultApplications = {
+      # File Manager
+      "inode/directory" = "org.gnome.Nautilus.desktop";
+
+      # Web Browser
+      "text/html" = "brave-browser.desktop";
+      "x-scheme-handler/http" = "brave-browser.desktop";
+      "x-scheme-handler/https" = "brave-browser.desktop";
+      "x-scheme-handler/about" = "brave-browser.desktop";
+      "x-scheme-handler/unknown" = "brave-browser.desktop";
+
+      # Images
+      "image/jpeg" = "org.gnome.Loupe.desktop"; # Atau "gwenview.desktop"
+      "image/png" = "org.gnome.Loupe.desktop";
+      "image/gif" = "org.gnome.Loupe.desktop";
+      "image/webp" = "org.gnome.Loupe.desktop";
+      "image/svg+xml" = "org.gnome.Loupe.desktop";
+
+      # Videos
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop"; # .mkv
+      "video/webm" = "mpv.desktop";
+      "video/mpeg" = "mpv.desktop";
+
+      # Audio
+      "audio/mpeg" = "mpv.desktop";
+      "audio/flac" = "mpv.desktop";
+      "audio/x-wav" = "mpv.desktop";
+      "audio/ogg" = "mpv.desktop";
+
+      # Documents
+      "application/pdf" = "org.gnome.Evince.desktop"; # Atau "okular.desktop"
+      "application/epub+zip" = "org.gnome.Evince.desktop";
+
+      # Text files
+      "text/plain" = "neovim.desktop"; # Atau "org.gnome.gedit.desktop"
+      "text/markdown" = "neovim.desktop";
+
+      # Archives
+      "application/zip" = "org.gnome.FileRoller.desktop";
+      "application/x-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+
+      # Code files
+      "text/x-python" = "neovim.desktop";
+      "text/x-shellscript" = "neovim.desktop";
+      "application/javascript" = "neovim.desktop";
+      "application/json" = "neovim.desktop";
+    };
+
+    # Associations (multiple apps untuk satu mime type)
+    associations.added = {
+      "image/png" = [
+        "org.gnome.Loupe.desktop"
+        "gimp.desktop"
+      ];
+      "text/plain" = [
+        "neovim.desktop"
+        "org.gnome.gedit.desktop"
+      ];
+    };
+  };
+
   programs.spicetify =
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
