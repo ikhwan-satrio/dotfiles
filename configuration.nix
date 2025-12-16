@@ -37,11 +37,11 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
       kdePackages.qtsvg
       kdePackages.qtmultimedia
       kdePackages.qtvirtualkeyboard
+      pkgs.sddm-astronaut
     ];
     theme = "sddm-astronaut-theme";
   };
