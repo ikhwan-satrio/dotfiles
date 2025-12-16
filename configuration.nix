@@ -38,9 +38,9 @@
     enable = true;
     wayland.enable = true;
     extraPackages = with pkgs; [
-      kdePackages.qtsvg
-      kdePackages.qtmultimedia
-      kdePackages.qtvirtualkeyboard
+      qt6Packages.qtsvg
+      qt6Packages.qtmultimedia
+      qt6Packages.qtvirtualkeyboard
       pkgs.sddm-astronaut
     ];
     theme = "sddm-astronaut-theme";
