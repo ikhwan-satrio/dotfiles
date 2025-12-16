@@ -5,7 +5,7 @@ if status is-interactive
     command -v zoxide &>/dev/null && zoxide init fish | source
 
     alias ls='eza --icons --group-directories-first -1'
-    alias ns='sudo nixos-rebuild switch --flake ~/.dotfiles#nixos-btw'
+    alias ns='sudo nixos-rebuild switch --flake ~/nixos-wanto#nixos-btw'
 
     # --- ASDF ---
     if type -q asdf

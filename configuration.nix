@@ -36,9 +36,25 @@
 
   # Flatpak support
   services.flatpak.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  # screen sharing
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config.common.default = "*"; # Atau bisa spesifik per compositor
+  };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # locales
   time.timeZone = "Asia/Jakarta";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -88,6 +104,7 @@
     ghostty
     eza
     localsend
+    obs-studio
 
     # niri support
     nautilus
