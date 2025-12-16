@@ -13,6 +13,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs"; # ADD: Follow nixpkgs
+    };
   };
 
   outputs =
@@ -28,11 +33,15 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          
           home-manager.nixosModules.home-manager
+          { nixpkgs.config.allowUnfree = true; }
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              system = "x86_64-linux";
+            };
             home-manager.users.wanto = import ./home.nix;
           }
         ];

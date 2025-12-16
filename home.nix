@@ -1,8 +1,22 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.username = "wanto";
   home.homeDirectory = "/home/wanto";
+
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.spicetify
+  ];
+
+  home.file.".config/vesktop/themes" = {
+    source = ./vesktop-themes;
+    recursive = true;
+  };
 
   home.packages = with pkgs; [
     nixfmt-rfc-style
@@ -14,13 +28,24 @@
     bibata-cursors
   ];
 
+  programs.spicetify =
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+    in
+    {
+      enable = true;
+
+      theme = spicePkgs.themes.nightlight;
+
+      enabledExtensions = with spicePkgs.extensions; [
+        shuffle
+        adblock
+        fullAppDisplay
+      ];
+    };
+
   programs.zapzap.enable = true;
   programs.brave.enable = true;
-
-  home.file.".config/vesktop/themes" = {
-    source = ./vesktop-themes;
-    recursive = true;
-  };
 
   programs.vesktop = {
     enable = true;
