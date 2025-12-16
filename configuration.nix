@@ -128,6 +128,7 @@
     qt6Packages.qt6ct
     xwayland-satellite
     app2unit
+    matugen
 
     # neovim
     wl-clipboard
