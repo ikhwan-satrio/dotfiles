@@ -118,6 +118,7 @@
     eza
     localsend
     obs-studio
+    bun
 
     # niri support
     bluez-tools

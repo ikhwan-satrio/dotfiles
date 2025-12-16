@@ -23,7 +23,7 @@
     nil
     lua-language-server
 
-    #themes
+    # themes
     papirus-icon-theme
     bibata-cursors
   ];
