@@ -144,7 +144,7 @@
     };
 
   programs.zapzap.enable = true;
-  programs.brave.enable = true;
+  programs.vivaldi.enable = true;
 
   programs.vesktop = {
     enable = true;
