@@ -23,8 +23,8 @@ if status is-interactive
     end
 
     # --- Bun ---
-    if test -d "$HOME/.bun"
-        set -gx BUN_INSTALL "$HOME/.bun"
+    if test -d "$HOME/.cache/.bun"
+        set -gx BUN_INSTALL "$HOME/.cache/.bun"
         set -gx PATH $BUN_INSTALL/bin $PATH
         bun completions | source
     end

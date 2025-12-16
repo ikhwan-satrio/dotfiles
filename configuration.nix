@@ -114,7 +114,8 @@
     starship
     stow
     fastfetch
-    ghostty
+    # ghostty
+    wezterm
     eza
     localsend
     obs-studio
