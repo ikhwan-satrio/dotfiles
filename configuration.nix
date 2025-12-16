@@ -10,10 +10,16 @@
     ./hardware-configuration.nix
     inputs.noctalia.nixosModules.default # Import Noctalia NixOS module
   ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ]; # Atau "daily", "03:45"
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -22,6 +28,7 @@
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true; # Required untuk Bluetooth
+  services.blueman.enable = true;
   services.power-profiles-daemon.enable = true; # Required untuk Power Profile
   services.upower.enable = true; # Required untuk Battery
   services.udisks2.enable = true;
@@ -52,6 +59,12 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  # Load bluetooth modules
+  services.pulseaudio = {
+    enable = false; # Matikan jika pakai pipewire
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
 
   # locales
@@ -107,6 +120,8 @@
     obs-studio
 
     # niri support
+    bluez-tools
+    bluez
     nautilus
     gnome-disk-utility
     polkit_gnome
