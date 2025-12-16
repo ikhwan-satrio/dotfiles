@@ -128,6 +128,12 @@
     obs-studio
     bun
 
+    # sddm
+    qt6Packages.qtsvg
+    qt6Packages.qtmultimedia
+    qt6Packages.qtvirtualkeyboard
+    sddm-astronaut
+
     # niri support
     bluez-tools
     bluez
