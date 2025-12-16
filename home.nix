@@ -122,9 +122,11 @@
     {
       enable = true;
 
-      theme = spicePkgs.themes.nightlight;
+      theme = spicePkgs.themes.comfy;
+      colorScheme = "catppuccin-mocha";
 
       enabledExtensions = with spicePkgs.extensions; [
+        beautifulLyrics
         shuffle
         adblock
         fullAppDisplay
