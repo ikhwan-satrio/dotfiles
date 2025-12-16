@@ -142,6 +142,7 @@
     localsend
     obs-studio
     bun
+    gcc
 
     # sddm
     qt6Packages.qtsvg
