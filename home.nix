@@ -23,9 +23,12 @@
     nil
     lua-language-server
     stylua
-    dconf
+    uget
+    aria2
+    uget-integrator
 
     # themes
+    dconf
     papirus-icon-theme
     bibata-cursors
   ];
@@ -66,44 +69,9 @@
       # File Manager
       "inode/directory" = "org.gnome.Nautilus.desktop";
 
-      # Web Browser
-      "text/html" = "brave-browser.desktop";
-      "x-scheme-handler/http" = "brave-browser.desktop";
-      "x-scheme-handler/https" = "brave-browser.desktop";
-      "x-scheme-handler/about" = "brave-browser.desktop";
-      "x-scheme-handler/unknown" = "brave-browser.desktop";
-
-      # Images
-      "image/jpeg" = "org.gnome.Loupe.desktop"; # Atau "gwenview.desktop"
-      "image/png" = "org.gnome.Loupe.desktop";
-      "image/gif" = "org.gnome.Loupe.desktop";
-      "image/webp" = "org.gnome.Loupe.desktop";
-      "image/svg+xml" = "org.gnome.Loupe.desktop";
-
-      # Videos
-      "video/mp4" = "mpv.desktop";
-      "video/x-matroska" = "mpv.desktop"; # .mkv
-      "video/webm" = "mpv.desktop";
-      "video/mpeg" = "mpv.desktop";
-
-      # Audio
-      "audio/mpeg" = "mpv.desktop";
-      "audio/flac" = "mpv.desktop";
-      "audio/x-wav" = "mpv.desktop";
-      "audio/ogg" = "mpv.desktop";
-
-      # Documents
-      "application/pdf" = "org.gnome.Evince.desktop"; # Atau "okular.desktop"
-      "application/epub+zip" = "org.gnome.Evince.desktop";
-
       # Text files
       "text/plain" = "neovim.desktop"; # Atau "org.gnome.gedit.desktop"
       "text/markdown" = "neovim.desktop";
-
-      # Archives
-      "application/zip" = "org.gnome.FileRoller.desktop";
-      "application/x-tar" = "org.gnome.FileRoller.desktop";
-      "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
 
       # Code files
       "text/x-python" = "neovim.desktop";
@@ -143,8 +111,37 @@
       ];
     };
 
-  programs.zapzap.enable = true;
   programs.vivaldi.enable = true;
+
+  # Configure uGet native messaging untuk Vivaldi
+  home.file.".config/vivaldi/NativeMessagingHosts/com.ugetdm.chrome.json".text = ''
+    {
+      "name": "com.ugetdm.chrome",
+      "description": "uGet Integration",
+      "path": "${pkgs.uget-integrator}/bin/uget-integrator",
+      "type": "stdio",
+      "allowed_origins": [
+        "chrome-extension://efjgjleilhflffpbnkaofpmdnajdpepi/"
+      ]
+    }
+  '';
+
+  # Opsional: Auto-start aria2 daemon
+  systemd.user.services.aria2 = {
+    Unit = {
+      Description = "Aria2 Daemon";
+      After = [ "network.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.aria2}/bin/aria2c --enable-rpc --rpc-listen-all=false --rpc-allow-origin-all --dir=%h/Downloads";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  programs.zapzap.enable = true;
 
   programs.vesktop = {
     enable = true;
