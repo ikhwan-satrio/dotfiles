@@ -46,6 +46,7 @@
   };
 
   services.noctalia-shell.enable = true;
+  virtualisation.waydroid.enable = true;
 
   # Flatpak support
   services.flatpak.enable = true;
