@@ -6,13 +6,6 @@ config.font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'Regular' })
 config.font_size = 12.0
 config.line_height = 1.0
 
-config.window_padding = {
-  left = 10,
-  right = 10,
-  top = 10,
-  bottom = 0,
-}
-
 config.window_background_opacity = 1.0
 config.window_close_confirmation = 'NeverPrompt'
 
@@ -75,6 +68,12 @@ tabline.setup {
 }
 tabline.apply_to_config(config)
 
+config.window_padding = {
+  left = 10,
+  right = 10,
+  top = 0,
+  bottom = 10,
+}
 config.window_decorations = 'NONE' -- hanya border resize, tanpa title bar
 
 require('configs.keybinds').apply_to_config(config)
