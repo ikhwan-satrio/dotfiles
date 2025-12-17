@@ -36,6 +36,8 @@
     uget
     aria2
     uget-integrator
+    pipes-rs
+    unimatrix
 
     # themes
     dconf
