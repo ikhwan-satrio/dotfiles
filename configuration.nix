@@ -144,6 +144,7 @@
     obs-studio
     bun
     gcc
+    android-tools
 
     # sddm
     qt6Packages.qtsvg
