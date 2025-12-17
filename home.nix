@@ -105,6 +105,9 @@
     };
   };
 
+  programs.vivaldi.enable = true;
+  programs.zapzap.enable = true;
+
   programs.spicetify =
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
@@ -122,8 +125,6 @@
         fullAppDisplay
       ];
     };
-
-  programs.vivaldi.enable = true;
 
   # Configure uGet native messaging untuk Vivaldi
   home.file.".config/vivaldi/NativeMessagingHosts/com.ugetdm.chrome.json".text = ''
@@ -152,8 +153,6 @@
       WantedBy = [ "default.target" ];
     };
   };
-
-  programs.zapzap.enable = true;
 
   programs.vesktop = {
     enable = true;

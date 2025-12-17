@@ -163,6 +163,7 @@
     gcc
     android-tools
     efibootmgr
+    gimp
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # podman
