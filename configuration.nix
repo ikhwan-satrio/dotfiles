@@ -159,6 +159,10 @@
     android-tools
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
+    # podman
+    podman-compose
+    podman-desktop
+
     # sddm
     qt6Packages.qtsvg
     qt6Packages.qtmultimedia
