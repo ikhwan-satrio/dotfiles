@@ -164,6 +164,7 @@
     android-tools
     efibootmgr
     gimp
+    kdePackages.ark
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # podman
