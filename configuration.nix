@@ -142,6 +142,7 @@
     eza
     localsend
     obs-studio
+    obsidian
     bun
     gcc
     android-tools
