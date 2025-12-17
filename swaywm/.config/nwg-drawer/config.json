@@ -1,9 +1,0 @@
-{
-  "apps": [
-    {
-      "name": "Wi-Fi",
-      "exec": "nwg-network",
-      "category": "Network"
-    }
-  ]
-}
