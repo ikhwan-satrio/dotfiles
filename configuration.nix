@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -32,6 +33,7 @@
   services.upower.enable = true; # Required untuk Battery
   services.udisks2.enable = true;
   services.gvfs.enable = true; # GNOME Virtual File System
+  services.gnome.evolution-data-server.enable = true;
 
   services.displayManager.sddm = {
     enable = true;
@@ -146,6 +148,7 @@
     bun
     gcc
     android-tools
+    (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # sddm
     qt6Packages.qtsvg
@@ -178,6 +181,18 @@
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt6ct";
+    GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
+      with pkgs;
+      [
+        evolution-data-server
+        libical
+        glib.out
+        libsoup_3
+        json-glib
+        gobject-introspection
+      ]
+    );
+
   };
 
   fonts.packages = with pkgs; [
