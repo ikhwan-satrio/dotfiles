@@ -18,6 +18,16 @@
     recursive = true;
   };
 
+  home.file.".config/fish" = {
+    source = ./fish/.config/fish;
+    recursive = true;
+  };
+
+  home.file.".config/niri" = {
+    source = ./niri/.config/niri;
+    recursive = true;
+  };
+
   home.packages = with pkgs; [
     nixfmt-rfc-style
     nil

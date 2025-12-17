@@ -48,7 +48,15 @@
   };
 
   services.noctalia-shell.enable = true;
-  virtualisation.waydroid.enable = true;
+  virtualisation = {
+    containers.enable = true;
+    waydroid.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
 
   # Flatpak support
   services.flatpak.enable = true;
@@ -125,6 +133,7 @@
       "networkmanager"
       "wheel"
       "storage"
+      "podman"
     ];
     packages = with pkgs; [ ];
     shell = pkgs.fish;
