@@ -33,11 +33,32 @@
     nil
     lua-language-server
     stylua
+
+    # applications
     uget
     aria2
     uget-integrator
     pipes-rs
     unimatrix
+    easyeffects
+    onlyoffice-desktopeditors
+    # ghostty
+    wezterm
+    localsend
+    obs-studio
+    obsidian
+    gimp
+    kdePackages.ark
+    nautilus
+    swappy
+
+    # for ricing
+    matugen
+    zoxide
+    starship
+    eza
+    stow
+    fastfetch
 
     # themes
     dconf
@@ -105,8 +126,11 @@
     };
   };
 
-  programs.vivaldi.enable = true;
   programs.zapzap.enable = true;
+  programs.vivaldi = {
+    nativeMessagingHosts = [ pkgs.uget-integrator ];
+    enable = true;
+  };
 
   programs.spicetify =
     let
@@ -125,34 +149,6 @@
         fullAppDisplay
       ];
     };
-
-  # Configure uGet native messaging untuk Vivaldi
-  home.file.".config/vivaldi/NativeMessagingHosts/com.ugetdm.chrome.json".text = ''
-    {
-      "name": "com.ugetdm.chrome",
-      "description": "uGet Integration",
-      "path": "${pkgs.uget-integrator}/bin/uget-integrator",
-      "type": "stdio",
-      "allowed_origins": [
-        "chrome-extension://efjgjleilhflffpbnkaofpmdnajdpepi/"
-      ]
-    }
-  '';
-
-  # Opsional: Auto-start aria2 daemon
-  systemd.user.services.aria2 = {
-    Unit = {
-      Description = "Aria2 Daemon";
-      After = [ "network.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.aria2}/bin/aria2c --enable-rpc --rpc-listen-all=false --rpc-allow-origin-all --dir=%h/Downloads";
-      Restart = "on-failure";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
 
   programs.vesktop = {
     enable = true;
