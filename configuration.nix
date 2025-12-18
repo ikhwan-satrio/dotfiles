@@ -34,8 +34,7 @@
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true; # Required untuk Bluetooth
-  services.power-profiles-daemon.enable = true; # Required untuk Power Profile
-  services.upower.enable = true; # Required untuk Battery
+  services.printing.enable = true; # Jika tidak print
   services.udisks2.enable = true;
   services.gvfs.enable = true; # GNOME Virtual File System
   services.gnome.evolution-data-server.enable = true;
@@ -51,6 +50,16 @@
     ];
     theme = "sddm-astronaut-theme";
   };
+
+  # === power and cpu optimization ===
+  services.power-profiles-daemon.enable = true; # Required untuk Power Profile
+  services.upower.enable = true; # Required untuk Battery
+
+  # Thermald (Intel thermal management)
+  services.thermald.enable = true;
+
+  # CPU microcode updates
+  hardware.cpu.intel.updateMicrocode = true; # Ganti ke amd jika pakai AMD
 
   services.noctalia-shell.enable = true;
   virtualisation = {
