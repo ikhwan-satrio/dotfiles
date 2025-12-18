@@ -149,22 +149,10 @@
     fish
     rustc
     cargo
-    zoxide
-    starship
-    stow
-    fastfetch
-    # ghostty
-    wezterm
-    eza
-    localsend
-    obs-studio
-    obsidian
     bun
     gcc
     android-tools
     efibootmgr
-    gimp
-    kdePackages.ark
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # podman
@@ -180,14 +168,11 @@
     # niri support
     bluez-tools
     bluez
-    nautilus
     gnome-disk-utility
     polkit_gnome
     qt6Packages.qt6ct
     xwayland-satellite
     app2unit
-    matugen
-    swappy
 
     # neovim
     wl-clipboard
