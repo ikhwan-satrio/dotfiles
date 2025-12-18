@@ -22,12 +22,29 @@
     dates = [ "weekly" ]; # Atau "daily", "03:45"
   };
 
-  boot.loader = {
-    systemd-boot = {
+  boot = {
+    plymouth = {
       enable = true;
-      configurationLimit = 4; # Hanya show 4 generasi terakhir
+      theme = "mac-style";
+      themePackages = [ pkgs.mac-style-plymouth ];
     };
-    efi.canTouchEfiVariables = true;
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5; # Hanya show 4 generasi terakhir
+      };
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   networking.hostName = "nixos"; # Define your hostname.

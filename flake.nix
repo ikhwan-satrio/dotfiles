@@ -18,6 +18,11 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs"; # ADD: Follow nixpkgs
     };
+
+    s4rchiso-plymouth = {
+      url = "github:SergioRibera/s4rchiso-plymouth-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,6 +40,7 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           { nixpkgs.config.allowUnfree = true; }
+          { nixpkgs.overlays = [ inputs.s4rchiso-plymouth.overlays.default ]; }
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
