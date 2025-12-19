@@ -123,7 +123,7 @@ window-rule {
 }
 
 window-rule {
-  geometry-corner-radius 10
+  geometry-corner-radius 3
   clip-to-geometry true
 }
 
