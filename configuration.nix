@@ -95,16 +95,32 @@
   # screen sharing
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
     ];
-    config.common.default = "*";
+
+    config = {
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+        "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
+      };
+      common = {
+        default = [ "gtk" ];
+      };
+    };
   };
 
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    wireplumber.enable = true; # Tambahkan ini untuk session management
     alsa.support32Bit = true;
     pulse.enable = true;
   };
@@ -116,6 +132,7 @@
   };
 
   security.polkit.enable = true;
+  security.rtkit.enable = true; # Tambahkan untuk realtime audio
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -179,6 +196,7 @@
     gcc
     android-tools
     efibootmgr
+    gnome-keyring
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # podman
