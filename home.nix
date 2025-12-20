@@ -36,13 +36,10 @@
 
     # applications
     uget
-    aria2
     uget-integrator
-    pipes-rs
-    unimatrix
     easyeffects
     onlyoffice-desktopeditors
-    # ghostty
+    tor-browser
     wezterm
     localsend
     obs-studio
@@ -51,8 +48,12 @@
     kdePackages.ark
     nautilus
     swappy
+    telegram-desktop
 
-    # for ricing
+    # terminal app
+    pipes-rs
+    unimatrix
+    btop
     matugen
     zoxide
     starship
