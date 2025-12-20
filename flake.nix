@@ -40,7 +40,7 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./main-config/configuration.nix
           { nixpkgs.config.allowUnfree = true; }
           { nixpkgs.overlays = [ inputs.s4rchiso-plymouth.overlays.default ]; }
           home-manager.nixosModules.home-manager
@@ -48,9 +48,27 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.wanto = import ./home.nix;
+            home-manager.users.wanto = import ./main-config/home.nix;
           }
         ];
       };
+
+      nixosConfigurations.nixos-minimal = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./minimal-config/configuration.nix
+          { nixpkgs.config.allowUnfree = true; }
+          { nixpkgs.overlays = [ inputs.s4rchiso-plymouth.overlays.default ]; }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.wanto = import ./minimal-config/home.nix;
+          }
+        ];
+      };
+
     };
 }
