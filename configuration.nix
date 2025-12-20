@@ -55,6 +55,7 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true; # GNOME Virtual File System
   services.gnome.evolution-data-server.enable = true;
+  services.noctalia-shell.enable = true;
 
   services.displayManager.sddm = {
     enable = true;
@@ -78,7 +79,6 @@
   # CPU microcode updates
   hardware.cpu.intel.updateMicrocode = true; # Ganti ke amd jika pakai AMD
 
-  services.noctalia-shell.enable = true;
   virtualisation = {
     containers.enable = true;
     waydroid.enable = true;
