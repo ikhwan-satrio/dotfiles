@@ -23,6 +23,8 @@
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
   };
 
   outputs =
@@ -38,7 +40,7 @@
     {
       nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs system; };
         modules = [
           ./main-config/configuration.nix
           { nixpkgs.config.allowUnfree = true; }
