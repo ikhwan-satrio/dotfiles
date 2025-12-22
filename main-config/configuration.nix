@@ -13,23 +13,34 @@
     inputs.noctalia.nixosModules.default
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # ============================================================================
+  # NIX SETTINGS
+  # ============================================================================
 
-  nix.optimise = {
-    automatic = true;
-    dates = [ "weekly" ]; # Atau "daily", "03:45"
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
   };
 
+  # ============================================================================
+  # BOOT CONFIGURATION
+  # ============================================================================
+
   boot = {
+    # Plymouth splash screen
     plymouth = {
       enable = true;
       theme = "mac-style";
       themePackages = [ pkgs.mac-style-plymouth ];
     };
 
+    # Kernel parameters for quiet boot
     consoleLogLevel = 3;
     initrd.verbose = false;
     kernelParams = [
@@ -39,6 +50,8 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
+
+    # GRUB bootloader
     loader = {
       grub = rec {
         enable = true;
@@ -51,95 +64,89 @@
       };
       efi.canTouchEfiVariables = true;
     };
+
+    # Tmpfs for better performance
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "4G";
+    };
   };
 
-  networking.hostName = "nixos-wanto"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  # ============================================================================
+  # NETWORKING
+  # ============================================================================
 
-  hardware.bluetooth.enable = true; # Required untuk Bluetooth
-  services.printing.enable = true; # Jika tidak print
-  services.udisks2.enable = true;
-  services.gvfs.enable = true; # GNOME Virtual File System
-  services.gnome.evolution-data-server.enable = true;
-  services.noctalia-shell.enable = true;
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    extraPackages = with pkgs; [
-      qt6Packages.qtsvg
-      qt6Packages.qtmultimedia
-      qt6Packages.qtvirtualkeyboard
-      sddm-astronaut
-    ];
-    theme = "sddm-astronaut-theme";
+  networking = {
+    hostName = "nixos-wanto";
+    networkmanager.enable = true;
   };
 
-  # === power and cpu optimization ===
-  services.power-profiles-daemon.enable = true; # Required untuk Power Profile
-  services.upower.enable = true; # Required untuk Battery
+  # ============================================================================
+  # HARDWARE
+  # ============================================================================
 
-  # Thermald (Intel thermal management)
-  services.thermald.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    cpu.intel.updateMicrocode = true;
+  };
 
-  # CPU microcode updates
-  hardware.cpu.intel.updateMicrocode = true; # Ganti ke amd jika pakai AMD
+  # ============================================================================
+  # SERVICES
+  # ============================================================================
 
-  virtualisation = {
-    containers.enable = true;
-    waydroid.enable = true;
-    podman = {
+  services = {
+    # Display Manager
+    displayManager.sddm = {
       enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+      wayland.enable = true;
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs; [
+        qt6Packages.qtsvg
+        qt6Packages.qtmultimedia
+        qt6Packages.qtvirtualkeyboard
+        sddm-astronaut
+      ];
+    };
+
+    # Desktop services
+    printing.enable = true;
+    udisks2.enable = true;
+    gvfs.enable = true;
+    gnome.evolution-data-server.enable = true;
+    noctalia-shell.enable = true;
+    flatpak.enable = true;
+
+    # Power management
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
+    thermald.enable = true;
+
+    # Audio
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+
+    # X11 configuration
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
     };
   };
 
-  # Flatpak support
-  services.flatpak.enable = true;
+  # ============================================================================
+  # SECURITY
+  # ============================================================================
 
-  # screen sharing
-  xdg.portal = {
-    enable = true;
-
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
-    ];
-
-    config = {
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-        "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
-      };
-      common = {
-        default = [ "gtk" ];
-      };
-    };
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
   };
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    wireplumber.enable = true; # Tambahkan ini untuk session management
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Load bluetooth modules
-  services.pulseaudio = {
-    enable = false;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
-  };
-
-  security.polkit.enable = true;
-  security.rtkit.enable = true; # Tambahkan untuk realtime audio
-
+  # Polkit authentication agent
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -154,68 +161,115 @@
     };
   };
 
-  # locales
+  # ============================================================================
+  # VIRTUALIZATION
+  # ============================================================================
+
+  virtualisation = {
+    containers.enable = true;
+    waydroid.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+  # ============================================================================
+  # XDG PORTAL (Screen Sharing)
+  # ============================================================================
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+        "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
+      };
+      common.default = [ "gtk" ];
+    };
+  };
+
+  # ============================================================================
+  # LOCALIZATION
+  # ============================================================================
+
   time.timeZone = "Asia/Jakarta";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "id_ID.UTF-8";
-    LC_IDENTIFICATION = "id_ID.UTF-8";
-    LC_MEASUREMENT = "id_ID.UTF-8";
-    LC_MONETARY = "id_ID.UTF-8";
-    LC_NAME = "id_ID.UTF-8";
-    LC_NUMERIC = "id_ID.UTF-8";
-    LC_PAPER = "id_ID.UTF-8";
-    LC_TELEPHONE = "id_ID.UTF-8";
-    LC_TIME = "id_ID.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "id_ID.UTF-8";
+      LC_IDENTIFICATION = "id_ID.UTF-8";
+      LC_MEASUREMENT = "id_ID.UTF-8";
+      LC_MONETARY = "id_ID.UTF-8";
+      LC_NAME = "id_ID.UTF-8";
+      LC_NUMERIC = "id_ID.UTF-8";
+      LC_PAPER = "id_ID.UTF-8";
+      LC_TELEPHONE = "id_ID.UTF-8";
+      LC_TIME = "id_ID.UTF-8";
+    };
   };
 
-  programs.fish.enable = true;
-  programs.niri.enable = true;
+  # ============================================================================
+  # PROGRAMS
+  # ============================================================================
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  programs = {
+    fish.enable = true;
+    niri.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with 'passwd'.
+  # ============================================================================
+  # USERS
+  # ============================================================================
+
   users.users.wanto = {
     isNormalUser = true;
     description = "wanto";
+    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"
       "storage"
       "podman"
+      "adbusers"
     ];
-    packages = with pkgs; [ ];
-    shell = pkgs.fish;
   };
 
+  # ============================================================================
+  # SYSTEM PACKAGES
+  # ============================================================================
+
   environment.systemPackages = with pkgs; [
+    # Development tools
     nodejs_22
-    fish
     rustc
     cargo
     bun
     gcc
-    android-tools
-    efibootmgr
-    gnome-keyring
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
-    # podman
+    # Container tools
     podman-compose
     podman-desktop
 
-    # sddm
+    # SDDM theme
     qt6Packages.qtsvg
     qt6Packages.qtmultimedia
     qt6Packages.qtvirtualkeyboard
     sddm-astronaut
 
-    # niri support
+    # Niri/Desktop support
     bluez-tools
     bluez
     gnome-disk-utility
@@ -224,7 +278,12 @@
     xwayland-satellite
     app2unit
 
-    # neovim
+    # System utilities
+    efibootmgr
+    gnome-keyring
+
+    # Editor and tools
+    neovim
     wl-clipboard
     lua5_1
     luarocks
@@ -232,8 +291,12 @@
     unzip
     wget
     git
-    neovim
+    fish
   ];
+
+  # ============================================================================
+  # ENVIRONMENT VARIABLES
+  # ============================================================================
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt6ct";
@@ -248,13 +311,20 @@
         gobject-introspection
       ]
     );
-
   };
+
+  # ============================================================================
+  # FONTS
+  # ============================================================================
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
   ];
+
+  # ============================================================================
+  # SYSTEM VERSION
+  # ============================================================================
 
   system.stateVersion = "25.11";
 }
