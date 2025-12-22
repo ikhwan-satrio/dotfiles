@@ -39,9 +39,12 @@
       "rd.systemd.show_status=auto"
     ];
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
-        configurationLimit = 5; # Hanya show 4 generasi terakhir
+        device = "nodev";
+        efiSupport = true;
+        useOSProber = true;
+        configurationLimit = 5;
       };
       efi.canTouchEfiVariables = true;
     };
