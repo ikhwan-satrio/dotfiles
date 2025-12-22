@@ -258,6 +258,7 @@
     bun
     gcc
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
+    jdk17
 
     # Container tools
     podman-compose
@@ -297,6 +298,10 @@
   # ============================================================================
   # ENVIRONMENT VARIABLES
   # ============================================================================
+
+  environment.sessionVariables = {
+    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
+  };
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt6ct";
