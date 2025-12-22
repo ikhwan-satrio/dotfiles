@@ -25,6 +25,7 @@
     };
 
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -43,10 +44,16 @@
         specialArgs = { inherit inputs system; };
         modules = [
           ./main-config/configuration.nix
-          { nixpkgs.config.allowUnfree = true; }
-          { nixpkgs.overlays = [ inputs.s4rchiso-plymouth.overlays.default ]; }
+          inputs.catppuccin.nixosModules.catppuccin
+          {
+            nixpkgs = {
+              config.allowUnfree = true;
+              overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
+            };
+          }
           home-manager.nixosModules.home-manager
           {
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
@@ -60,10 +67,16 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./minimal-config/configuration.nix
-          { nixpkgs.config.allowUnfree = true; }
-          { nixpkgs.overlays = [ inputs.s4rchiso-plymouth.overlays.default ]; }
+          inputs.catppuccin.nixosModules.catppuccin
+          {
+            nixpkgs = {
+              config.allowUnfree = true;
+              overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
+            };
+          }
           home-manager.nixosModules.home-manager
           {
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
