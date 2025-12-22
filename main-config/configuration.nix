@@ -58,7 +58,6 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 5;
         theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
         splashImage = "${theme}/splash_image.jpg";
       };
@@ -255,6 +254,7 @@
     nodejs_22
     rustc
     cargo
+    rust-analyzer
     bun
     gcc
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))

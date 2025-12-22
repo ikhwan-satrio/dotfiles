@@ -58,7 +58,6 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 5;
         theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
         splashImage = "${theme}/splash_image.jpg";
       };
