@@ -13,6 +13,7 @@ binds {
     Mod+Q hotkey-overlay-title="Close Window" { close-window; }
     Mod+F hotkey-overlay-title="Fullscreen Window" { maximize-window-to-edges; }
     Mod+Shift+F hotkey-overlay-title="Maximize Column" { maximize-column; }
+    Mod+Ctrl+F { fullscreen-window; }
     Mod+T hotkey-overlay-title="Focus Floating Windows" { focus-floating; }
     Mod+C hotkey-overlay-title="Center Column" { center-column; }
     
