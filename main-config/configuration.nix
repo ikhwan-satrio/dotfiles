@@ -258,7 +258,8 @@
     bun
     gcc
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
-    jdk17
+    jdk21
+    gradle
 
     # Container tools
     podman-compose
@@ -300,7 +301,7 @@
   # ============================================================================
 
   environment.sessionVariables = {
-    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
+    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
   };
 
   environment.variables = {
