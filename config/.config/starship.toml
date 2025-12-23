@@ -1,11 +1,6 @@
-"$schema" = 'https://starship.rs/config-schema.json'
 
-# Format prompt dengan 3 tingkat dan border:
-# ┌─ Tingkat 1 (Atas): Status git, packages, dll
-# │  Tingkat 2 (Tengah): PWD/Directory
-# └─ Tingkat 3 (Bawah): Input prompt
 format = """
-┌───── $os $username\
+┌────[](#2d2d2d)$shell$os$username\
 $git_branch$git_status\
 $golang\
 $nodejs\
@@ -22,21 +17,32 @@ $zig\
 $julia\
 $perl\
 $package\
-$docker_context
+$docker_context[](#2d2d2d)
 │─  $directory
 └─$character"""
 
-# Tambahkan baris kosong sebelum prompt
 add_newline = true
 
 # ============================================================================
-# TINGKAT 1 - STATUS & INFO (ATAS)
+# TINGKAT 1 - [VIA] FORMAT PER MODULE
 # ============================================================================
 
-# Modul OS (menampilkan logo dan nama distro)
+# Shell
+[shell]
+fish_indicator = 'fish'
+zsh_indicator = 'zsh'
+powershell_indicator = 'powershell'
+bash_indicator = 'bash'
+unknown_indicator = '?'
+format = '[ /bin/$indicator ]($style)'
+style = 'bg:#2d2d2d fg:#cccccc bold'
+disabled = false
+
+# OS
 [os]
 disabled = false
-format = '$name [$symbol]($style)'
+format = '[ $name $symbol ]($style)'
+style = 'bg:#2d2d2d fg:#ffffff bold'
 
 [os.symbols]
 Alpaquita = "🔔"
@@ -81,171 +87,114 @@ Ubuntu = "🎯"
 Unknown = "❓"
 Windows = "🪟"
 
-# Modul Username
+# Username
 [username]
-style_user = 'bold cyan'
-style_root = 'bold red'
-format = '[$user]($style) '
+style_user = 'bg:#2d2d2d fg:#00ffff bold'
+style_root = 'bg:#2d2d2d fg:#ff0000 bold'
+format = '[ $user ]($style)'
 disabled = false
 show_always = true
 
-# Modul Git Branch
+# Git Branch
 [git_branch]
-format = '[$symbol$branch]($style) '
+format = '[ $symbol$branch ]($style)'
 symbol = '🌱 '
-style = 'bold purple'
+style = 'bg:#2d2d2d fg:#ff00ff bold'
 
-# Modul Git Status
+# Git Status (FIXED)
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-style = 'bold red'
+format = '[ $all_status ]($style)'
+style = 'bg:#2d2d2d fg:#ff0000 bold'
 
-# Modul Python
-[python]
-symbol = '🐍 '
-format = 'via [$symbol$version]($style) '
-style = 'yellow bold'
-
-# Modul Node.js
-[nodejs]
-symbol = '⬢ '
-format = 'via [$symbol$version]($style) '
-style = 'bold green'
-
-# Modul Go
+# SEMUA LANGUAGE → FORMAT [VIA] KONSISTEN
 [golang]
 symbol = '🐹 '
-format = 'via [$symbol$version]($style) '
-style = 'bold cyan'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#00ffff bold'
 
-# Modul Rust
-[rust]
-symbol = '🦀 '
-format = 'via [$symbol$version]($style) '
-style = 'bold red'
+[nodejs]
+symbol = '⬢ '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#00ff00 bold'
 
-# Modul Java
-[java]
-symbol = '☕ '
-format = 'via [$symbol$version]($style) '
-style = 'bold red'
+[python]
+symbol = '🐍 '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ffff00 bold'
 
-# Modul PHP
-[php]
-symbol = '🐘 '
-format = 'via [$symbol$version]($style) '
-style = 'bold purple'
-
-# Modul Bun
 [bun]
 symbol = '🥟 '
-format = 'via [$symbol$version]($style) '
-style = 'bold gray'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#cccccc bold'
 
-# Modul C
+[rust]
+symbol = '🦀 '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff0000 bold'
+
+[java]
+symbol = '☕ '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff4444 bold'
+
+[php]
+symbol = '🐘 '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff00ff bold'
+
 [c]
 symbol = ' '
-format = 'via [$symbol$version]($style) '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff6600 bold'
 
-# Modul C++
 [cpp]
 symbol = ' '
-format = 'via [$symbol$version]($style) '
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff6600 bold'
 
-# Modul Lua
 [lua]
 symbol = '🌙 '
-format = 'via [$symbol$version]($style) '
-style = 'bold blue'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#00ffff bold'
 
-# Modul Swift
 [swift]
 symbol = '🐦 '
-format = 'via [$symbol$version]($style) '
-style = 'bold yellow'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ffff00 bold'
 
-# Modul Zig
 [zig]
 symbol = '↯ '
-format = 'via [$symbol$version]($style) '
-style = 'bold yellow'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ffff00 bold'
 
-# Modul Julia
 [julia]
 symbol = 'ஃ '
-format = 'via [$symbol$version]($style) '
-style = 'bold purple'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#ff00ff bold'
 
-# Modul Perl
 [perl]
 symbol = '🦪 '
-format = 'via [$symbol$version]($style) '
-style = 'bold blue'
+format = '[via $symbol$version]($style)'
+style = 'bg:#2d2d2d fg:#00ffff bold'
 
-# Modul Package
 [package]
 symbol = '📦 '
-format = 'via [$symbol$version]($style) '
+format = '[ $symbol$version ]($style)'
+style = 'bg:#2d2d2d fg:#ff8800 bold'
 disabled = false
 
-# Modul Docker Context
 [docker_context]
 symbol = '🐳 '
-format = 'via [$symbol$context]($style) '
-style = 'bold blue'
+format = '[ $symbol$context ]($style)'
+style = 'bg:#2d2d2d fg:#00aaff bold'
 
-# ============================================================================
-# TINGKAT 2 - DIRECTORY (TENGAH)
-# ============================================================================
-
-# Modul Direktori
+# Tingkat 2 & 3 sama
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = '[$path]($style)[$read_only]($read_only_style)'
 style = 'bold yellow'
 truncation_length = 3
 truncate_to_repo = false
 
-# ============================================================================
-# TINGKAT 3 - INPUT PROMPT (BAWAH)
-# ============================================================================
-
-# Karakter prompt
 [character]
 success_symbol = ' [](bold green) [](bold yellow) [](bold green)'
 error_symbol = ' [✗](bold red)'
-
-# ============================================================================
-# MODUL TAMBAHAN
-# ============================================================================
-
-# Modul Shell
-[shell]
-fish_indicator = '󰈺 '
-zsh_indicator = ''
-powershell_indicator = '_'
-bash_indicator = '$ '
-unknown_indicator = '_'
-style = 'cyan bold'
-disabled = true
-
-# Modul Battery
-[battery]
-full_symbol = '🔋 '
-charging_symbol = '⚡️ '
-discharging_symbol = '💀 '
-
-# Modul Command Duration
-[cmd_duration]
-min_time = 500
-format = 'took [$duration](bold yellow) '
-
-# Modul Time (opsional)
-[time]
-disabled = true
-format = 'at [$time]($style) '
-time_format = '%T'
-
-# Modul Status
-[status]
-disabled = false
-format = '[$symbol$status]($style) '
