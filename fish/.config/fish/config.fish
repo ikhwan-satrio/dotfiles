@@ -45,6 +45,10 @@ if status is-interactive
         set -gx PATH "$GOPATH/bin" $PATH
     end
 
+    if type -q cargo
+        set -gx PATH "$HOME/.cargo/bin" $PATH
+    end
+
     function toggle_screen_timeout
         # Cek apakah service sedang aktif (running)
         if systemctl --user is-active --quiet swayidle-niri.service
