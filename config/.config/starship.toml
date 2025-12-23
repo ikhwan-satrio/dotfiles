@@ -211,8 +211,8 @@ truncate_to_repo = false
 
 # Karakter prompt
 [character]
-success_symbol = '[>](bold green)'
-error_symbol = '[✗](bold red)'
+success_symbol = ' [](bold green) [](bold yellow) [](bold green)'
+error_symbol = ' [✗](bold red)'
 
 # ============================================================================
 # MODUL TAMBAHAN
