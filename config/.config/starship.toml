@@ -5,7 +5,7 @@
 # │  Tingkat 2 (Tengah): PWD/Directory
 # └─ Tingkat 3 (Bawah): Input prompt
 format = """
-┌─────$os $username\
+┌───── $os $username\
 $git_branch$git_status\
 $golang\
 $nodejs\
@@ -23,7 +23,7 @@ $julia\
 $perl\
 $package\
 $docker_context
-│─ 📂 $directory
+│─  $directory
 └─$character"""
 
 # Tambahkan baris kosong sebelum prompt
