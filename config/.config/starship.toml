@@ -1,8 +1,12 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Format prompt utama dengan distro info
+# Format prompt dengan 3 tingkat dan border:
+# ┌─ Tingkat 1 (Atas): Status git, packages, dll
+# │  Tingkat 2 (Tengah): PWD/Directory
+# └─ Tingkat 3 (Bawah): Input prompt
 format = """
-<< $os $username $directory $git_branch$git_status\
+┌─────$os $username\
+$git_branch$git_status\
 $golang\
 $nodejs\
 $python\
@@ -10,11 +14,24 @@ $bun\
 $rust\
 $java\
 $php\
-$docker_context\
-$character"""
+$c\
+$cpp\
+$lua\
+$swift\
+$zig\
+$julia\
+$perl\
+$package\
+$docker_context
+│─ 📂 $directory
+└─$character"""
 
-# Jangan tambahkan baris kosong antara prompt
-add_newline = false
+# Tambahkan baris kosong sebelum prompt
+add_newline = true
+
+# ============================================================================
+# TINGKAT 1 - STATUS & INFO (ATAS)
+# ============================================================================
 
 # Modul OS (menampilkan logo dan nama distro)
 [os]
@@ -68,16 +85,9 @@ Windows = "🪟"
 [username]
 style_user = 'bold cyan'
 style_root = 'bold red'
-format = '[$user]($style)'
+format = '[$user]($style) '
 disabled = false
 show_always = true
-
-# Modul Direktori
-[directory]
-format = '[at $path]($style)[$read_only]($read_only_style)'
-style = 'bold yellow'
-truncation_length = 3
-truncate_to_repo = false
 
 # Modul Git Branch
 [git_branch]
@@ -87,13 +97,126 @@ style = 'bold purple'
 
 # Modul Git Status
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\]]($style) )'
 style = 'bold red'
+
+# Modul Python
+[python]
+symbol = '🐍 '
+format = 'via [$symbol$version]($style) '
+style = 'yellow bold'
+
+# Modul Node.js
+[nodejs]
+symbol = '⬢ '
+format = 'via [$symbol$version]($style) '
+style = 'bold green'
+
+# Modul Go
+[golang]
+symbol = '🐹 '
+format = 'via [$symbol$version]($style) '
+style = 'bold cyan'
+
+# Modul Rust
+[rust]
+symbol = '🦀 '
+format = 'via [$symbol$version]($style) '
+style = 'bold red'
+
+# Modul Java
+[java]
+symbol = '☕ '
+format = 'via [$symbol$version]($style) '
+style = 'bold red'
+
+# Modul PHP
+[php]
+symbol = '🐘 '
+format = 'via [$symbol$version]($style) '
+style = 'bold purple'
+
+# Modul Bun
+[bun]
+symbol = '🥟 '
+format = 'via [$symbol$version]($style) '
+style = 'bold gray'
+
+# Modul C
+[c]
+symbol = ' '
+format = 'via [$symbol$version]($style) '
+
+# Modul C++
+[cpp]
+symbol = ' '
+format = 'via [$symbol$version]($style) '
+
+# Modul Lua
+[lua]
+symbol = '🌙 '
+format = 'via [$symbol$version]($style) '
+style = 'bold blue'
+
+# Modul Swift
+[swift]
+symbol = '🐦 '
+format = 'via [$symbol$version]($style) '
+style = 'bold yellow'
+
+# Modul Zig
+[zig]
+symbol = '↯ '
+format = 'via [$symbol$version]($style) '
+style = 'bold yellow'
+
+# Modul Julia
+[julia]
+symbol = 'ஃ '
+format = 'via [$symbol$version]($style) '
+style = 'bold purple'
+
+# Modul Perl
+[perl]
+symbol = '🦪 '
+format = 'via [$symbol$version]($style) '
+style = 'bold blue'
+
+# Modul Package
+[package]
+symbol = '📦 '
+format = 'via [$symbol$version]($style) '
+disabled = false
+
+# Modul Docker Context
+[docker_context]
+symbol = '🐳 '
+format = 'via [$symbol$context]($style) '
+style = 'bold blue'
+
+# ============================================================================
+# TINGKAT 2 - DIRECTORY (TENGAH)
+# ============================================================================
+
+# Modul Direktori
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'bold yellow'
+truncation_length = 3
+truncate_to_repo = false
+
+# ============================================================================
+# TINGKAT 3 - INPUT PROMPT (BAWAH)
+# ============================================================================
 
 # Karakter prompt
 [character]
-success_symbol = ' [](bold green) [](bold yellow) [ ](bold green)'
-error_symbol = ' [✗](bold red)'
+success_symbol = '[>](bold green)'
+error_symbol = '[✗](bold red)'
+
+# ============================================================================
+# MODUL TAMBAHAN
+# ============================================================================
 
 # Modul Shell
 [shell]
@@ -103,100 +226,7 @@ powershell_indicator = '_'
 bash_indicator = '$ '
 unknown_indicator = '_'
 style = 'cyan bold'
-disabled = true  # Set false jika ingin ditampilkan
-
-# Modul Python
-[python]
-symbol = '🐍 '
-format = 'via [$symbol$version]($style)'
-style = 'yellow bold'
-
-# Modul Node.js
-[nodejs]
-symbol = '⬢ '
-format = 'via [$symbol$version]($style)'
-style = 'bold green'
-
-# Modul Go
-[golang]
-symbol = '🐹 '
-format = 'via [$symbol$version]($style)'
-style = 'bold cyan'
-
-# Modul Rust
-[rust]
-symbol = '🦀 '
-format = 'via [$symbol$version]($style)'
-style = 'bold red'
-
-# Modul Java
-[java]
-symbol = '☕ '
-format = 'via [$symbol$version]($style)'
-style = 'bold red'
-
-# Modul PHP
-[php]
-symbol = '🐘 '
-format = 'via [$symbol$version]($style)'
-style = 'bold purple'
-
-# Modul Bun
-[bun]
-symbol = '🥟 '
-format = 'via [$symbol$version]($style)'
-style = 'bold gray'
-
-# Modul Docker Context
-[docker_context]
-symbol = '🐳 '
-format = 'via [$symbol$context]($style)'
-style = 'bold blue'
-
-# Modul C
-[c]
-symbol = ' '
-format = 'via [$symbol$version]($style)'
-
-# Modul C++
-[cpp]
-symbol = ' '
-format = 'via [$symbol$version]($style)'
-
-# Modul Lua
-[lua]
-symbol = '🌙 '
-format = 'via [$symbol$version]($style)'
-style = 'bold blue'
-
-# Modul Swift
-[swift]
-symbol = '🐦 '
-format = 'via [$symbol$version]($style)'
-style = 'bold yellow'
-
-# Modul Zig
-[zig]
-symbol = '↯ '
-format = 'via [$symbol$version]($style)'
-style = 'bold yellow'
-
-# Modul Julia
-[julia]
-symbol = 'ஃ '
-format = 'via [$symbol$version]($style)'
-style = 'bold purple'
-
-# Modul Perl
-[perl]
-symbol = '🦪 '
-format = 'via [$symbol$version]($style)'
-style = 'bold blue'
-
-# Modul Package
-[package]
-symbol = '📦 '
-disabled = false
+disabled = true
 
 # Modul Battery
 [battery]
@@ -207,15 +237,15 @@ discharging_symbol = '💀 '
 # Modul Command Duration
 [cmd_duration]
 min_time = 500
-format = 'took [$duration](bold yellow)'
+format = 'took [$duration](bold yellow) '
 
 # Modul Time (opsional)
 [time]
 disabled = true
-format = 'at [$time]($style)'
+format = 'at [$time]($style) '
 time_format = '%T'
 
 # Modul Status
 [status]
 disabled = false
-format = '[$symbol$status]($style)'
+format = '[$symbol$status]($style) '
