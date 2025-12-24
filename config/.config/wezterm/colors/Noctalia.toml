@@ -2,22 +2,22 @@
 ansi = [
     "#131313",
     "#ffb4ab",
-    "#edb8cc",
-    "#cac3dc",
-    "#cbbeff",
-    "#edb8cc",
-    "#cac3dc",
+    "#f4b7ba",
+    "#d2c1d9",
+    "#e3b5ff",
+    "#f4b7ba",
+    "#d2c1d9",
     "#e2e2e2",
 ]
 background = "#131313"
 brights = [
     "#919191",
     "#ffb4ab",
-    "#edb8cc",
-    "#cac3dc",
-    "#cbbeff",
-    "#edb8cc",
-    "#cac3dc",
+    "#f4b7ba",
+    "#d2c1d9",
+    "#e3b5ff",
+    "#f4b7ba",
+    "#d2c1d9",
     "#e2e2e2",
 ]
 cursor_bg = "#e2e2e2"

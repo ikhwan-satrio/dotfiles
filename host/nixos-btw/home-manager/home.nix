@@ -59,6 +59,7 @@
     kdePackages.ark
     nautilus
     swappy
+    vlc
 
     # Terminal
     pipes-rs
