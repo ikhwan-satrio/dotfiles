@@ -272,10 +272,10 @@
     rust-analyzer
     bun
     gcc
-    (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
     jdk21
     kotlin
     gradle
+    (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
 
     # Container tools
     podman-compose
