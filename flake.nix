@@ -43,7 +43,7 @@
         inherit system;
         specialArgs = { inherit inputs system; };
         modules = [
-          ./main-config/configuration.nix
+          ./host/nixos-btw/configuration.nix
           inputs.catppuccin.nixosModules.catppuccin
           {
             nixpkgs = {
@@ -57,7 +57,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.wanto = import ./main-config/home.nix;
+            home-manager.users.wanto = import ./host/nixos-btw/home-manager/home.nix;
           }
         ];
       };
@@ -66,7 +66,7 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ./minimal-config/configuration.nix
+          ./host/nixos-minimal/configuration.nix
           inputs.catppuccin.nixosModules.catppuccin
           {
             nixpkgs = {
@@ -80,7 +80,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.wanto = import ./minimal-config/home.nix;
+            home-manager.users.wanto = import ./host/nixos-minimal/home-manager/home.nix;
           }
         ];
       };

@@ -18,15 +18,15 @@
   # === FILES ===
   home.file = {
     ".config/vesktop/themes" = {
-      source = ../vesktop-themes;
+      source = ../../../vesktop-themes;
       recursive = true;
     };
     ".config/fish" = {
-      source = ../fish/.config/fish;
+      source = ../../../fish/.config/fish;
       recursive = true;
     };
     ".config/niri" = {
-      source = ../niri/.config/niri;
+      source = ../../../niri/.config/niri;
       recursive = true;
     };
   };

@@ -26,14 +26,14 @@
 
   # === HOME FILES (FIXED) ===
   home.file = {
-    ".config/vesktop/themes".source = ../vesktop-themes;
+    ".config/vesktop/themes".source = ../../../vesktop-themes;
     ".config/vesktop/themes".recursive = true;
     ".config/vesktop/themes".force = true;
 
-    ".config/fish".source = ../fish/.config/fish;
+    ".config/fish".source = ../../../fish/.config/fish;
     ".config/fish".recursive = true;
 
-    ".config/niri".source = ../niri/.config/niri;
+    ".config/niri".source = ../../../niri/.config/niri;
     ".config/niri".recursive = true;
   };
 
