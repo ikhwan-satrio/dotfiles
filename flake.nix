@@ -32,7 +32,6 @@
     inputs@{
       self,
       nixpkgs,
-      home-manager,
       ...
     }:
     let
@@ -45,20 +44,7 @@
         modules = [
           ./host/nixos-btw/configuration.nix
           inputs.catppuccin.nixosModules.catppuccin
-          {
-            nixpkgs = {
-              config.allowUnfree = true;
-              overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
-            };
-          }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.backupFileExtension = "hm-backup";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.wanto = import ./host/nixos-btw/home-manager/home.nix;
-          }
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
 
@@ -68,20 +54,7 @@
         modules = [
           ./host/nixos-minimal/configuration.nix
           inputs.catppuccin.nixosModules.catppuccin
-          {
-            nixpkgs = {
-              config.allowUnfree = true;
-              overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
-            };
-          }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.backupFileExtension = "hm-backup";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.wanto = import ./host/nixos-minimal/home-manager/home.nix;
-          }
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
 

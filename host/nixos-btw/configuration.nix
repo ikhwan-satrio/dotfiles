@@ -14,8 +14,23 @@
   ];
 
   # ============================================================================
+  # HOME MANAGER
+  # ============================================================================
+
+  home-manager.backupFileExtension = "hm-backup";
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.users.wanto = import ./home-manager/home.nix;
+
+  # ============================================================================
   # NIX SETTINGS
   # ============================================================================
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
+  };
 
   nix = {
     settings.experimental-features = [
@@ -259,6 +274,7 @@
     gcc
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
     jdk21
+    kotlin
     gradle
 
     # Container tools
