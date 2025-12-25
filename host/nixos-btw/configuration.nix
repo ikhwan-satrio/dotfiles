@@ -29,7 +29,6 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [ inputs.s4rchiso-plymouth.overlays.default ];
   };
 
   nix = {
@@ -51,8 +50,12 @@
     # Plymouth splash screen
     plymouth = {
       enable = true;
-      theme = "mac-style";
-      themePackages = [ pkgs.mac-style-plymouth ];
+      theme = "deus_ex";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "deus_ex" ];
+        })
+      ];
     };
 
     # Kernel parameters for quiet boot
@@ -64,6 +67,10 @@
       "boot.shell_on_fail"
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
+
+      "vt.global_cursor_default=0"
+      "loglevel=3"
+      "rd.udev.log_level=3"
     ];
 
     # GRUB bootloader

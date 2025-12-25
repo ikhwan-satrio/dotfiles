@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs"; # ADD: Follow nixpkgs
     };
 
-    s4rchiso-plymouth = {
-      url = "github:SergioRibera/s4rchiso-plymouth-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     catppuccin.url = "github:catppuccin/nix";
   };
