@@ -11,6 +11,7 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     inputs.noctalia.nixosModules.default
+    inputs.nur.modules.nixos.default
   ];
 
   # ============================================================================

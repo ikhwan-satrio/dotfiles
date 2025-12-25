@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs"; # ADD: Follow nixpkgs
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     catppuccin.url = "github:catppuccin/nix";
   };

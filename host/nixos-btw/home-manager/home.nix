@@ -11,7 +11,6 @@
   home.stateVersion = "25.11";
 
   imports = [
-    ./modules/firefox.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.catppuccin.homeModules.catppuccin
   ];
@@ -157,10 +156,6 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Sweet-Dark";
-      package = pkgs.sweet;
-    };
     gtk3.extraConfig = {
       Settings = "gtk-application-prefer-dark-theme=1";
     };
