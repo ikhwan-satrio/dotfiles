@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/firefox.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.catppuccin.homeModules.catppuccin
   ];
@@ -22,6 +23,7 @@
     accent = "lavender";
     btop.enable = true;
     vivaldi.enable = true;
+    firefox.enable = true;
   };
 
   # === HOME FILES (FIXED) ===
