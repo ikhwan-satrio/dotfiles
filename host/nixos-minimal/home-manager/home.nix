@@ -59,6 +59,7 @@
     fastfetch
 
     # Themes
+    catppuccin-gtk
     dconf
     papirus-icon-theme
     bibata-cursors
@@ -144,8 +145,16 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Sweet-Dark";
-      package = pkgs.sweet;
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [
+          "rimless"
+          "black"
+        ];
+        variant = "macchiato";
+      };
     };
     iconTheme = {
       name = "Papirus-Dark";

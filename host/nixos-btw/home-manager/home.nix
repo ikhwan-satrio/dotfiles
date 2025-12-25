@@ -74,6 +74,7 @@
     btop
 
     # Themes (Catppuccin handles icons)
+    catppuccin-gtk
     dconf
     bibata-cursors
   ];
@@ -156,6 +157,18 @@
 
   gtk = {
     enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [
+          "rimless"
+          "black"
+        ];
+        variant = "macchiato";
+      };
+    };
     gtk3.extraConfig = {
       Settings = "gtk-application-prefer-dark-theme=1";
     };
