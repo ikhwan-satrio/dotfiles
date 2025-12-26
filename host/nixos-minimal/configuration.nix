@@ -110,6 +110,35 @@
   # SERVICES
   # ============================================================================
 
+  systemd.services = {
+    # ============================================
+    # Disable tty1 (untuk smooth Plymouth → SDDM)
+    # ============================================
+    "getty@tty1".enable = false;
+    "autovt@tty1".enable = false;
+
+    # ============================================
+    # Enable tty2 (Ctrl+Alt+F2) untuk emergency
+    # ============================================
+    # Sudah enabled by default, tidak perlu explicit set
+    # "getty@tty2".enable = true;  # optional
+
+    # ============================================
+    # Disable tty3-6 (tidak perlu banyak-banyak)
+    # ============================================
+    "getty@tty3".enable = false;
+    "autovt@tty3".enable = false;
+
+    "getty@tty4".enable = false;
+    "autovt@tty4".enable = false;
+
+    "getty@tty5".enable = false;
+    "autovt@tty5".enable = false;
+
+    "getty@tty6".enable = false;
+    "autovt@tty6".enable = false;
+  };
+
   services = {
     # Display Manager
     displayManager.sddm = {
