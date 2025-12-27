@@ -1,27 +1,9 @@
 {
   "nodes": {
-    "catppuccin": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1765990358,
-        "narHash": "sha256-l8x0gU8mnYaGMl+gWrsSHKBJlZWD8KXJfHTkRlFiPI0=",
-        "owner": "catppuccin",
-        "repo": "nix",
-        "rev": "de1b60ca45a578f59f7d84c8d338b346017b2161",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "nix",
-        "type": "github"
-      }
-    },
     "distro-grub-themes": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1734806114,
@@ -98,22 +80,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1763966396,
-        "narHash": "sha256-6eeL1YPcY1MV3DDStIDIdy/zZCDKgHdkCmsrLJFiZf0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "5ae3b07d8d6527c42f17c876e404993199144b6a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1731676054,
         "narHash": "sha256-OZiZ3m8SCMfh3B6bfGC/Bm4x3qc1m2SVEAlkV6iY7Yg=",
         "owner": "nixos",
@@ -128,7 +94,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1766651565,
         "narHash": "sha256-QEhk0eXgyIqTpJ/ehZKg9IKS7EtlWxF3N7DXy42zPfU=",
@@ -151,11 +117,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766722529,
-        "narHash": "sha256-G65DLn/PVc1Q6P5AOJpNj77y1kMQ220jKHhYCIitkio=",
+        "lastModified": 1766773944,
+        "narHash": "sha256-uewJMh9vERx+H6Zs45nm+ltslBeB/ddrEnUEqvPYER0=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "ce2166a8477918c80358b703edda6450476400f2",
+        "rev": "a1470cb51f27950c9106f7510151aac8995a5013",
         "type": "github"
       },
       "original": {
@@ -172,11 +138,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766735268,
-        "narHash": "sha256-vYgzDz9vMl9OSRS1d+NMqN2w8IfPZMk71vut7DBGvDo=",
+        "lastModified": 1766790917,
+        "narHash": "sha256-B4Tbx47X64YeO8uo+8C1lDayfxiDTr+5pZt9F33frxo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "93329e80353dd7e59109080439be3757d193d634",
+        "rev": "375ef2f335ef351e2eafce5fd4bd8166b8fe2265",
         "type": "github"
       },
       "original": {
@@ -187,10 +153,9 @@
     },
     "root": {
       "inputs": {
-        "catppuccin": "catppuccin",
         "distro-grub-themes": "distro-grub-themes",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "noctalia": "noctalia",
         "nur": "nur",
         "spicetify-nix": "spicetify-nix"

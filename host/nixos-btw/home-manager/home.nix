@@ -11,19 +11,11 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/gtk.nix
+    ./modules/xdg.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.catppuccin.homeModules.catppuccin
+    inputs.noctalia.homeModules.default
   ];
-
-  # === CATPPUCCIN FULL COVERAGE ===
-  catppuccin = {
-    enable = true;
-    flavor = "mocha"; # Global flavor
-    accent = "lavender";
-    btop.enable = true;
-    vivaldi.enable = true;
-    firefox.enable = true;
-  };
 
   # === HOME FILES (FIXED) ===
   home.file = {
@@ -61,6 +53,18 @@
     nautilus
     swappy
     vlc
+    (lutris.override {
+      extraPkgs = pkgs: [
+        wineWowPackages.staging
+        winetricks
+        vulkan-loader
+        dxvk
+        mesa
+        freetype
+        fontconfig
+        cabextract
+      ];
+    })
 
     # Terminal
     pipes-rs
@@ -73,49 +77,11 @@
     fastfetch
     btop
 
-    # Themes (Catppuccin handles icons)
-    catppuccin-gtk
+    # Themes
+    papirus-icon-theme
     dconf
     bibata-cursors
   ];
-
-  # === XDG PORTAL ===
-  xdg = {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-      desktop = "${config.home.homeDirectory}/Desktop";
-      documents = "${config.home.homeDirectory}/Documents";
-      download = "${config.home.homeDirectory}/Downloads";
-      music = "${config.home.homeDirectory}/Music";
-      pictures = "${config.home.homeDirectory}/Pictures";
-      videos = "${config.home.homeDirectory}/Videos";
-    };
-
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "inode/directory" = "org.gnome.Nautilus.desktop";
-        "text/plain" = "neovim.desktop";
-        "text/markdown" = "neovim.desktop";
-        "text/x-python" = "neovim.desktop";
-        "text/x-shellscript" = "neovim.desktop";
-        "application/javascript" = "neovim.desktop";
-        "application/json" = "neovim.desktop";
-      };
-      associations.added = {
-        "image/png" = [
-          "org.gnome.Loupe.desktop"
-          "gimp.desktop"
-        ];
-        "text/plain" = [
-          "neovim.desktop"
-          "org.gnome.gedit.desktop"
-        ];
-      };
-    };
-  };
 
   # === PROGRAMS ===
   programs = {
@@ -134,8 +100,10 @@
       in
       {
         enable = true;
-        theme = spicePkgs.themes.comfy;
-        colorScheme = "catppuccin-mocha";
+
+        theme = spicePkgs.themes.text;
+
+        colorScheme = "TokyoNight";
         enabledExtensions = with spicePkgs.extensions; [
           beautifulLyrics
           shuffle
@@ -145,7 +113,6 @@
       };
   };
 
-  # === DCONF & GTK (CATPPUCCIN) ===
   dconf = {
     enable = true;
     settings = {
@@ -155,25 +122,4 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
-        size = "compact";
-        tweaks = [
-          "rimless"
-          "black"
-        ];
-        variant = "macchiato";
-      };
-    };
-    gtk3.extraConfig = {
-      Settings = "gtk-application-prefer-dark-theme=1";
-    };
-    gtk4.extraConfig = {
-      Settings = "gtk-application-prefer-dark-theme=1";
-    };
-  };
 }

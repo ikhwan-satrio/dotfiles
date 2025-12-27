@@ -25,7 +25,6 @@
     };
 
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
-    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -43,20 +42,8 @@
         specialArgs = { inherit inputs system; };
         modules = [
           ./host/nixos-btw/configuration.nix
-          inputs.catppuccin.nixosModules.catppuccin
           inputs.home-manager.nixosModules.home-manager
         ];
       };
-
-      nixosConfigurations.nixos-minimal = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./host/nixos-minimal/configuration.nix
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
-
     };
 }
