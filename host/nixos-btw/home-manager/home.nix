@@ -53,6 +53,7 @@
     nautilus
     swappy
     vlc
+    telegram-desktop
 
     # Terminal
     pipes-rs
@@ -75,6 +76,7 @@
   programs = {
     home-manager.enable = true;
 
+    vesktop.enable = true;
     zapzap.enable = true;
 
     vivaldi = {
