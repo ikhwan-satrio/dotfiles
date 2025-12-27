@@ -53,18 +53,6 @@
     nautilus
     swappy
     vlc
-    (lutris.override {
-      extraPkgs = pkgs: [
-        wineWowPackages.staging
-        winetricks
-        vulkan-loader
-        dxvk
-        mesa
-        freetype
-        fontconfig
-        cabextract
-      ];
-    })
 
     # Terminal
     pipes-rs
