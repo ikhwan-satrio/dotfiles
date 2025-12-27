@@ -61,7 +61,10 @@
 
     # Kernel parameters for quiet boot
     consoleLogLevel = 3;
-    initrd.verbose = false;
+    initrd = {
+      verbose = false;
+      kernelModules = [ "i915" ];
+    };
     kernelParams = [
       "quiet"
       "splash"
@@ -157,6 +160,15 @@
         qt6Packages.qtvirtualkeyboard
         sddm-astronaut
       ];
+      settings = {
+        General = {
+          DisplayServer = "wayland";
+        };
+
+        Wayland = {
+          SessionDir = "${pkgs.niri}/share/wayland-sessions";
+        };
+      };
     };
 
     # Desktop services
