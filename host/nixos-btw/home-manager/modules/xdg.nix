@@ -28,7 +28,7 @@
       associations.added = {
         "image/png" = [
           "org.gnome.Loupe.desktop"
-          "gimp.desktop"
+          "swappy.desktop"
         ];
         "text/plain" = [
           "neovim.desktop"

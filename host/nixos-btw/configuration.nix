@@ -12,6 +12,7 @@
     /etc/nixos/hardware-configuration.nix
     inputs.noctalia.nixosModules.default
     inputs.nur.modules.nixos.default
+    inputs.silentSDDM.nixosModules.default
   ];
 
   # ============================================================================
@@ -153,18 +154,20 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "sddm-astronaut-theme";
       extraPackages = with pkgs; [
         qt6Packages.qtsvg
         qt6Packages.qtmultimedia
         qt6Packages.qtvirtualkeyboard
-        sddm-astronaut
       ];
       settings = {
         General = {
           DisplayServer = "wayland";
         };
 
+        X11 = {
+          # Set DPI untuk 1920x1080 @ 310mm
+          ServerArguments = "-dpi 157"; # calculated DPI untuk monitor kamu
+        };
         Wayland = {
           SessionDir = "${pkgs.niri}/share/wayland-sessions";
         };
@@ -289,6 +292,10 @@
   programs = {
     fish.enable = true;
     niri.enable = true;
+    silentSDDM = {
+      enable = true;
+      theme = "catppuccin-mocha";
+    };
   };
 
   # ============================================================================
@@ -333,7 +340,6 @@
     qt6Packages.qtsvg
     qt6Packages.qtmultimedia
     qt6Packages.qtvirtualkeyboard
-    sddm-astronaut
 
     # Niri/Desktop support
     bluez-tools

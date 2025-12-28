@@ -72,6 +72,13 @@
     bibata-cursors
   ];
 
+  # === ENV ===
+  home.sessionVariables = {
+    BROWSER = "vivaldi";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
   # === PROGRAMS ===
   programs = {
     home-manager.enable = true;
