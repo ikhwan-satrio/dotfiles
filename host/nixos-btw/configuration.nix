@@ -71,7 +71,7 @@
       "boot.shell_on_fail"
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
-
+      "video=eDP-1:1920x1080@60"
       "vt.global_cursor_default=0"
       "loglevel=3"
       "rd.udev.log_level=3"
