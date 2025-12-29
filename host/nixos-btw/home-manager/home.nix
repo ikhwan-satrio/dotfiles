@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/vscode.nix
     ./modules/gtk.nix
     ./modules/xdg.nix
     inputs.spicetify-nix.homeManagerModules.spicetify

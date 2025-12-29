@@ -14,6 +14,14 @@
       videos = "${config.home.homeDirectory}/Videos";
     };
 
+    terminal-exec = {
+      settings = {
+        default = [
+          "wezterm.desktop"
+        ];
+      };
+    };
+
     mimeApps = {
       enable = true;
       defaultApplications = {

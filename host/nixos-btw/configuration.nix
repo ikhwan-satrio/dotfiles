@@ -172,7 +172,10 @@
           SessionDir = "${pkgs.niri}/share/wayland-sessions";
         };
       };
+
     };
+
+    gnome.gnome-keyring.enable = true;
 
     # Desktop services
     printing.enable = true;
@@ -294,7 +297,7 @@
     niri.enable = true;
     silentSDDM = {
       enable = true;
-      theme = "catppuccin-mocha";
+      theme = "rei";
     };
   };
 
@@ -331,6 +334,9 @@
     kotlin
     gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
+    (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      calendarSupport = true;
+    })
 
     # Container tools
     podman-compose
