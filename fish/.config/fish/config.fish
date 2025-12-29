@@ -1,8 +1,8 @@
 if status is-interactive
 
-    command -v starship &>/dev/null && starship init fish | source
-    command -v direnv &>/dev/null && direnv hook fish | source
-    command -v zoxide &>/dev/null && zoxide init fish | source
+    command -v starship >/dev/null 2>&1; and starship init fish | source
+    command -v direnv >/dev/null 2>&1; and direnv hook fish | source
+    command -v zoxide >/dev/null 2>&1; and zoxide init fish | source
 
     alias ls='eza --icons --group-directories-first -1'
     alias ns='sudo nixos-rebuild switch --flake ~/nixos-wanto#nixos-btw --impure'
@@ -26,7 +26,7 @@ if status is-interactive
     if test -d "$HOME/.cache/.bun"
         set -gx BUN_INSTALL "$HOME/.cache/.bun"
         set -gx PATH $BUN_INSTALL/bin $PATH
-        bun completions | source
+        # bun completions | source
     end
 
     # --- Composer ---

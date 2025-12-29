@@ -24,6 +24,12 @@
         "text/x-shellscript" = "neovim.desktop";
         "application/javascript" = "neovim.desktop";
         "application/json" = "neovim.desktop";
+
+        "text/html" = "vivaldi-stable.desktop";
+        "x-scheme-handler/http" = "vivaldi-stable.desktop";
+        "x-scheme-handler/https" = "vivaldi-stable.desktop";
+        "x-scheme-handler/about" = "vivaldi-stable.desktop";
+        "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
       };
       associations.added = {
         "image/png" = [

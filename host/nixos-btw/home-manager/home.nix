@@ -54,6 +54,7 @@
     swappy
     vlc
     telegram-desktop
+    whatsapp-electron
 
     # Terminal
     pipes-rs
@@ -84,7 +85,7 @@
     home-manager.enable = true;
 
     vesktop.enable = true;
-    zapzap.enable = true;
+    # zapzap.enable = true;
 
     vivaldi = {
       enable = true;

@@ -17,7 +17,7 @@ $julia\
 $perl\
 $package\
 $docker_context[](#2d2d2d)
-│─  $directory
+│─  $directory$nix_shell
 └─$character"""
 add_newline = true
 
@@ -187,6 +187,15 @@ format = '[ $symbol$context ]($style)'
 style = 'bg:#2d2d2d fg:#89b4fa bold'
 
 # Tingkat 2 & 3
+
+[nix_shell]
+disabled = false
+format = '[ $symbol$state]($style)'
+symbol = '\(nix-shell\) '
+style = 'bold #89dceb'
+impure_msg = '[impure](bold #f38ba8)'
+pure_msg = '[pure](bold #a6e3a1)'
+
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
 style = 'bold #f9e2af'
