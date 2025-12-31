@@ -299,6 +299,11 @@
       enable = true;
       theme = "rei";
     };
+
+    localsend = {
+      enable = true;
+      openFirewall = true; # Buka port 53317 TCP/UDP otomatis
+    };
   };
 
   # ============================================================================

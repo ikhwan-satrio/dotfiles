@@ -47,7 +47,6 @@
     onlyoffice-desktopeditors
     tor-browser
     wezterm
-    localsend
     obs-studio
     obsidian
     gimp
