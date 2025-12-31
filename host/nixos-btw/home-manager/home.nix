@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/vesktop.nix
     ./modules/vscode.nix
     ./modules/gtk.nix
     ./modules/xdg.nix
@@ -85,7 +86,6 @@
   programs = {
     home-manager.enable = true;
 
-    vesktop.enable = true;
     # zapzap.enable = true;
 
     vivaldi = {

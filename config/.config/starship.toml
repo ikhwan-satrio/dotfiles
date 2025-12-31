@@ -197,7 +197,7 @@ impure_msg = '[impure](bold #f38ba8)'
 pure_msg = '[pure](bold #a6e3a1)'
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
+format = '\[[$path]($style)[$read_only]($read_only_style)\]'
 style = 'bold #f9e2af'
 truncation_length = 3
 truncate_to_repo = false

@@ -370,6 +370,12 @@
     wget
     git
     fish
+    trash-cli # command: trash
+    glib # command: gio (GNOME)
+    imagemagick # command: magick, convert
+    ghostscript # command: gs
+    tectonic # Lebih modern, recommended
+    nodePackages.mermaid-cli # command: mmdc
   ];
 
   # ============================================================================
