@@ -1,5 +1,5 @@
 format = """
-┌────[](#2d2d2d)$shell$os$username\
+┌────[](#1a1b26)$shell$os$username\
 $git_branch$git_status\
 $golang\
 $nodejs\
@@ -16,13 +16,16 @@ $zig\
 $julia\
 $perl\
 $package\
-$docker_context[](#2d2d2d)
+$docker_context[](#1a1b26)
 │─  $directory$nix_shell
 └─$character"""
 add_newline = true
 
 # ============================================================================
-# TINGKAT 1 - [VIA] FORMAT PER MODULE (Catppuccin Mocha)
+# ZEN BLUE PINK THEME
+# Blue: #7aa2f7 (soft blue), #2ac3de (cyan blue)
+# Pink: #bb9af7 (lavender), #f7768e (pink red)
+# Dark: #1a1b26 (bg), #24283b (lighter bg)
 # ============================================================================
 
 # Shell
@@ -33,14 +36,14 @@ powershell_indicator = 'powershell'
 bash_indicator = 'bash'
 unknown_indicator = '?'
 format = '[ /bin/$indicator ]($style)'
-style = 'bg:#2d2d2d fg:#cdd6f4 bold'
+style = 'bg:#1a1b26 fg:#c0caf5 bold'
 disabled = false
 
 # OS
 [os]
 disabled = false
 format = '[ $name $symbol ]($style)'
-style = 'bg:#2d2d2d fg:#f5e0dc bold'
+style = 'bg:#1a1b26 fg:#bb9af7 bold'
 [os.symbols]
 Alpaquita = "🔔"
 Alpine = "🏔️"
@@ -86,8 +89,8 @@ Windows = "🪟"
 
 # Username
 [username]
-style_user = 'bg:#2d2d2d fg:#89dceb bold'
-style_root = 'bg:#2d2d2d fg:#f38ba8 bold'
+style_user = 'bg:#1a1b26 fg:#2ac3de bold'
+style_root = 'bg:#1a1b26 fg:#f7768e bold'
 format = '[ $user ]($style)'
 disabled = false
 show_always = true
@@ -96,112 +99,112 @@ show_always = true
 [git_branch]
 format = '[ $symbol$branch ]($style)'
 symbol = '🌱 '
-style = 'bg:#2d2d2d fg:#cba6f7 bold'
+style = 'bg:#1a1b26 fg:#bb9af7 bold'
 
 # Git Status
 [git_status]
 format = '[ $all_status ]($style)'
-style = 'bg:#2d2d2d fg:#f38ba8 bold'
+style = 'bg:#1a1b26 fg:#f7768e bold'
 
-# SEMUA LANGUAGE → FORMAT [VIA] KONSISTEN (Catppuccin Mocha)
+# Languages - Blue & Pink gradient
 
 [golang]
 symbol = '🐹 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#89dceb bold'
+style = 'bg:#1a1b26 fg:#2ac3de bold'
 
 [nodejs]
 symbol = '⬢ '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#a6e3a1 bold'
+style = 'bg:#1a1b26 fg:#73daca bold'
 
 [python]
 symbol = '🐍 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#f9e2af bold'
+style = 'bg:#1a1b26 fg:#7dcfff bold'
 
 [bun]
 symbol = '🥟 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#f5e0dc bold'
+style = 'bg:#1a1b26 fg:#bb9af7 bold'
 
 [rust]
 symbol = '🦀 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#fab387 bold'
+style = 'bg:#1a1b26 fg:#ff9e64 bold'
 
 [java]
 symbol = '☕ '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#eba0ac bold'
+style = 'bg:#1a1b26 fg:#f7768e bold'
 
 [php]
 symbol = '🐘 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#cba6f7 bold'
+style = 'bg:#1a1b26 fg:#c678dd bold'
 
 [c]
 symbol = ' '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#fab387 bold'
+style = 'bg:#1a1b26 fg:#7aa2f7 bold'
 
 [cpp]
 symbol = ' '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#f38ba8 bold'
+style = 'bg:#1a1b26 fg:#f7768e bold'
 
 [lua]
 symbol = '🌙 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#89b4fa bold'
+style = 'bg:#1a1b26 fg:#7aa2f7 bold'
 
 [swift]
 symbol = '🐦 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#fab387 bold'
+style = 'bg:#1a1b26 fg:#ff9e64 bold'
 
 [zig]
 symbol = '↯ '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#f9e2af bold'
+style = 'bg:#1a1b26 fg:#e0af68 bold'
 
 [julia]
 symbol = 'ஃ '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#cba6f7 bold'
+style = 'bg:#1a1b26 fg:#bb9af7 bold'
 
 [perl]
 symbol = '🦪 '
 format = '[via $symbol$version]($style)'
-style = 'bg:#2d2d2d fg:#89dceb bold'
+style = 'bg:#1a1b26 fg:#2ac3de bold'
 
 [package]
 symbol = '📦 '
 format = '[ $symbol$version ]($style)'
-style = 'bg:#2d2d2d fg:#fab387 bold'
+style = 'bg:#1a1b26 fg:#bb9af7 bold'
 disabled = false
 
 [docker_context]
 symbol = '🐳 '
 format = '[ $symbol$context ]($style)'
-style = 'bg:#2d2d2d fg:#89b4fa bold'
+style = 'bg:#1a1b26 fg:#7aa2f7 bold'
 
-# Tingkat 2 & 3
+# Directory & Nix Shell
 
 [nix_shell]
 disabled = false
 format = '[ $symbol$state]($style)'
 symbol = '\(nix-shell\) '
-style = 'bold #89dceb'
-impure_msg = '[impure](bold #f38ba8)'
-pure_msg = '[pure](bold #a6e3a1)'
+style = 'bold #2ac3de'
+impure_msg = '[impure](bold #f7768e)'
+pure_msg = '[pure](bold #73daca)'
 
 [directory]
 format = '\[[$path]($style)[$read_only]($read_only_style)\]'
-style = 'bold #f9e2af'
+style = 'bold #7aa2f7'
 truncation_length = 3
 truncate_to_repo = false
 
 [character]
-success_symbol = ' [](bold #a6e3a1) [](bold #f9e2af) [](bold #a6e3a1)'
-error_symbol = ' [✗](bold #f38ba8)'
+success_symbol = ' [](bold #73daca) [](bold #7aa2f7) [](bold #bb9af7)'
+error_symbol = ' [✗](bold #f7768e)'

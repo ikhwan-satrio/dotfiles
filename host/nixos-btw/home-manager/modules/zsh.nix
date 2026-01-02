@@ -20,16 +20,6 @@
         src = pkgs.zsh-syntax-highlighting;
         file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
-      {
-        name = "catppuccin-zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "zsh-syntax-highlighting";
-          rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
-          sha256 = "sha256-Q7KmwUd9fblprL55W0Sf4g7lRcemnhjh4/v+TacJSfo=";
-        };
-        file = "themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
-      }
     ];
 
     autosuggestion.enable = true;

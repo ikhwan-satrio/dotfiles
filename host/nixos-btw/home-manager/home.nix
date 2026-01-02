@@ -67,6 +67,7 @@
     fastfetch
     btop
     fzf
+    dioxus-cli
 
     # Themes
     papirus-icon-theme
