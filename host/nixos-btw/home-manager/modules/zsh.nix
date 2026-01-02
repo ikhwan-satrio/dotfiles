@@ -56,6 +56,11 @@
       command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
       command -v fzf >/dev/null 2>&1 && eval "$(fzf --zsh)"
 
+      if command -v fzf-share >/dev/null 2>&1; then
+          source "$(fzf-share)/key-bindings.zsh"
+          source "$(fzf-share)/completion.zsh"
+      fi
+
       # --- ASDF ---
       if command -v asdf >/dev/null 2>&1; then
           if [[ -z "$ASDF_DATA_DIR" ]]; then
