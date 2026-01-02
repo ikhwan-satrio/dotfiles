@@ -15,7 +15,7 @@ config.quit_when_all_windows_are_closed = true
 config.automatically_reload_config = true
 
 -- Shell
-config.default_prog = { 'fish', '-l' }
+config.default_prog = { 'zsh', '-l' }
 
 -- Tab
 config.enable_tab_bar = true

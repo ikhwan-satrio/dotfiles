@@ -293,8 +293,14 @@
   # ============================================================================
 
   programs = {
-    fish.enable = true;
     niri.enable = true;
+    zsh.enable = true;
+    # fish = {
+    #   enable = false;
+    #   shellInit = ''
+    #     set -gx fish_variables_path $HOME/.local/share/fish/fish_variables
+    #   '';
+    # };
     silentSDDM = {
       enable = true;
       theme = "rei";
@@ -313,7 +319,7 @@
   users.users.wanto = {
     isNormalUser = true;
     description = "wanto";
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -374,7 +380,6 @@
     unzip
     wget
     git
-    fish
     trash-cli # command: trash
     glib # command: gio (GNOME)
     imagemagick # command: magick, convert

@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/zsh.nix
     ./modules/vesktop.nix
     ./modules/vscode.nix
     ./modules/gtk.nix
@@ -41,8 +42,6 @@
     stylua
 
     # Apps
-    uget
-    uget-integrator
     easyeffects
     onlyoffice-desktopeditors
     tor-browser
@@ -67,6 +66,7 @@
     stow
     fastfetch
     btop
+    fzf
 
     # Themes
     papirus-icon-theme
@@ -89,7 +89,6 @@
 
     vivaldi = {
       enable = true;
-      nativeMessagingHosts = [ pkgs.uget-integrator ];
     };
 
     spicetify =
