@@ -206,5 +206,5 @@ truncation_length = 3
 truncate_to_repo = false
 
 [character]
-success_symbol = ' [](bold #73daca) [](bold #7aa2f7) [](bold #bb9af7)'
+success_symbol = ' [](bold #73daca) [](bold #7aa2f7) [](bold #bb9af7)'
 error_symbol = ' [✗](bold #f7768e)'

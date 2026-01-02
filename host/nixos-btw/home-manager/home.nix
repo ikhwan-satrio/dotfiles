@@ -37,7 +37,7 @@
   home.packages = with pkgs; [
     # LSP & Formatters
     nixfmt-rfc-style
-    nil
+    nixd
     lua-language-server
     stylua
 
