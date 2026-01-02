@@ -6,22 +6,35 @@
 {
   programs.zsh = {
     enable = true;
-
-    # Fix: gunakan absolute path dengan config option
     dotDir = "${config.xdg.configHome}/zsh";
 
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "sudo"
-        "kubectl"
-        "rust"
-      ];
-    };
+    # Pakai plugin manual (lebih cepat dari Oh My Zsh)
+    plugins = [
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.zsh-syntax-highlighting;
+        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      }
+      {
+        name = "catppuccin-zsh-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "zsh-syntax-highlighting";
+          rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
+          sha256 = "sha256-Q7KmwUd9fblprL55W0Sf4g7lRcemnhjh4/v+TacJSfo=";
+        };
+        file = "themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
+      }
+    ];
 
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    enableCompletion = true;
 
     history = {
       size = 10000;
@@ -30,16 +43,24 @@
 
     shellAliases = {
       ls = "eza --icons --group-directories-first -1";
-      ll = "ls -alh";
-      la = "ls -A";
-      l = "ls -CF";
+      ll = "eza --icons --group-directories-first -lah";
+      la = "eza --icons --group-directories-first -A";
+      l = "eza --icons --group-directories-first -lh";
       ns = "sudo nixos-rebuild switch --flake ~/nixos-wanto#nixos-btw --impure";
     };
 
     initContent = ''
       export PATH=$HOME/.local/bin:$PATH
-              
-      # Starship, direnv, zoxide
+
+      # Lazy load completions (speed optimization)
+      autoload -Uz compinit
+      if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
+        compinit -d $ZDOTDIR/.zcompdump
+      else
+        compinit -C -d $ZDOTDIR/.zcompdump
+      fi
+
+      # Starship, direnv, zoxide, fzf
       command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
       command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
       command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
@@ -62,7 +83,7 @@
       if [[ -d "$HOME/.cache/.bun" ]]; then
           export BUN_INSTALL="$HOME/.cache/.bun"
           export PATH="$BUN_INSTALL/bin:$PATH"
-          eval "$(bun completions)"
+          eval "$(bun completions)"  # Uncomment jika perlu
       fi
 
       # --- Composer ---
@@ -117,6 +138,7 @@
           fi
       }
 
+      # Spicetify PATH
       export PATH="$HOME/.spicetify:$PATH"
     '';
   };

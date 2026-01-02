@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local module = {}
-
 function module.apply_to_config(config)
+  config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
   config.keys = {
     -- Tabs
     { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
@@ -22,24 +22,41 @@ function module.apply_to_config(config)
     -- Move tabs
     { key = 'PageUp', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(-1) },
     { key = 'PageDown', mods = 'CTRL|SHIFT', action = wezterm.action.MoveTabRelative(1) },
-    -- Splits
-    { key = '\\', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = '-', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+
+    -- ========================================
+    -- LEADER KEY BINDINGS (Ctrl+A)
+    -- ========================================
+    -- Send Ctrl+A to terminal
+    { key = 'a', mods = 'LEADER|CTRL', action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' } },
+    { key = 'a', mods = 'LEADER', action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' } },
+
+    -- Splits (support both: hold Ctrl atau lepas)
+    { key = '|', mods = 'LEADER|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = '|', mods = 'LEADER|CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = '-', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = '-', mods = 'LEADER|CTRL', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+
     -- Pane navigation
     { key = 'h', mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Left' },
     { key = 'l', mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Right' },
     { key = 'k', mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Up' },
     { key = 'j', mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Down' },
+
     -- Resize panes
     { key = 'LeftArrow', mods = 'CTRL|SHIFT', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
     { key = 'RightArrow', mods = 'CTRL|SHIFT', action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
     { key = 'UpArrow', mods = 'CTRL|SHIFT', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
     { key = 'DownArrow', mods = 'CTRL|SHIFT', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
-    -- Close pane (Alt+W untuk avoid conflict dengan close tab)
+
+    -- Close pane
     { key = 'w', mods = 'ALT', action = wezterm.action.CloseCurrentPane { confirm = true } },
+
+    -- Zoom pane (Ctrl+A, z)
+    { key = 'z', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
+    { key = 'z', mods = 'LEADER|CTRL', action = wezterm.action.TogglePaneZoomState },
+
     -- Ignore
     { key = 'Enter', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment },
   }
 end
-
 return module
