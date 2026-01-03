@@ -5,8 +5,8 @@
     enable = true;
     platformTheme.name = "gtk3"; # atau qtct/kvantum
     style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
+      name = "kvantum";
+      package = pkgs.catppuccin-kvantum;
     };
   };
 
