@@ -1,6 +1,13 @@
 {
-  programs.vesktop = {
+  programs.discord = {
     enable = true;
+    settings = {
+      arRPC = "on"; # UBAH: dari true ke "on"
+    };
+  };
+
+  programs.vesktop = {
+    enable = false;
     settings = {
       appBadge = true;
       arRPC = "on"; # UBAH: dari true ke "on"

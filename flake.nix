@@ -19,16 +19,16 @@
       inputs.nixpkgs.follows = "nixpkgs"; # ADD: Follow nixpkgs
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur.url = "github:nix-community/NUR";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
   };
 

@@ -57,8 +57,6 @@
     whatsapp-electron
 
     # Terminal
-    pipes-rs
-    unimatrix
     matugen
     zoxide
     starship
