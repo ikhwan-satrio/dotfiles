@@ -97,9 +97,9 @@
       {
         enable = true;
 
-        theme = spicePkgs.themes.text;
+        theme = spicePkgs.themes.comfy;
 
-        colorScheme = "TokyoNight";
+        colorScheme = "Lunar";
         enabledExtensions = with spicePkgs.extensions; [
           beautifulLyrics
           shuffle
