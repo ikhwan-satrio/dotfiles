@@ -36,10 +36,23 @@
       ll = "eza --icons --group-directories-first -lah";
       la = "eza --icons --group-directories-first -A";
       l = "eza --icons --group-directories-first -lh";
-      ns = "sudo nixos-rebuild switch --flake ~/nixos-wanto#nixos-btw --impure";
+      ns = "sudo nixos-rebuild switch --flake '.#nixos-btw' --impure";
     };
 
     initContent = ''
+      # Navigation
+      setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
+
+      # History
+      setopt EXTENDED_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS
+      setopt HIST_IGNORE_SPACE HIST_VERIFY SHARE_HISTORY
+
+      # Completion
+      setopt COMPLETE_IN_WORD ALWAYS_TO_END AUTO_MENU AUTO_LIST
+
+      # Misc
+      setopt INTERACTIVE_COMMENTS EXTENDED_GLOB
+
       export PATH=$HOME/.local/bin:$PATH
 
       # Lazy load completions (speed optimization)

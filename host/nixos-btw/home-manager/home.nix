@@ -48,13 +48,13 @@
     wezterm
     obs-studio
     obsidian
-    gimp
     kdePackages.ark
     nautilus
     swappy
     vlc
     telegram-desktop
     whatsapp-electron
+    insomnia
 
     # Terminal
     matugen
