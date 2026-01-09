@@ -5,7 +5,7 @@ binds {
     
     // Applications
     Mod+E hotkey-overlay-title="File Manager" { spawn "app2unit" "--" "nautilus"; }
-    Mod+B hotkey-overlay-title="Browser" { spawn "app2unit" "--" "vivaldi"; }
+    Mod+B hotkey-overlay-title="Browser" { spawn "app2unit" "--" "zen"; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
     Mod+R hotkey-overlay-title="Application Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     

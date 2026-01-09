@@ -1,5 +1,4 @@
 { config, ... }:
-
 {
   xdg = {
     enable = true;
@@ -13,31 +12,36 @@
       pictures = "${config.home.homeDirectory}/Pictures";
       videos = "${config.home.homeDirectory}/Videos";
     };
-
     terminal-exec = {
       settings = {
-        default = [
-          "wezterm.desktop"
-        ];
+        default = [ "wezterm.desktop" ];
       };
     };
-
     mimeApps = {
       enable = true;
       defaultApplications = {
+        # File manager
         "inode/directory" = "org.gnome.Nautilus.desktop";
+        # Text editor
         "text/plain" = "neovim.desktop";
         "text/markdown" = "neovim.desktop";
         "text/x-python" = "neovim.desktop";
         "text/x-shellscript" = "neovim.desktop";
         "application/javascript" = "neovim.desktop";
         "application/json" = "neovim.desktop";
-
-        "text/html" = "vivaldi-stable.desktop";
-        "x-scheme-handler/http" = "vivaldi-stable.desktop";
-        "x-scheme-handler/https" = "vivaldi-stable.desktop";
-        "x-scheme-handler/about" = "vivaldi-stable.desktop";
-        "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+        # Web browser - Zen Browser
+        "text/html" = "zen.desktop";
+        "x-scheme-handler/http" = "zen.desktop";
+        "x-scheme-handler/https" = "zen.desktop";
+        "x-scheme-handler/about" = "zen.desktop";
+        "x-scheme-handler/unknown" = "zen.desktop";
+        "x-scheme-handler/chrome" = "zen.desktop";
+        "application/x-extension-htm" = "zen.desktop";
+        "application/x-extension-html" = "zen.desktop";
+        "application/x-extension-shtml" = "zen.desktop";
+        "application/xhtml+xml" = "zen.desktop";
+        "application/x-extension-xhtml" = "zen.desktop";
+        "application/x-extension-xht" = "zen.desktop";
       };
       associations.added = {
         "image/png" = [
@@ -51,5 +55,4 @@
       };
     };
   };
-
 }

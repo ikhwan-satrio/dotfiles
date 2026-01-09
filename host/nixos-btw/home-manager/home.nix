@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./modules/browsers.nix
     ./modules/zsh.nix
     ./modules/vesktop.nix
     ./modules/vscode.nix
@@ -26,8 +27,8 @@
     ".config/vesktop/themes".recursive = true;
     ".config/vesktop/themes".force = true;
 
-    ".config/fish".source = ../../../fish/.config/fish;
-    ".config/fish".recursive = true;
+    # ".config/fish".source = ../../../fish/.config/fish;
+    # ".config/fish".recursive = true;
 
     ".config/niri".source = ../../../niri/.config/niri;
     ".config/niri".recursive = true;
@@ -36,7 +37,7 @@
   # === PACKAGES (OPTIMIZED) ===
   home.packages = with pkgs; [
     # LSP & Formatters
-    nixfmt-rfc-style
+    nixfmt
     nixd
     lua-language-server
     stylua
@@ -85,10 +86,6 @@
     home-manager.enable = true;
 
     # zapzap.enable = true;
-
-    vivaldi = {
-      enable = true;
-    };
 
     spicetify =
       let
