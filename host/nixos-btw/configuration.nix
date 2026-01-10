@@ -42,8 +42,18 @@
         "nix-command"
         "flakes"
       ];
-      substituters = [ "https://attic.xuyh0120.win/lantian" ];
-      trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+      trusted-users = [
+        "root"
+        "wanto"
+      ];
+      substituters = [
+        "https://cache.garnix.io"
+        "https://attic.xuyh0120.win/lantian"
+      ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      ];
     };
     optimise = {
       automatic = true;
@@ -74,7 +84,6 @@
     };
 
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
-    # Kernel parameters for quiet boot
     consoleLogLevel = 3;
     initrd = {
       verbose = false;
@@ -174,8 +183,7 @@
         };
 
         X11 = {
-          # Set DPI untuk 1920x1080 @ 310mm
-          ServerArguments = "-dpi 157"; # calculated DPI untuk monitor kamu
+          ServerArguments = "-dpi 157";
         };
         Wayland = {
           SessionDir = "${pkgs.niri}/share/wayland-sessions";
@@ -345,15 +353,16 @@
   environment.systemPackages = with pkgs; [
     # Development tools
     nodejs_22
-    rustc
-    cargo
-    rust-analyzer
+    # rustc
+    # cargo
+    # rust-analyzer
     bun
     # gcc
     # jdk21
     # kotlin
     # gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
+    devenv
 
     # PHP dev
     (php84.buildEnv {
