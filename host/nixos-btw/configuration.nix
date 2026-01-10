@@ -53,7 +53,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 3d";
     };
   };
 
@@ -99,7 +99,7 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 5;
+        configurationLimit = 3;
         theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
         splashImage = "${theme}/splash_image.jpg";
       };
@@ -190,7 +190,7 @@
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    gnome.evolution-data-server.enable = true;
+    # gnome.evolution-data-server.enable = true;
     noctalia-shell.enable = true;
     flatpak.enable = true;
 
@@ -349,14 +349,29 @@
     cargo
     rust-analyzer
     bun
-    gcc
-    jdk21
-    kotlin
-    gradle
+    # gcc
+    # jdk21
+    # kotlin
+    # gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
-    (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      calendarSupport = true;
+
+    # PHP dev
+    (php84.buildEnv {
+      # nixf: ignore sema-primop-overridden
+      extensions =
+        { enabled, all }:
+        enabled
+        ++ (with all; [
+          bcmath
+          gd
+          intl
+          mysqli
+          pdo_mysql
+          redis
+          zip
+        ]);
     })
+    php84Packages.composer
 
     # Container tools
     podman-compose
@@ -402,7 +417,7 @@
   # ============================================================================
 
   environment.sessionVariables = {
-    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+    # JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
   };
 
   environment.variables = {

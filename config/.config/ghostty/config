@@ -6,8 +6,8 @@ window-padding-y = 10
 background-opacity = 1
 adjust-cell-height = 0
 font-thicken = false
-theme = noctalia
-shell-integration = fish
+theme = Atom
+shell-integration = zsh
 quit-after-last-window-closed = true 
 
 keybind=ctrl+shift+backslash=new_split:right

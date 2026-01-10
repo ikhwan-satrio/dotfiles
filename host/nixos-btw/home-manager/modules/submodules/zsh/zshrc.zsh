@@ -53,17 +53,17 @@ if command -v fzf-share >/dev/null 2>&1; then
 fi
 
 # --- ASDF ---
-if command -v asdf >/dev/null 2>&1; then
-    if [[ -z "$ASDF_DATA_DIR" ]]; then
-              _asdf_shims="$HOME/.asdf/shims"
-    else
-        _asdf_shims="$ASDF_DATA_DIR/shims"
-    fi
-    if [[ ! "$PATH" == *"$_asdf_shims"* ]]; then
-        export PATH="$_asdf_shims:$PATH"
-    fi
-    unset _asdf_shims
-fi
+# if command -v asdf >/dev/null 2>&1; then
+#     if [[ -z "$ASDF_DATA_DIR" ]]; then
+#               _asdf_shims="$HOME/.asdf/shims"
+#     else
+#         _asdf_shims="$ASDF_DATA_DIR/shims"
+#     fi
+#     if [[ ! "$PATH" == *"$_asdf_shims"* ]]; then
+#         export PATH="$_asdf_shims:$PATH"
+#     fi
+#     unset _asdf_shims
+# fi
 
 # --- Bun ---
 if [[ -d "$HOME/.cache/.bun" ]]; then
@@ -74,7 +74,7 @@ fi
 
 # --- Composer ---
 if command -v composer >/dev/null 2>&1; then
-    export PATH="$(asdf where php)/.composer/vendor/bin:$PATH"
+    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
 # --- Java ---

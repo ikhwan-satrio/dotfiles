@@ -46,10 +46,10 @@
     easyeffects
     onlyoffice-desktopeditors
     tor-browser
-    wezterm
+    ghostty
     obs-studio
     obsidian
-    kdePackages.ark
+    file-roller # Add this
     nautilus
     swappy
     vlc
@@ -66,7 +66,6 @@
     fastfetch
     btop
     fzf
-    dioxus-cli
 
     # Themes
     papirus-icon-theme
