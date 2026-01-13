@@ -10,6 +10,7 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
+    ./root-modules/starship-root.nix
     inputs.noctalia.nixosModules.default
     inputs.nur.modules.nixos.default
     inputs.silentSDDM.nixosModules.default
@@ -406,7 +407,8 @@
     # System utilities
     efibootmgr
     gnome-keyring
-    protonvpn-gui
+    proton-vpn-cli
+    xdg-terminal-exec
 
     # Editor and tools
     neovim

@@ -125,7 +125,7 @@ function toggle_conservation_mode() {
 }
 
 function crack-mode(){
-  nix-shell --keep "crack-mode" --run zsh -p wifite2 aircrack-ng hashcat evillimiter
+  nix-shell --keep "crack-mode" --run zsh -p wifite2 aircrack-ng hashcat evillimiter tshark
 }
 
 # Spicetify PATH

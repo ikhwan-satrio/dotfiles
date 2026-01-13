@@ -1,0 +1,225 @@
+{ config, pkgs, ... }:
+
+{
+  # Konfigurasi khusus root
+  environment.etc."starship-root.toml".text = ''
+    format = """
+    ┌────[](#1a1b26)$shell$os$username\
+    $git_branch$git_status\
+    $golang\
+    $nodejs\
+    $python\
+    $bun\
+    $rust\
+    $java\
+    $php\
+    $c\
+    $cpp\
+    $lua\
+    $swift\
+    $zig\
+    $julia\
+    $perl\
+    $package\
+    $docker_context[](#1a1b26)
+    │─  $directory$nix_shell
+    └─$character"""
+    add_newline = true
+
+    # ============================================================================
+    # ZEN BLUE PINK THEME
+    # Blue: #7aa2f7 (soft blue), #2ac3de (cyan blue)
+    # Pink: #bb9af7 (lavender), #f7768e (pink red)
+    # Dark: #1a1b26 (bg), #24283b (lighter bg)
+    # ============================================================================
+
+    # Shell
+    [shell]
+    fish_indicator = 'fish'
+    zsh_indicator = 'zsh'
+    powershell_indicator = 'powershell'
+    bash_indicator = 'bash'
+    unknown_indicator = '?'
+    format = '[ /bin/$indicator ]($style)'
+    style = 'bg:#1a1b26 fg:#c0caf5 bold'
+    disabled = false
+
+    # OS
+    [os]
+    disabled = false
+    format = '[ $name $symbol ]($style)'
+    style = 'bg:#1a1b26 fg:#bb9af7 bold'
+    [os.symbols]
+    Alpaquita = "🔔"
+    Alpine = "🏔️"
+    Amazon = "🙂"
+    Android = "🤖"
+    Arch = "🎗️"
+    Artix = "🎗️"
+    CentOS = "💠"
+    Debian = "🌀"
+    DragonFly = "🐉"
+    Emscripten = "🔗"
+    EndeavourOS = "🚀"
+    Fedora = "🎩"
+    FreeBSD = "😈"
+    Garuda = "🦅"
+    Gentoo = "🗜️"
+    HardenedBSD = "🛡️"
+    Illumos = "🐦"
+    Linux = "🐧"
+    Mabox = "📦"
+    Macos = "🍎"
+    Manjaro = "🥭"
+    Mariner = "🌊"
+    MidnightBSD = "🌘"
+    Mint = "🌿"
+    NetBSD = "🚩"
+    NixOS = "❄️"
+    OpenBSD = "🐡"
+    OpenCloudOS = "☁️"
+    openEuler = "🦉"
+    openSUSE = "🦎"
+    OracleLinux = "🦴"
+    Pop = "🍭"
+    Raspbian = "🍓"
+    Redhat = "🎩"
+    RedHatEnterprise = "🎩"
+    Redox = "🧪"
+    Solus = "⛵"
+    SUSE = "🦎"
+    Ubuntu = "🎯"
+    Unknown = "❓"
+    Windows = "🪟"
+
+    # Username
+    [username]
+    style_user = 'bg:#1a1b26 fg:#2ac3de bold'
+    style_root = 'bg:#1a1b26 fg:#f7768e bold'
+    format = '[ $user ]($style)'
+    disabled = false
+    show_always = true
+
+    # Git Branch
+    [git_branch]
+    format = '[ $symbol$branch ]($style)'
+    symbol = '🌱 '
+    style = 'bg:#1a1b26 fg:#bb9af7 bold'
+
+    # Git Status
+    [git_status]
+    format = '[ $all_status ]($style)'
+    style = 'bg:#1a1b26 fg:#f7768e bold'
+
+    # Languages - Blue & Pink gradient
+
+    [golang]
+    symbol = '🐹 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#2ac3de bold'
+
+    [nodejs]
+    symbol = '⬢ '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#73daca bold'
+
+    [python]
+    symbol = '🐍 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#7dcfff bold'
+
+    [bun]
+    symbol = '🥟 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#bb9af7 bold'
+
+    [rust]
+    symbol = '🦀 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#ff9e64 bold'
+
+    [java]
+    symbol = '☕ '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#f7768e bold'
+
+    [php]
+    symbol = '🐘 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#c678dd bold'
+
+    [c]
+    symbol = ' '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#7aa2f7 bold'
+
+    [cpp]
+    symbol = ' '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#f7768e bold'
+
+    [lua]
+    symbol = '🌙 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#7aa2f7 bold'
+
+    [swift]
+    symbol = '🐦 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#ff9e64 bold'
+
+    [zig]
+    symbol = '↯ '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#e0af68 bold'
+
+    [julia]
+    symbol = 'ஃ '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#bb9af7 bold'
+
+    [perl]
+    symbol = '🦪 '
+    format = '[via $symbol$version]($style)'
+    style = 'bg:#1a1b26 fg:#2ac3de bold'
+
+    [package]
+    symbol = '📦 '
+    format = '[ $symbol$version ]($style)'
+    style = 'bg:#1a1b26 fg:#bb9af7 bold'
+    disabled = false
+
+    [docker_context]
+    symbol = '🐳 '
+    format = '[ $symbol$context ]($style)'
+    style = 'bg:#1a1b26 fg:#7aa2f7 bold'
+
+    # Directory & Nix Shell
+
+    [nix_shell]
+    disabled = false
+    format = '[ $symbol$state]($style)'
+    symbol = '\(nix-shell\) '
+    style = 'bold #2ac3de'
+    impure_msg = '[impure](bold #f7768e)'
+    pure_msg = '[pure](bold #73daca)'
+
+    [directory]
+    format = '\[[$path]($style)[$read_only]($read_only_style)\]'
+    style = 'bold #7aa2f7'
+    truncation_length = 3
+    truncate_to_repo = false
+
+    [character]
+    success_symbol = ' [](bold #73daca) [](bold #7aa2f7) [](bold #bb9af7)'
+    error_symbol = ' [✗](bold #f7768e)'
+  '';
+
+  # Set STARSHIP_CONFIG untuk root
+  programs.bash.interactiveShellInit = ''
+    if [ "$USER" = "root" ]; then
+      export STARSHIP_CONFIG=/etc/starship-root.toml
+    fi
+    eval "$(${pkgs.starship}/bin/starship init bash)"
+  '';
+}
