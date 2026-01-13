@@ -124,5 +124,9 @@ function toggle_conservation_mode() {
     fi
 }
 
+function crack-mode(){
+  nix-shell --keep "crack-mode" --run zsh -p wifite2 aircrack-ng hashcat evillimiter
+}
+
 # Spicetify PATH
 export PATH="$HOME/.spicetify:$PATH"

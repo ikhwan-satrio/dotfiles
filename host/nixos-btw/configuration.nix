@@ -357,6 +357,9 @@
     # cargo
     # rust-analyzer
     bun
+    deno
+    pnpm
+    nodePackages.vercel
     # gcc
     # jdk21
     # kotlin
@@ -403,6 +406,7 @@
     # System utilities
     efibootmgr
     gnome-keyring
+    protonvpn-gui
 
     # Editor and tools
     neovim
