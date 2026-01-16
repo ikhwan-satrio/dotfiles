@@ -1,13 +1,14 @@
 {
   programs.discord = {
-    enable = true;
+    enable = false;
     settings = {
       arRPC = "on"; # UBAH: dari true ke "on"
+      withOpenASAR = true;
     };
   };
 
   programs.vesktop = {
-    enable = false;
+    enable = true;
     settings = {
       appBadge = true;
       arRPC = "on"; # UBAH: dari true ke "on"

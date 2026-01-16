@@ -100,6 +100,9 @@
       "vt.global_cursor_default=0"
       "loglevel=3"
       "rd.udev.log_level=3"
+
+      "i915.enable_guc=3" # Enable GuC/HuC firmware
+      "i915.force_probe=46a3" # Force probe Alder Lake GPU
     ];
 
     # GRUB bootloader
@@ -110,12 +113,33 @@
         efiSupport = true;
         useOSProber = true;
         configurationLimit = 3;
+        extraEntriesBeforeNixOS = true;
+        # theme = "${
+        #   (pkgs.fetchFromGitHub {
+        #     owner = "semimqmo";
+        #     repo = "sekiro_grub_theme";
+        #     rev = "1affe05f7257b72b69404cfc0a60e88aa19f54a6";
+        #     hash = "sha256-wTr5S/17uwQXkWwElqBKIV1J3QUP6W2Qx2Nw0SaM7Qk=";
+        #   })
+        # }/Sekiro";
+        # splashImage = "${theme}/sekiro_1920x1080.png";
         theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
         splashImage = "${theme}/splash_image.jpg";
       };
       efi.canTouchEfiVariables = true;
     };
   };
+
+  # ============================================================================
+  # SPECIALIZATIONS
+  # ============================================================================
+
+  # specialisation = {
+  #   intel-graphics.configuration = {
+  #     system.nixos.tags = [ "intel-graphics" ];
+  #     imports = [ ./root-modules/intel-graphics.nix ];
+  #   };
+  # };
 
   # ============================================================================
   # NETWORKING
@@ -133,6 +157,22 @@
   hardware = {
     bluetooth.enable = true;
     cpu.intel.updateMicrocode = true;
+
+    # Enable firmware updates
+    enableRedistributableFirmware = true;
+
+    # Intel Graphics Hardware Acceleration
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        # Modern Intel GPUs (Gen 12+, Alder Lake)
+        intel-media-driver # VAAPI (iHD) - hardware video decode/encode
+        vpl-gpu-rt # oneVPL - Quick Sync Video runtime
+        intel-compute-runtime # OpenCL & Level Zero compute
+      ];
+    };
   };
 
   # ============================================================================
@@ -190,7 +230,17 @@
           SessionDir = "${pkgs.niri}/share/wayland-sessions";
         };
       };
+    };
 
+    # X Server configuration
+    xserver = {
+      # Intel modesetting driver
+      videoDrivers = [ "modesetting" ];
+
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
 
     gnome.gnome-keyring.enable = true;
@@ -215,12 +265,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       wireplumber.enable = true;
-    };
-
-    # X11 configuration
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
     };
   };
 
@@ -344,6 +388,8 @@
       "storage"
       "podman"
       "adbusers"
+      "video" # Hardware video acceleration
+      "render" # GPU rendering access
     ];
   };
 
@@ -366,7 +412,6 @@
     # kotlin
     # gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
-    devenv
 
     # PHP dev
     (php84.buildEnv {
@@ -389,6 +434,7 @@
     # Container tools
     podman-compose
     podman-desktop
+    distrobox
 
     # SDDM theme
     qt6Packages.qtsvg
@@ -432,6 +478,14 @@
   # ============================================================================
 
   environment.sessionVariables = {
+    # Locale passthrough
+    LANG = config.i18n.defaultLocale;
+    LC_ALL = config.i18n.defaultLocale;
+
+    # Timezone passthrough
+    TZ = config.time.timeZone;
+
+    LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
     # JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
   };
 
