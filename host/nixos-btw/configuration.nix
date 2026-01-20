@@ -275,6 +275,10 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
+
+    sudo.extraConfig = ''
+      Defaults pwfeedback
+    '';
   };
 
   # Polkit authentication agent
@@ -365,7 +369,7 @@
     # };
     silentSDDM = {
       enable = true;
-      theme = "rei";
+      theme = "default";
     };
 
     localsend = {

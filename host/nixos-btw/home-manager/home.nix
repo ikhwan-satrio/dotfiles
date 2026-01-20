@@ -12,10 +12,10 @@
 
   imports = [
     # ./modules/pipewires.nix
+    # ./modules/vscode.nix
     ./modules/browsers.nix
     ./modules/zsh.nix
     ./modules/vesktop.nix
-    # ./modules/vscode.nix
     ./modules/gtk.nix
     ./modules/xdg.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
