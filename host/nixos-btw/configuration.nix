@@ -456,7 +456,12 @@
     proton-vpn-cli
     xdg-terminal-exec
 
+    # Audio
+    ladspaPlugins # SDK dan contoh plugin
+    rnnoise-plugin # Contoh plugin noise suppression
+
     # Editor and tools
+    tmux
     neovim
     wl-clipboard
     lua5_1

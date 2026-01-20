@@ -18,8 +18,8 @@
     };
 
     theme = {
-      name = "Tokyonight-Dark";
-      package = pkgs.tokyonight-gtk-theme;
+      name = "Dracula";
+      package = pkgs.dracula-theme;
     };
   };
 

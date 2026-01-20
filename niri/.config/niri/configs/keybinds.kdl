@@ -122,6 +122,9 @@ binds {
     Mod+Shift+R hotkey-overlay-title="Reload Config" { 
         spawn "sh" "-c" "noctalia-shell kill && QT_QPA_PLATFORMTHEME=qt6ct noctalia-shell -d"; 
     }
+    Mod+Ctrl+Q hotkey-overlay-title="kill noctalia" { 
+        spawn "sh" "-c" "noctalia-shell kill"; 
+    }
     Mod+Shift+O hotkey-overlay-title="Toggle Overview" { toggle-overview; }
     Mod+Slash hotkey-overlay-title="Show All Keybinds" { 
         show-hotkey-overlay; 

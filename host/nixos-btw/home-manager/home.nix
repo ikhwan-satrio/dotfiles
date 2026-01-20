@@ -11,6 +11,7 @@
   home.stateVersion = "25.11";
 
   imports = [
+    # ./modules/pipewires.nix
     ./modules/browsers.nix
     ./modules/zsh.nix
     ./modules/vesktop.nix
