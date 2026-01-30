@@ -88,7 +88,10 @@
     consoleLogLevel = 3;
     initrd = {
       verbose = false;
-      kernelModules = [ "i915" ];
+      kernelModules = [
+        "i915"
+        # "kvm-intel"
+      ];
     };
     kernelParams = [
       "quiet"
@@ -307,6 +310,12 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
+    # libvirtd = {
+    #   enable = true;
+    #   qemu = {
+    #     swtpm.enable = true; # TPM buat Windows 11
+    #   };
+    # };
   };
 
   # ============================================================================
@@ -392,6 +401,9 @@
       "storage"
       "podman"
       "adbusers"
+      # "kvm"
+      # "libvirtd"
+
       "video" # Hardware video acceleration
       "render" # GPU rendering access
     ];
@@ -416,29 +428,19 @@
     # kotlin
     # gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
-
-    # PHP dev
-    (php84.buildEnv {
-      # nixf: ignore sema-primop-overridden
-      extensions =
-        { enabled, all }:
-        enabled
-        ++ (with all; [
-          bcmath
-          gd
-          intl
-          mysqli
-          pdo_mysql
-          redis
-          zip
-        ]);
-    })
-    php84Packages.composer
+    gcc
+    gnumake
+    unzip
+    wget
+    curl
 
     # Container tools
     podman-compose
     podman-desktop
     distrobox
+    # qemu
+    # virt-manager
+    # libvirt
 
     # SDDM theme
     qt6Packages.qtsvg
@@ -459,10 +461,6 @@
     gnome-keyring
     proton-vpn-cli
     xdg-terminal-exec
-
-    # Audio
-    ladspaPlugins # SDK dan contoh plugin
-    rnnoise-plugin # Contoh plugin noise suppression
 
     # Editor and tools
     tmux
@@ -495,7 +493,7 @@
     TZ = config.time.timeZone;
 
     LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
-    # JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+    # JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
   };
 
   environment.variables = {

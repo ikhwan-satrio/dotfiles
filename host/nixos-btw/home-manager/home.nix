@@ -13,6 +13,7 @@
   imports = [
     # ./modules/pipewires.nix
     # ./modules/vscode.nix
+    # ./modules/hypridle.nix
     ./modules/browsers.nix
     ./modules/zsh.nix
     ./modules/vesktop.nix
@@ -38,6 +39,7 @@
   # === PACKAGES (OPTIMIZED) ===
   home.packages = with pkgs; [
     # LSP & Formatters
+    marksman
     nixfmt
     nixd
     lua-language-server
@@ -47,9 +49,8 @@
     easyeffects
     onlyoffice-desktopeditors
     tor-browser
-    ghostty
+    wezterm
     obs-studio
-    obsidian
     file-roller # Add this
     nautilus
     swappy
@@ -83,8 +84,6 @@
   # === PROGRAMS ===
   programs = {
     home-manager.enable = true;
-
-    # zapzap.enable = true;
 
     spicetify =
       let

@@ -3,6 +3,14 @@
   pkgs,
   ...
 }:
+let
+  catppuccin-zsh-syntax = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "zsh-syntax-highlighting";
+    rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
+    sha256 = "Q7KmwUd9fblprL55W0Sf4g7lRcemnhjh4/v+TacJSfo=";
+  };
+in
 {
   programs.zsh = {
     enable = true;
@@ -19,6 +27,12 @@
         name = "zsh-syntax-highlighting";
         src = pkgs.zsh-syntax-highlighting;
         file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      }
+      # Tambahkan Catppuccin theme
+      {
+        name = "catppuccin-zsh-syntax-highlighting";
+        src = catppuccin-zsh-syntax;
+        file = "themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
       }
     ];
 
@@ -37,6 +51,7 @@
       la = "eza --icons --group-directories-first -A";
       l = "eza --icons --group-directories-first -lh";
       ns = "sudo nixos-rebuild switch --flake '.#nixos-btw' --impure";
+      diary = "cd ~/Documents/'wanto fault' && nvim .";
     };
 
     initContent = builtins.readFile ./submodules/zsh/zshrc.zsh;

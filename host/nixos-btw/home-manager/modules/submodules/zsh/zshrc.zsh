@@ -65,6 +65,18 @@ fi
 #     unset _asdf_shims
 # fi
 
+# --- Android SDK ---
+if [[ -d "$HOME/Android" ]]; then
+    export ANDROID_HOME="$HOME/Android"
+    export ANDROID_SDK_ROOT="$ANDROID_HOME"
+    export ANDROID_AVD_HOME="$HOME/.android/avd"
+    
+    # NIX-LD ONLY: Pakai system libs
+    export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+    
+    export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+fi
+
 # --- Bun ---
 if [[ -d "$HOME/.cache/.bun" ]]; then
     export BUN_INSTALL="$HOME/.cache/.bun"
