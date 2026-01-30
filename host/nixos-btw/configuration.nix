@@ -30,6 +30,15 @@
   # NIX SETTINGS
   # ============================================================================
 
+  documentation = {
+    nixos.enable = false; # Disable NixOS manual
+
+    # Keep man pages & info
+    man.enable = true;
+    info.enable = true;
+    doc.enable = true;
+  };
+
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
@@ -310,12 +319,12 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    # libvirtd = {
-    #   enable = true;
-    #   qemu = {
-    #     swtpm.enable = true; # TPM buat Windows 11
-    #   };
-    # };
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true; # TPM buat Windows 11
+      };
+    };
   };
 
   # ============================================================================
@@ -433,14 +442,15 @@
     unzip
     wget
     curl
+    claude-code
 
     # Container tools
     podman-compose
     podman-desktop
     distrobox
-    # qemu
-    # virt-manager
-    # libvirt
+    qemu
+    virt-manager
+    libvirt
 
     # SDDM theme
     qt6Packages.qtsvg
