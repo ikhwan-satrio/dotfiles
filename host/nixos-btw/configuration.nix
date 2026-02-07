@@ -255,13 +255,15 @@
       };
     };
 
-    gnome.gnome-keyring.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      # evolution-data-server.enable = true;
+    };
 
     # Desktop services
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    gnome.evolution-data-server.enable = true;
     noctalia-shell.enable = true;
     flatpak.enable = true;
 
@@ -437,8 +439,6 @@
     unzip
     wget
     curl
-    claude-code
-    evolution-data-server
 
     # Container tools
     podman-compose
@@ -511,17 +511,17 @@
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt6ct";
-    GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
-      with pkgs;
-      [
-        evolution-data-server
-        libical
-        glib.out
-        libsoup_3
-        json-glib
-        gobject-introspection
-      ]
-    );
+    # GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
+    #   with pkgs;
+    #   [
+    #     evolution-data-server
+    #     libical
+    #     glib.out
+    #     libsoup_3
+    #     json-glib
+    #     gobject-introspection
+    #   ]
+    # );
   };
 
   # ============================================================================
