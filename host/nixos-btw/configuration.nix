@@ -261,7 +261,7 @@
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    # gnome.evolution-data-server.enable = true;
+    gnome.evolution-data-server.enable = true;
     noctalia-shell.enable = true;
     flatpak.enable = true;
 
@@ -318,12 +318,6 @@
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
-    };
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true; # TPM buat Windows 11
-      };
     };
   };
 
@@ -389,7 +383,7 @@
       enable = true;
       theme = "default";
     };
-
+    # adb.enable = true;
     localsend = {
       enable = true;
       openFirewall = true;
@@ -410,8 +404,8 @@
       "storage"
       "podman"
       "adbusers"
-      # "kvm"
       # "libvirtd"
+      # "kvm"
 
       "video" # Hardware video acceleration
       "render" # GPU rendering access
@@ -428,6 +422,7 @@
     # rustc
     # cargo
     # rust-analyzer
+    android-tools
     bun
     deno
     pnpm
@@ -443,14 +438,18 @@
     wget
     curl
     claude-code
+    evolution-data-server
 
     # Container tools
     podman-compose
     podman-desktop
-    distrobox
-    qemu
-    virt-manager
-    libvirt
+    # qemu
+    # libvirt
+
+    #cockpit utility
+    # cockpit
+    # cockpit-machines
+    # virt-viewer
 
     # SDDM theme
     qt6Packages.qtsvg
@@ -474,7 +473,8 @@
 
     # Editor and tools
     tmux
-    neovim
+    # neovim
+    inputs.neovim-nightly-overlay.packages.${system}.default
     wl-clipboard
     lua5_1
     luarocks
@@ -488,6 +488,9 @@
     ghostscript # command: gs
     tectonic
     nodePackages.mermaid-cli # command: mmdc
+    ripgrep # rg (grep super cepat)
+    fd # fd (find modern)
+    sqlite # SQLite3 (frecency/history)
   ];
 
   # ============================================================================
