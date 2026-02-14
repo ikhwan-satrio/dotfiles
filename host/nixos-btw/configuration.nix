@@ -93,7 +93,7 @@
       ];
     };
 
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
+    # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
     consoleLogLevel = 3;
     initrd = {
       verbose = false;
@@ -439,6 +439,7 @@
     unzip
     wget
     curl
+    uv
 
     # Container tools
     podman-compose
@@ -473,8 +474,8 @@
 
     # Editor and tools
     tmux
-    # neovim
-    inputs.neovim-nightly-overlay.packages.${system}.default
+    neovim
+    # inputs.neovim-nightly-overlay.packages.${system}.default
     wl-clipboard
     lua5_1
     luarocks

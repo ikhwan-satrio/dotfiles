@@ -56,7 +56,6 @@
     swappy
     vlc
     telegram-desktop
-    insomnia
 
     # Terminal
     matugen
