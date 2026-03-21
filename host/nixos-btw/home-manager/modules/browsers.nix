@@ -56,6 +56,10 @@ let
 
     # Dark mode
     (extension "darkreader" "addon@darkreader.org")
+    
+    # youtube music
+    (extension "better-lyrics" "betterlyrics@boidu.dev")
+    (extension "adblock-for-youtube" "jid1-q4sG8pYhq8KGHs@jetpack")
 
     # Privacy
     # (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")

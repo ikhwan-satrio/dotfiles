@@ -14,6 +14,7 @@
     inputs.noctalia.nixosModules.default
     inputs.nur.modules.nixos.default
     inputs.silentSDDM.nixosModules.default
+    inputs.nixos-plymouth.nixosModules.default
   ];
 
   # ============================================================================
@@ -85,15 +86,15 @@
     # Plymouth splash screen
     plymouth = {
       enable = true;
-      theme = "deus_ex";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ "deus_ex" ];
-        })
-      ];
+      # theme = "deus_ex";
+      # themePackages = with pkgs; [
+      #   (adi1090x-plymouth-themes.override {
+      #     selected_themes = [ "deus_ex" ];
+      #   })
+      # ];
     };
 
-    # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
     consoleLogLevel = 3;
     initrd = {
       verbose = false;
@@ -109,7 +110,6 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
       "video=eDP-1:1920x1080@60"
-      "vt.global_cursor_default=0"
       "loglevel=3"
       "rd.udev.log_level=3"
 
@@ -140,6 +140,12 @@
       };
       efi.canTouchEfiVariables = true;
     };
+
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "4G";
+      cleanOnBoot = true;
+    };
   };
 
   # ============================================================================
@@ -160,6 +166,7 @@
   networking = {
     hostName = "nixos-wanto";
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 3000 ];
   };
 
   # ============================================================================
@@ -221,6 +228,10 @@
   };
 
   services = {
+    ollama = {
+      enable = true;
+    };
+
     # Display Manager
     displayManager.sddm = {
       enable = true;
@@ -233,6 +244,8 @@
       settings = {
         General = {
           DisplayServer = "wayland";
+          CursorTheme = "Bibata-Modern-Ice";
+          CursorSize = "24";
         };
 
         X11 = {
@@ -240,6 +253,20 @@
         };
         Wayland = {
           SessionDir = "${pkgs.niri}/share/wayland-sessions";
+        };
+      };
+    };
+
+    cockpit = {
+      enable = true;
+      port = 9090;
+      plugins = with pkgs; [
+        cockpit-podman
+        cockpit-machines
+      ];
+      settings = {
+        WebService = {
+          AllowUnencrypted = true; # kalau tidak pakai HTTPS
         };
       };
     };
@@ -264,7 +291,9 @@
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    noctalia-shell.enable = true;
+    noctalia-shell = {
+      enable = true;
+    };
     flatpak.enable = true;
 
     # Power management
@@ -390,6 +419,12 @@
       enable = true;
       openFirewall = true;
     };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true;
+    };
   };
 
   # ============================================================================
@@ -418,38 +453,61 @@
   # SYSTEM PACKAGES
   # ============================================================================
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib # libstdc++
+    zlib
+    libffi
+    openssl
+  ];
+
   environment.systemPackages = with pkgs; [
     # Development tools
     nodejs_22
-    # rustc
-    # cargo
-    # rust-analyzer
+    gcc
     android-tools
     bun
     deno
     pnpm
-    nodePackages.vercel
-    # gcc
-    # jdk21
-    # kotlin
-    # gradle
     (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
-    gcc
     gnumake
+    zig
     unzip
     wget
     curl
     uv
 
+    # Gaming
+    steam
+    steam-run
+    protonup-qt # GUI untuk install Proton-GE
+    mangohud # overlay FPS, GPU, CPU usage
+    gamemode # optimasi performa saat gaming
+
+    # PHP & Composer
+    php85
+    php85Packages.composer
+    php85Extensions.zip
+    php85Extensions.curl
+    php85Extensions.openssl
+    php85Extensions.pdo_mysql
+    php85Extensions.gd
+    php85Extensions.intl
+    php85Extensions.mbstring
+    php85Extensions.bcmath
+    php85Extensions.sockets
+    php85Extensions.pdo_sqlite
+
     # Container tools
     podman-compose
-    podman-desktop
+    # podman-desktop
     # qemu
     # libvirt
 
     #cockpit utility
-    # cockpit
-    # cockpit-machines
+    cockpit-podman
+    cockpit
+    cockpit-machines
     # virt-viewer
 
     # SDDM theme
@@ -458,6 +516,7 @@
     qt6Packages.qtvirtualkeyboard
 
     # Niri/Desktop support
+    bibata-cursors
     bluez-tools
     bluez
     gnome-disk-utility
@@ -475,7 +534,6 @@
     # Editor and tools
     tmux
     neovim
-    # inputs.neovim-nightly-overlay.packages.${system}.default
     wl-clipboard
     lua5_1
     luarocks
@@ -500,17 +558,19 @@
 
   environment.sessionVariables = {
     # Locale passthrough
-    LANG = config.i18n.defaultLocale;
-    LC_ALL = config.i18n.defaultLocale;
+    # LANG = config.i18n.defaultLocale;
+    # LC_ALL = config.i18n.defaultLocale;
 
     # Timezone passthrough
-    TZ = config.time.timeZone;
+    # TZ = config.time.timeZone;
 
+    LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH"; # tambah ini
     LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
-    # JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
+    # JAVA_HOME = "${pkgs.jdk25}/lib/openjdk";
   };
 
   environment.variables = {
+    TMPDIR = "/tmp";
     QT_QPA_PLATFORMTHEME = "qt6ct";
     # GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
     #   with pkgs;

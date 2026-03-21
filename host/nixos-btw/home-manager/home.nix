@@ -22,7 +22,7 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.noctalia.homeModules.default
   ];
-
+  
   # === HOME FILES (FIXED) ===
   home.file = {
     ".config/vesktop/themes".source = ../../../vesktop-themes;
@@ -44,6 +44,7 @@
     nixd
     lua-language-server
     stylua
+    basedpyright
 
     # Apps
     easyeffects
@@ -70,7 +71,6 @@
     # Themes
     papirus-icon-theme
     dconf
-    bibata-cursors
   ];
 
   # === ENV ===

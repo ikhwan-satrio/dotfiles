@@ -29,10 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-plymouth.url = "github:BeatLink/nixos-plymouth";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nur.url = "github:nix-community/NUR";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
