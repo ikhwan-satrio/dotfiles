@@ -14,6 +14,7 @@
     # ./modules/pipewires.nix
     # ./modules/vscode.nix
     # ./modules/hypridle.nix
+    ./modules/noctalia.nix
     ./modules/browsers.nix
     ./modules/zsh.nix
     ./modules/vesktop.nix
@@ -22,7 +23,7 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.noctalia.homeModules.default
   ];
-  
+
   # === HOME FILES (FIXED) ===
   home.file = {
     ".config/vesktop/themes".source = ../../../vesktop-themes;

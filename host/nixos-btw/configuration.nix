@@ -207,9 +207,9 @@
       ly = {
         enable = true;
         x11Support = true;
-        settings = {
-          animation = "matrix";
-        };
+        # settings = {
+        #   animation = "matrix";
+        # };
       };
     };
 
