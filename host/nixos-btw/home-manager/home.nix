@@ -8,7 +8,7 @@
 {
   home.username = "wanto";
   home.homeDirectory = "/home/wanto";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   imports = [
     # ./modules/pipewires.nix

@@ -17,9 +17,25 @@
       name = "Papirus-Dark";
     };
 
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
+    gtk4 = {
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+    };
+
+    gtk3 = {
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+    };
+
+    gtk2 = {
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
     };
   };
 

@@ -52,6 +52,7 @@ in
       l = "eza --icons --group-directories-first -lh";
       ns = "sudo nixos-rebuild switch --flake '.#nixos-btw' --impure";
       diary = "cd ~/Documents/'wanto fault' && nvim .";
+      steam = "steam -system-composer";
     };
 
     initContent = builtins.readFile ./submodules/zsh/zshrc.zsh;

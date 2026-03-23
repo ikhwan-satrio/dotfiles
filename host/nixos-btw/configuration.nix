@@ -13,7 +13,6 @@
     ./root-modules/starship-root.nix
     inputs.noctalia.nixosModules.default
     inputs.nur.modules.nixos.default
-    inputs.silentSDDM.nixosModules.default
     inputs.nixos-plymouth.nixosModules.default
   ];
 
@@ -198,61 +197,18 @@
   # SERVICES
   # ============================================================================
 
-  systemd.services = {
-    # ============================================
-    # Disable tty1 (untuk smooth Plymouth → SDDM)
-    # ============================================
-    "getty@tty1".enable = false;
-    "autovt@tty1".enable = false;
-
-    # ============================================
-    # Enable tty2 (Ctrl+Alt+F2) untuk emergency
-    # ============================================
-    # Sudah enabled by default, tidak perlu explicit set
-    # "getty@tty2".enable = true;  # optional
-
-    # ============================================
-    # Disable tty3-6 (tidak perlu banyak-banyak)
-    # ============================================
-    "getty@tty3".enable = false;
-    "autovt@tty3".enable = false;
-
-    "getty@tty4".enable = false;
-    "autovt@tty4".enable = false;
-
-    "getty@tty5".enable = false;
-    "autovt@tty5".enable = false;
-
-    "getty@tty6".enable = false;
-    "autovt@tty6".enable = false;
-  };
-
   services = {
     ollama = {
       enable = true;
     };
 
     # Display Manager
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      extraPackages = with pkgs; [
-        qt6Packages.qtsvg
-        qt6Packages.qtmultimedia
-        qt6Packages.qtvirtualkeyboard
-      ];
-      settings = {
-        General = {
-          DisplayServer = "wayland";
-          CursorTheme = "Bibata-Modern-Ice";
-          CursorSize = "24";
-        };
-
-        X11 = {
-          ServerArguments = "-dpi 157";
-        };
-        Wayland = {
-          SessionDir = "${pkgs.niri}/share/wayland-sessions";
+    displayManager = {
+      ly = {
+        enable = true;
+        x11Support = true;
+        settings = {
+          animation = "matrix";
         };
       };
     };
@@ -403,6 +359,7 @@
 
   programs = {
     niri.enable = true;
+    hyprland.enable = true;
     zsh.enable = true;
     # fish = {
     #   enable = false;
@@ -410,10 +367,6 @@
     #     set -gx fish_variables_path $HOME/.local/share/fish/fish_variables
     #   '';
     # };
-    silentSDDM = {
-      enable = true;
-      theme = "default";
-    };
     # adb.enable = true;
     localsend = {
       enable = true;
@@ -424,6 +377,12 @@
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+      package = pkgs.steam.override {
+        extraArgs = "-system-composer";
+      };
     };
   };
 
@@ -453,13 +412,14 @@
   # SYSTEM PACKAGES
   # ============================================================================
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib # libstdc++
-    zlib
-    libffi
-    openssl
-  ];
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   stdenv.cc.cc.lib # libstdc++
+  #   zlib
+  #   libffi
+  #   openssl
+  #   libX11
+  # ];
 
   environment.systemPackages = with pkgs; [
     # Development tools
@@ -480,9 +440,9 @@
     # Gaming
     steam
     steam-run
-    protonup-qt # GUI untuk install Proton-GE
     mangohud # overlay FPS, GPU, CPU usage
     gamemode # optimasi performa saat gaming
+    lutris 
 
     # PHP & Composer
     php85
@@ -511,9 +471,9 @@
     # virt-viewer
 
     # SDDM theme
-    qt6Packages.qtsvg
-    qt6Packages.qtmultimedia
-    qt6Packages.qtvirtualkeyboard
+    # qt6Packages.qtsvg
+    # qt6Packages.qtmultimedia
+    # qt6Packages.qtvirtualkeyboard
 
     # Niri/Desktop support
     bibata-cursors
@@ -564,7 +524,7 @@
     # Timezone passthrough
     # TZ = config.time.timeZone;
 
-    LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH"; # tambah ini
+    # LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH"; # tambah ini
     LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
     # JAVA_HOME = "${pkgs.jdk25}/lib/openjdk";
   };
@@ -598,5 +558,5 @@
   # SYSTEM VERSION
   # ============================================================================
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05"; 
 }
