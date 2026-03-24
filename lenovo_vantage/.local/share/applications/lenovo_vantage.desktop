@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Lenovo Vantage
-Comment=Monitor system performance and control battery conservation mode on Lenovo devices.
-Exec=/home/ikhwansatrio/development/vantage/lenovo_vantage
-Icon=/home/ikhwansatrio/development/vantage/icon.png
-Terminal=false
-Type=Application
-Categories=Utility;System;
-StartupNotify=true

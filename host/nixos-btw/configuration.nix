@@ -476,6 +476,7 @@
     # qt6Packages.qtvirtualkeyboard
 
     # Niri/Desktop support
+    hyprshot 
     bibata-cursors
     bluez-tools
     bluez

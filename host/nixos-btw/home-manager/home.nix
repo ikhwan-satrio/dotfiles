@@ -35,6 +35,9 @@
 
     ".config/niri".source = ../../../niri/.config/niri;
     ".config/niri".recursive = true;
+    
+    ".config/hypr".source = ../../../hyprland/.config/hypr;
+    ".config/hypr".recursive = true;
   };
 
   # === PACKAGES (OPTIMIZED) ===
