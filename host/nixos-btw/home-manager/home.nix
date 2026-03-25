@@ -51,6 +51,7 @@
     basedpyright
 
     # Apps
+    kdePackages.kdenlive
     easyeffects
     onlyoffice-desktopeditors
     tor-browser
@@ -87,7 +88,7 @@
   # === PROGRAMS ===
   programs = {
     home-manager.enable = true;
-
+    
     spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};

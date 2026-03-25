@@ -114,6 +114,8 @@
 
       "i915.enable_guc=3" # Enable GuC/HuC firmware
       "i915.force_probe=46a3" # Force probe Alder Lake GPU
+      "i915.enable_fbc=1" # framebuffer compression, hemat memory bandwidth
+      "i915.enable_psr=2" # panel self refresh (bagus untuk laptop)
     ];
 
     # GRUB bootloader
@@ -186,6 +188,8 @@
 
       extraPackages = with pkgs; [
         # Modern Intel GPUs (Gen 12+, Alder Lake)
+        libvdpau-va-gl # VDPAU via VA-API
+        intel-vaapi-driver # fallback driver i965
         intel-media-driver # VAAPI (iHD) - hardware video decode/encode
         vpl-gpu-rt # oneVPL - Quick Sync Video runtime
         intel-compute-runtime # OpenCL & Level Zero compute
@@ -211,6 +215,32 @@
         #   animation = "matrix";
         # };
       };
+    };
+
+    throttled = {
+      enable = true;
+      extraConfig = ''
+        [GENERAL]
+        Enabled: True
+        Sysfs_Power_Path: /sys/class/power_supply/AC*/online
+        Update_Rate_s: 5
+
+        [BATTERY]
+        PL1_Tdp_W: 15
+        PL1_Duration_s: 28
+        PL2_Tdp_W: 20
+        PL2_Duration_s: 0.002
+        Trip_Temp_C: 85
+        Update_Rate_s: 5
+
+        [AC]
+        PL1_Tdp_W: 28
+        PL1_Duration_s: 28
+        PL2_Tdp_W: 35
+        PL2_Duration_s: 0.002
+        Trip_Temp_C: 95
+        Update_Rate_s: 5
+      '';
     };
 
     cockpit = {
@@ -253,9 +283,9 @@
     flatpak.enable = true;
 
     # Power management
-    power-profiles-daemon.enable = true;
+    power-profiles-daemon.enable = false;
+    tuned.enable = true;
     upower.enable = true;
-    thermald.enable = true;
 
     # Audio
     pipewire = {
@@ -315,20 +345,10 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
     ];
     config = {
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-        "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
-      };
-      common.default = [ "gtk" ];
+      common.default = [ "hyprland" ];
     };
   };
 
@@ -358,7 +378,7 @@
   # ============================================================================
 
   programs = {
-    niri.enable = true;
+    # niri.enable = true;
     hyprland.enable = true;
     zsh.enable = true;
     # fish = {
@@ -387,6 +407,39 @@
   };
 
   # ============================================================================
+  # GAMING
+  # ============================================================================
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        renice = 10;
+        inhibit_screensaver = 1;
+      };
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+      };
+      cpu = {
+        park_cores = "no";
+        pin_cores = "yes";
+      };
+    };
+  };
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
+
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 2147483642;
+    "vm.swappiness" = 10;
+    "kernel.sched_autogroup_enabled" = 0;
+    "net.core.rmem_max" = 2500000;
+  };
+
+  # ============================================================================
   # USERS
   # ============================================================================
 
@@ -400,8 +453,6 @@
       "storage"
       "podman"
       "adbusers"
-      # "libvirtd"
-      # "kvm"
 
       "video" # Hardware video acceleration
       "render" # GPU rendering access
@@ -442,7 +493,7 @@
     steam-run
     mangohud # overlay FPS, GPU, CPU usage
     gamemode # optimasi performa saat gaming
-    lutris 
+    lutris
 
     # PHP & Composer
     php85
@@ -460,7 +511,6 @@
 
     # Container tools
     podman-compose
-    # podman-desktop
     # qemu
     # libvirt
 
@@ -475,8 +525,8 @@
     # qt6Packages.qtmultimedia
     # qt6Packages.qtvirtualkeyboard
 
-    # Niri/Desktop support
-    hyprshot 
+    # Hyprland/Desktop support
+    hyprshot
     bibata-cursors
     bluez-tools
     bluez
@@ -524,26 +574,19 @@
 
     # Timezone passthrough
     # TZ = config.time.timeZone;
-
-    # LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH"; # tambah ini
-    LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
     # JAVA_HOME = "${pkgs.jdk25}/lib/openjdk";
+
+    DXVK_FRAME_RATE = "60";
+    LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
+    VDPAU_DRIVER = "va_gl";
+    __GLX_VENDOR_LIBRARY_NAME = "mesa";
+    WLR_NO_HARDWARE_CURSORS = "1"; # fix cursor glitch di Hyprland/Niri
+    LIBVA_DRIVER_NAME = "iHD"; # Force modern iHD backend
   };
 
   environment.variables = {
     TMPDIR = "/tmp";
     QT_QPA_PLATFORMTHEME = "qt6ct";
-    # GI_TYPELIB_PATH = lib.makeSearchPath "lib/girepository-1.0" (
-    #   with pkgs;
-    #   [
-    #     evolution-data-server
-    #     libical
-    #     glib.out
-    #     libsoup_3
-    #     json-glib
-    #     gobject-introspection
-    #   ]
-    # );
   };
 
   # ============================================================================
@@ -559,5 +602,5 @@
   # SYSTEM VERSION
   # ============================================================================
 
-  system.stateVersion = "26.05"; 
+  system.stateVersion = "26.05";
 }
