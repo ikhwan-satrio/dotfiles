@@ -526,6 +526,7 @@
     # qt6Packages.qtvirtualkeyboard
 
     # Hyprland/Desktop support
+    hyprpolkitagent
     hyprshot
     bibata-cursors
     bluez-tools
@@ -533,6 +534,7 @@
     gnome-disk-utility
     polkit_gnome
     qt6Packages.qt6ct
+    qt6Packages.qtstyleplugin-kvantum
     xwayland-satellite
     app2unit
 
