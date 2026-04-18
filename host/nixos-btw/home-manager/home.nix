@@ -23,7 +23,7 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.noctalia.homeModules.default
   ];
-
+  
   # === HOME FILES (FIXED) ===
   home.file = {
     ".config/vesktop/themes".source = ../../../vesktop-themes;
@@ -35,7 +35,7 @@
 
     ".config/niri".source = ../../../niri/.config/niri;
     ".config/niri".recursive = true;
-    
+
     ".config/hypr".source = ../../../hyprland/.config/hypr;
     ".config/hypr".recursive = true;
   };
@@ -62,8 +62,11 @@
     swappy
     vlc
     telegram-desktop
+    webcamoid
+    aegisub
 
     # Terminal
+    posting
     matugen
     zoxide
     starship
@@ -77,7 +80,7 @@
     papirus-icon-theme
     dconf
   ];
-
+  
   # === ENV ===
   home.sessionVariables = {
     BROWSER = "vivaldi";

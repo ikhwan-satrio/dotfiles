@@ -43,6 +43,7 @@
     config.allowUnfree = true;
     overlays = [
       inputs.nix-cachyos-kernel.overlays.pinned
+      inputs.claude-code.overlays.default
     ];
   };
 
@@ -92,14 +93,13 @@
       #   })
       # ];
     };
-
+    
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
     consoleLogLevel = 3;
     initrd = {
       verbose = false;
       kernelModules = [
         "i915"
-        # "kvm-intel"
       ];
     };
     kernelParams = [
@@ -127,15 +127,6 @@
         useOSProber = true;
         configurationLimit = 3;
         extraEntriesBeforeNixOS = true;
-        # theme = "${
-        #   (pkgs.fetchFromGitHub {
-        #     owner = "semimqmo";
-        #     repo = "sekiro_grub_theme";
-        #     rev = "1affe05f7257b72b69404cfc0a60e88aa19f54a6";
-        #     hash = "sha256-wTr5S/17uwQXkWwElqBKIV1J3QUP6W2Qx2Nw0SaM7Qk=";
-        #   })
-        # }/Sekiro";
-        # splashImage = "${theme}/sekiro_1920x1080.png";
         theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
         splashImage = "${theme}/splash_image.jpg";
       };
@@ -152,13 +143,6 @@
   # ============================================================================
   # SPECIALIZATIONS
   # ============================================================================
-
-  # specialisation = {
-  #   intel-graphics.configuration = {
-  #     system.nixos.tags = [ "intel-graphics" ];
-  #     imports = [ ./root-modules/intel-graphics.nix ];
-  #   };
-  # };
 
   # ============================================================================
   # NETWORKING
@@ -191,8 +175,8 @@
         libvdpau-va-gl # VDPAU via VA-API
         intel-vaapi-driver # fallback driver i965
         intel-media-driver # VAAPI (iHD) - hardware video decode/encode
-        vpl-gpu-rt # oneVPL - Quick Sync Video runtime
         intel-compute-runtime # OpenCL & Level Zero compute
+        vpl-gpu-rt # oneVPL - Quick Sync Video runtime
       ];
     };
   };
@@ -242,7 +226,7 @@
         Update_Rate_s: 5
       '';
     };
-
+    
     cockpit = {
       enable = true;
       port = 9090;
@@ -270,7 +254,6 @@
 
     gnome = {
       gnome-keyring.enable = true;
-      # evolution-data-server.enable = true;
     };
 
     # Desktop services
@@ -310,27 +293,13 @@
     '';
   };
 
-  # Polkit authentication agent
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
-
   # ============================================================================
   # VIRTUALIZATION
   # ============================================================================
 
   virtualisation = {
     containers.enable = true;
+    waydroid.enable = true;
     podman = {
       enable = true;
       dockerCompat = true;
@@ -463,15 +432,6 @@
   # SYSTEM PACKAGES
   # ============================================================================
 
-  # programs.nix-ld.enable = true;
-  # programs.nix-ld.libraries = with pkgs; [
-  #   stdenv.cc.cc.lib # libstdc++
-  #   zlib
-  #   libffi
-  #   openssl
-  #   libX11
-  # ];
-
   environment.systemPackages = with pkgs; [
     # Development tools
     nodejs_22
@@ -480,20 +440,22 @@
     bun
     deno
     pnpm
-    (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
     gnumake
     zig
     unzip
     wget
     curl
     uv
+    jdk21
+    kotlin
+    gradle
+    go
 
     # Gaming
     steam
     steam-run
     mangohud # overlay FPS, GPU, CPU usage
     gamemode # optimasi performa saat gaming
-    lutris
 
     # PHP & Composer
     php85
@@ -520,11 +482,6 @@
     cockpit-machines
     # virt-viewer
 
-    # SDDM theme
-    # qt6Packages.qtsvg
-    # qt6Packages.qtmultimedia
-    # qt6Packages.qtvirtualkeyboard
-
     # Hyprland/Desktop support
     hyprpolkitagent
     hyprshot
@@ -532,7 +489,6 @@
     bluez-tools
     bluez
     gnome-disk-utility
-    polkit_gnome
     qt6Packages.qt6ct
     qt6Packages.qtstyleplugin-kvantum
     xwayland-satellite
@@ -559,10 +515,11 @@
     imagemagick # command: magick, convert
     ghostscript # command: gs
     tectonic
-    nodePackages.mermaid-cli # command: mmdc
+    mermaid-cli
     ripgrep # rg (grep super cepat)
     fd # fd (find modern)
     sqlite # SQLite3 (frecency/history)
+    claude-code-bun
   ];
 
   # ============================================================================
@@ -576,10 +533,9 @@
 
     # Timezone passthrough
     # TZ = config.time.timeZone;
-    # JAVA_HOME = "${pkgs.jdk25}/lib/openjdk";
 
+    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
     DXVK_FRAME_RATE = "60";
-    LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
     VDPAU_DRIVER = "va_gl";
     __GLX_VENDOR_LIBRARY_NAME = "mesa";
     WLR_NO_HARDWARE_CURSORS = "1"; # fix cursor glitch di Hyprland/Niri
