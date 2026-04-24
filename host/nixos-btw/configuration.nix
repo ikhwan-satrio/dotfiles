@@ -93,7 +93,7 @@
       #   })
       # ];
     };
-    
+
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts;
     consoleLogLevel = 3;
     initrd = {
@@ -226,7 +226,7 @@
         Update_Rate_s: 5
       '';
     };
-    
+
     cockpit = {
       enable = true;
       port = 9090;
@@ -260,9 +260,6 @@
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    noctalia-shell = {
-      enable = true;
-    };
     flatpak.enable = true;
 
     # Power management
@@ -493,6 +490,7 @@
     qt6Packages.qtstyleplugin-kvantum
     xwayland-satellite
     app2unit
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # System utilities
     efibootmgr
@@ -519,7 +517,7 @@
     ripgrep # rg (grep super cepat)
     fd # fd (find modern)
     sqlite # SQLite3 (frecency/history)
-    claude-code-bun
+    # claude-code-bun
   ];
 
   # ============================================================================
