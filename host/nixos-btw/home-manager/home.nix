@@ -23,7 +23,7 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.noctalia.homeModules.default
   ];
-  
+
   # === HOME FILES (FIXED) ===
   home.file = {
     ".config/vesktop/themes".source = ../../../vesktop-themes;
@@ -55,7 +55,7 @@
     easyeffects
     onlyoffice-desktopeditors
     tor-browser
-    wezterm
+    kitty
     obs-studio
     file-roller # Add this
     nautilus
@@ -80,7 +80,7 @@
     papirus-icon-theme
     dconf
   ];
-  
+
   # === ENV ===
   home.sessionVariables = {
     BROWSER = "vivaldi";
@@ -91,7 +91,7 @@
   # === PROGRAMS ===
   programs = {
     home-manager.enable = true;
-    
+
     spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};

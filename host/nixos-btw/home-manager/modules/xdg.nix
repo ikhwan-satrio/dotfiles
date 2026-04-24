@@ -14,7 +14,7 @@
     };
     terminal-exec = {
       settings = {
-        default = [ "wezterm.desktop" ];
+        default = [ "kitty.desktop" ];
       };
     };
     mimeApps = {

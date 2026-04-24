@@ -69,7 +69,7 @@ fi
 if [[ -d "$HOME/Android" ]]; then
     export ANDROID_HOME="$HOME/Android"
     export ANDROID_SDK_ROOT="$ANDROID_HOME"
-    export ANDROID_AVD_HOME="$HOME/.android/avd"
+    export ANDROID_AVD_HOME="$HOME/.config/.android/avd"
     
     # NIX-LD ONLY: Pakai system libs
     export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
