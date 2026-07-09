@@ -1,6 +1,6 @@
 format = """
 ┌────[](#1a1b26)$shell$os$username\
- $directory$nix_shell\
+ $directory\
 $golang\
 $nodejs\
 $python\
@@ -17,7 +17,7 @@ $julia\
 $perl\
 $package\
 $docker_context[](#1a1b26)
-│on> ${custom.jj}
+│on> ${custom.jj} $nix_shell
 └─$character"""
 add_newline = true
 
