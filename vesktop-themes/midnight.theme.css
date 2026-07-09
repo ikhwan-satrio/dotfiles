@@ -1,0 +1,223 @@
+/**
+ * @name midnight
+ * @description a dark, customizable discord theme.
+ * @author refact0r
+ * @version 2.1.1
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/midnight-discord
+ * @source https://github.com/refact0r/midnight-discord/blob/master/themes/midnight.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+
+body {
+  /* font options */
+  --font: 'figtree';
+  /* change to '' for default discord font */
+  --code-font: '';
+  /* change to '' for default discord font */
+  font-weight: 400;
+  /* normal text font weight. DOES NOT AFFECT BOLD TEXT */
+
+  /* sizes */
+  --gap: 6px;
+  /* spacing between panels */
+  --divider-thickness: 4px;
+  /* thickness of unread messages divider and highlighted message borders */
+  --border-thickness: 1px;
+  /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
+
+  /* animation/transition options */
+  --animations: on;
+  /* off: disable animations/transitions, on: enable animations/transitions */
+  --list-item-transition: 0.2s ease;
+  /* transition for list items */
+  --dms-icon-svg-transition: 0.4s ease;
+  /* transition for the dms icon */
+  --border-hover-transition: 0.2s ease;
+  /* transition for borders when hovered */
+
+  /* top bar options */
+  --top-bar-height: var(--gap);
+  /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+  --top-bar-button-position: titlebar;
+  /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+  --top-bar-title-position: off;
+  /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+  --subtle-top-bar-title: off;
+  /* off: default, on: hide the icon and use subtle text color (like old discord) */
+
+  /* window controls */
+  --custom-window-controls: on;
+  /* off: default window controls, on: custom window controls */
+  --window-control-size: 14px;
+  /* size of custom window controls */
+
+  /* dms button options */
+  --custom-dms-icon: custom;
+  /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+  --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg');
+  /* icon svg url. MUST BE A SVG. */
+  --dms-icon-svg-size: 90%;
+  /* size of the svg (css mask-size property) */
+  --dms-icon-color-before: var(--icon-secondary);
+  /* normal icon color */
+  --dms-icon-color-after: var(--white);
+  /* icon color when button is hovered/selected */
+  --custom-dms-background: off;
+  /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+  --dms-background-image-url: url('');
+  /* url of the background image */
+  --dms-background-image-size: cover;
+  /* size of the background image (css background-size property) */
+  --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+  /* fixed color/gradient (css background property) */
+
+  /* background image options */
+  --background-image: off;
+  /* off: no background image, on: enable background image (must set url variable below) */
+  --background-image-url: url('');
+  /* url of the background image */
+
+  /* transparency/blur options */
+  /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+  --transparency-tweaks: off;
+  /* off: no changes, on: remove some elements for better transparency */
+  --remove-bg-layer: off;
+  /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+  --panel-blur: off;
+  /* off: no changes, on: blur the background of panels */
+  --blur-amount: 12px;
+  /* amount of blur */
+  --bg-floating: var(--bg-3);
+  /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+
+  /* chatbar options */
+  --custom-chatbar: aligned;
+  /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+  --chatbar-height: 47px;
+  /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+  --chatbar-padding: 8px;
+  /* padding of the chatbar. only applies in aligned mode. */
+
+  /* other options */
+  --small-user-panel: on;
+  /* off: default user panel, on: smaller user panel like in old discord */
+}
+
+/* color options - Catppuccin Mocha with Lavender + Blue accents */
+:root {
+  --colors: on;
+  /* off: discord default colors, on: catppuccin mocha colors */
+
+  /* text colors */
+  --text-0: #1e1e2e;
+  /* text on colored elements (crust) */
+  --text-1: #cdd6f4;
+  /* other normally white text (text) */
+  --text-2: #bac2de;
+  /* headings and important text (subtext1) */
+  --text-3: #a6adc8;
+  /* normal text (subtext0) */
+  --text-4: #9399b2;
+  /* icon buttons and channels (overlay2) */
+  --text-5: #6c7086;
+  /* muted channels/chats and timestamps (overlay0) */
+
+  /* background and dark colors */
+  --bg-1: #313244;
+  /* dark buttons when clicked (surface1) */
+  --bg-2: #1e1e2e;
+  /* dark buttons (crust) */
+  --bg-3: #181825;
+  /* spacing, secondary elements (mantle) */
+  --bg-4: #11111b;
+  /* main background color (base) */
+  --hover: rgba(116, 199, 236, 0.1);
+  /* channels and buttons when hovered (blue with opacity) */
+  --active: rgba(180, 190, 254, 0.15);
+  /* channels and buttons when clicked or selected (lavender with opacity) */
+  --active-2: rgba(180, 190, 254, 0.25);
+  /* extra state for transparent buttons */
+  --message-hover: rgba(88, 91, 112, 0.1);
+  /* messages when hovered (overlay1 with opacity) */
+
+  /* accent colors */
+  --accent-1: #b4befe;
+  /* links and other accent text (lavender) */
+  --accent-2: #89b4fa;
+  /* small accent elements (blue) */
+  --accent-3: #74c7ec;
+  /* accent buttons (sapphire) */
+  --accent-4: #7287fd;
+  /* accent buttons when hovered (blue darker) */
+  --accent-5: #6c7ffc;
+  /* accent buttons when clicked (blue darkest) */
+  --accent-new: var(--accent-2);
+  /* stuff that's normally red like mute/deafen buttons */
+
+  --mention: linear-gradient(to right, rgba(137, 180, 250, 0.1) 40%, transparent);
+  /* background of messages that mention you */
+  --mention-hover: linear-gradient(to right, rgba(137, 180, 250, 0.05) 40%, transparent);
+  /* background of messages that mention you when hovered */
+  --reply: linear-gradient(to right, rgba(166, 173, 200, 0.1) 40%, transparent);
+  /* background of messages that reply to you */
+  --reply-hover: linear-gradient(to right, rgba(166, 173, 200, 0.05) 40%, transparent);
+  /* background of messages that reply to you when hovered */
+
+  /* status indicator colors */
+  --online: #a6e3a1;
+  /* green */
+  --dnd: #f38ba8;
+  /* pink */
+  --idle: #f9e2af;
+  /* yellow */
+  --streaming: #cba6f7;
+  /* mauve */
+  --offline: var(--text-4);
+  /* overlay2 for offline */
+
+  /* border colors */
+  --border-light: var(--hover);
+  /* general light border color */
+  --border: var(--active);
+  /* general normal border color */
+  --border-hover: var(--active);
+  /* border color of panels when hovered */
+  --button-border: rgba(205, 214, 244, 0.1);
+  /* neutral border color of buttons (text with opacity) */
+
+  /* base colors - Catppuccin Mocha palette */
+  --red-1: #f5c2e7;
+  --red-2: #f38ba8;
+  --red-3: #eba0ac;
+  --red-4: #f2cdcd;
+  --red-5: #e78284;
+
+  --green-1: #c3e88d;
+  --green-2: #a6e3a1;
+  --green-3: #94e2d5;
+  --green-4: #89dceb;
+  --green-5: #74c7ec;
+
+  --blue-1: #cba6f7;
+  --blue-2: #89b4fa;
+  --blue-3: #74c7ec;
+  --blue-4: #7287fd;
+  --blue-5: #6c7ffc;
+
+  --yellow-1: #f5e0dc;
+  --yellow-2: #f9e2af;
+  --yellow-3: #f5c2e7;
+  --yellow-4: #fab387;
+  --yellow-5: #f38ba8;
+
+  --purple-1: #f5c2e7;
+  --purple-2: #cba6f7;
+  --purple-3: #b4befe;
+  --purple-4: #89b4fa;
+  --purple-5: #74c7ec;
+}
