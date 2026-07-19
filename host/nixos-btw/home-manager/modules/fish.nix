@@ -14,7 +14,9 @@
     ];
 
     shellAliases = {
-      ns = "sudo nixos-rebuild switch --flake .#nixos-btw --impure";
+      ns  = "sudo nixos-rebuild switch --flake .#nixos-btw --impure";
+      vim = "nvim";
+      v   = "nvim";
     };
 
     interactiveShellInit = ''

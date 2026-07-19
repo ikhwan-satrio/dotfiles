@@ -198,6 +198,8 @@
   # ============================================================================
 
   services = {
+    playerctld.enable = true;
+    
     ollama = {
       enable = true;
       package = pkgs.ollama-vulkan;
@@ -344,7 +346,7 @@
   # ============================================================================
 
   programs = {
-    # niri.enable = true;
+    niri.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -451,6 +453,7 @@
 
   environment.systemPackages = with pkgs; [
     # Development tools
+    xwayland-satellite
     starship-jj
     jujutsu
     github-cli
@@ -480,7 +483,8 @@
       ];
     })
     inputs.teddypicker.packages.${system}.default
-
+    steel
+    
     # Gaming
     mangohud
 
@@ -488,7 +492,9 @@
     podman-compose
 
     # Hyprland/Desktop support
+    playerctl
     hyprpolkitagent
+    cliphist
     hyprshot
     bibata-cursors
     bluez-tools
@@ -519,8 +525,7 @@
     xdg-terminal-exec
 
     # Editor and tools
-    tmux
-    zellij
+    helix
     neovim
     wl-clipboard
     lua5_1
@@ -547,6 +552,7 @@
     JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
     ANDROID_HOME = "$HOME/Android/Sdk";
 
+    STEEL_HOME = "$HOME/.steel";
     HYPR_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
     DISPLAY = ":0";
     DXVK_FRAME_RATE = "60";

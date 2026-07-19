@@ -1,4 +1,11 @@
 { config, ... }:
+
+let
+  terminal = "wezterm.desktop";
+  browser = "zen.desktop";
+  filepicker = "yazi.desktop";
+  editor = "neovim.desktop";
+in
 {
   xdg = {
     enable = true;
@@ -14,34 +21,34 @@
     };
     terminal-exec = {
       settings = {
-        default = [ "kitty.desktop" ];
+        default = [ terminal ];
       };
     };
     mimeApps = {
       enable = true;
       defaultApplications = {
         # File manager
-        "inode/directory" = [ "yazi.desktop" ];
+        "inode/directory" = [ filepicker ];
         # Text editor
-        "text/plain" = "neovim.desktop";
-        "text/markdown" = "neovim.desktop";
-        "text/x-python" = "neovim.desktop";
-        "text/x-shellscript" = "neovim.desktop";
-        "application/javascript" = "neovim.desktop";
-        "application/json" = "neovim.desktop";
+        "text/plain" = editor;
+        "text/markdown" = editor;
+        "text/x-python" = editor;
+        "text/x-shellscript" = editor;
+        "application/javascript" = editor;
+        "application/json" = editor;
         # Web browser - Zen Browser
-        "text/html" = "zen.desktop";
-        "x-scheme-handler/http" = "zen.desktop";
-        "x-scheme-handler/https" = "zen.desktop";
-        "x-scheme-handler/about" = "zen.desktop";
-        "x-scheme-handler/unknown" = "zen.desktop";
-        "x-scheme-handler/chrome" = "zen.desktop";
-        "application/x-extension-htm" = "zen.desktop";
-        "application/x-extension-html" = "zen.desktop";
-        "application/x-extension-shtml" = "zen.desktop";
-        "application/xhtml+xml" = "zen.desktop";
-        "application/x-extension-xhtml" = "zen.desktop";
-        "application/x-extension-xht" = "zen.desktop";
+        "text/html" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/unknown" = browser;
+        "x-scheme-handler/chrome" = browser;
+        "application/x-extension-htm" = browser;
+        "application/x-extension-html" = browser;
+        "application/x-extension-shtml" = browser;
+        "application/xhtml+xml" = browser;
+        "application/x-extension-xhtml" = browser;
+        "application/x-extension-xht" = browser;
       };
       associations.added = {
         "image/png" = [
@@ -49,7 +56,7 @@
           "swappy.desktop"
         ];
         "text/plain" = [
-          "neovim.desktop"
+          editor
           "org.gnome.gedit.desktop"
         ];
       };

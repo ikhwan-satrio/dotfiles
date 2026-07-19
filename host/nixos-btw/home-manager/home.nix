@@ -56,6 +56,7 @@
     kdePackages.kdenlive
     easyeffects
     onlyoffice-desktopeditors
+    wezterm
     kitty
     file-roller # Add this
     swappy
@@ -86,6 +87,7 @@
     BROWSER = "vivaldi";
     EDITOR = "nvim";
     VISUAL = "nvim";
+    STEEL_HOME = "$HOME/.steel";
   };
 
   # === PROGRAMS ===
