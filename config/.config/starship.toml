@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 [░▒▓](#a3aed2)\
 [](bg:#769ff0 fg:#a3aed2)\
@@ -203,12 +205,10 @@ style = 'bg:#1a1e28 fg:#7aa2f7 bold'
 # Directory & Nix Shell
 
 [nix_shell]
-disabled = false
-format = '[ $symbol$state]($style)'
-symbol = '\(nix-shell\) '
-style = 'bold #2ac3de'
-impure_msg = '[impure](bold #f7768e)'
-pure_msg = '[pure](bold #73daca)'
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = '[☃️ $state( \($name\))](bold blue) '
 
 [directory]
 format = '[\[$path$read_only\]]($style)' 
