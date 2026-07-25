@@ -2,8 +2,9 @@
 
 format = """
 [░▒▓](#a3aed2)\
-[](bg:#769ff0 fg:#a3aed2)\
-$shell$os$username\
+$shell\
+[](bg:#1a1b26 fg:#a3aed2)\
+$os$username\
 $directory\
 $golang\
 $nodejs\
@@ -42,7 +43,7 @@ powershell_indicator = 'powershell'
 bash_indicator = 'bash'
 unknown_indicator = '?'
 format = '[ /bin/$indicator ]($style)'
-style = 'bg:#1a1b26 fg:#c0caf5 bold'
+style = 'bg:#a3aed2 fg:#1a1b26 bold'
 disabled = false
 
 # OS
