@@ -12,7 +12,6 @@
   home.stateVersion = "26.05";
 
   imports = [
-    # ./modules/noctalia.nix
     ./modules/yazi.nix
     ./modules/fish.nix
     ./modules/browsers.nix
@@ -20,8 +19,8 @@
     ./modules/gtk.nix
     ./modules/xdg.nix
     ./modules/spicetify.nix
+    ./modules/fuzzel.nix
     # ./modules/zed.nix
-    # ./modules/hyprland.nix
     # ./modules/git.nix
   ];
 

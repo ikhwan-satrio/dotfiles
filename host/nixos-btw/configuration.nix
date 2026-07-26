@@ -2,7 +2,7 @@
   # config,
   pkgs,
   inputs,
-  # lib,
+  lib,
   system,
   ...
 }:
@@ -310,13 +310,20 @@
 
   xdg.portal = {
     enable = true;
+    wlr.settings.screencast = {
+      chooser_type = "dmenu";
+      chooser_cmd = "${pkgs.fuzzel}/bin/fuzzel --dmenu";
+      max_fps = 30;
+    };
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-termfilechooser
     ];
     config = {
-      common.default = [ "hyprland" ];
-      common."org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+      sway = {
+        default = lib.mkForce [ "wlr" "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+      };
     };
   };
 
@@ -374,12 +381,8 @@
   # ============================================================================
 
   programs = {
-    niri.enable = true;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    };
+    niri.enable = false;
+    sway.enable = true;
     xwayland = {
       enable = true;
     };
@@ -520,10 +523,11 @@
     podman-compose
 
     # Hyprland/Desktop support
+    grim
+    slurp
+    fuzzel
     playerctl
-    hyprpolkitagent
     cliphist
-    hyprshot
     bibata-cursors
     bluez-tools
     bluez
@@ -531,7 +535,6 @@
     qt6Packages.qt6ct
     qt6Packages.qtstyleplugin-kvantum
     app2unit
-    awww
     brightnessctl
     translate-shell
     crosspipe
@@ -586,7 +589,6 @@
 
     STEEL_HOME = "$HOME/.steel";
     HYPR_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
-    DISPLAY = ":0";
     DXVK_FRAME_RATE = "60";
     VDPAU_DRIVER = "va_gl";
     __GLX_VENDOR_LIBRARY_NAME = "mesa";
