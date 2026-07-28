@@ -1,5 +1,5 @@
 {
-  fuzzel = {
+  programs.fuzzel = {
     enable = true;
     settings = {
       main = {
@@ -27,7 +27,7 @@
 
       border = {
         width = 2;
-        radius = 12;
+        radius = 0;
       };
     };
   };
