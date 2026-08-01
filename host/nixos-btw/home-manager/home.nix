@@ -24,13 +24,6 @@
     # ./modules/git.nix
   ];
 
-  # === HOME FILES (FIXED) ===
-  home.file = {
-    ".config/vesktop/themes".source = ../../../vesktop-themes;
-    ".config/vesktop/themes".recursive = true;
-    ".config/vesktop/themes".force = true;
-  };
-
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"

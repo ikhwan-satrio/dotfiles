@@ -499,7 +499,6 @@
     yarn-berry
     deno
     ntfs3g
-    flyctl
     nodejs_24
     gcc
     android-tools
@@ -521,7 +520,8 @@
     })
     inputs.teddypicker.packages.${system}.default
     steel
-    
+    libva-utils
+
     # Gaming
     mangohud
 
