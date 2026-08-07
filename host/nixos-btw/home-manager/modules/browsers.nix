@@ -136,10 +136,4 @@ in
       }
     )
   ];
-
-  programs = {
-    vivaldi = {
-      enable = false;
-    };
-  };
 }

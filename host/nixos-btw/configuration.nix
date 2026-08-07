@@ -323,6 +323,7 @@
       sway = {
         default = lib.mkForce [ "wlr" "gtk" ];
         "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
     };
   };
@@ -388,7 +389,10 @@
 
   programs = {
     niri.enable = false;
-    sway.enable = true;
+    sway = {
+      enable = true;
+      extraPackages = lib.mkForce [];
+    };
     xwayland = {
       enable = true;
     };
@@ -474,6 +478,7 @@
       "storage"
       "podman"
       "adbusers"
+      "dialout"
 
       "video" # Hardware video acceleration
       "render" # GPU rendering access
@@ -490,6 +495,7 @@
 
   environment.systemPackages = with pkgs; [
     # Development tools
+    arduino-cli
     xwayland-satellite
     starship-jj
     jujutsu
@@ -498,10 +504,10 @@
     tree
     yarn-berry
     deno
-    ntfs3g
     nodejs_24
     gcc
     android-tools
+    aube
     bun
     unzip
     wget
@@ -518,9 +524,7 @@
         "rust-analyzer"
       ];
     })
-    inputs.teddypicker.packages.${system}.default
     steel
-    libva-utils
 
     # Gaming
     mangohud
@@ -528,7 +532,7 @@
     # Container tools
     podman-compose
 
-    # Hyprland/Desktop support
+    # Desktop support
     grim
     slurp
     fuzzel
@@ -555,11 +559,14 @@
       fontSize = 13;
     })
     wf-recorder
+    inputs.iris.packages.${pkgs.system}.default
 
     # System utilities
+    ntfs3g
     efibootmgr
     gnome-keyring
     xdg-terminal-exec
+    libva-utils
 
     # Editor and tools
     helix
@@ -594,7 +601,6 @@
     XMODIFIERS = "@im=fcitx";
 
     STEEL_HOME = "$HOME/.steel";
-    HYPR_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
     DXVK_FRAME_RATE = "60";
     VDPAU_DRIVER = "va_gl";
     __GLX_VENDOR_LIBRARY_NAME = "mesa";

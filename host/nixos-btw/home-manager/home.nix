@@ -16,10 +16,10 @@
     ./modules/fish.nix
     ./modules/browsers.nix
     ./modules/vesktop.nix
-    ./modules/gtk.nix
     ./modules/xdg.nix
     ./modules/spicetify.nix
     ./modules/fuzzel.nix
+    # ./modules/gtk.nix
     # ./modules/zed.nix
     # ./modules/git.nix
   ];
@@ -34,6 +34,8 @@
   # === PACKAGES (OPTIMIZED) ===
   home.packages = with pkgs; [
     # LSP & Formatters
+    clang-tools
+    arduino-language-server
     android-studio
     android-studio-tools
     marksman
@@ -48,13 +50,13 @@
     kdePackages.kdenlive
     easyeffects
     onlyoffice-desktopeditors
+    gimp
     wezterm
     kitty
     file-roller # Add this
     swappy
     mpv
     telegram-desktop
-    webcamoid
     aegisub
     chatterino2
 

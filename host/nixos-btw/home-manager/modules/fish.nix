@@ -21,6 +21,8 @@
 
     interactiveShellInit = ''
       if status is-interactive
+          iris init fish | source
+          aube activate fish | source
           set -gx PATH $HOME/.cache/.bun/bin $PATH
           set -gx PATH $HOME/.config/composer/vendor/bin $PATH
           set -gx PATH $HOME/.flutter/bin $PATH

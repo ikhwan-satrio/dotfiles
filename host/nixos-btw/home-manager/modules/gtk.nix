@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   qt = {
     enable = true;
@@ -9,34 +8,41 @@
       package = pkgs.catppuccin-kvantum;
     };
   };
-
   gtk = {
     enable = true;
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
-
     gtk4 = {
       theme = {
-        name = "Dracula";
-        package = pkgs.dracula-theme;
+        name = "catppuccin-mocha-blue-standard+default";
+        package = pkgs.catppuccin-gtk.override {
+          accents = [ "blue" ];
+          size = "standard";
+          variant = "mocha";
+        };
       };
     };
-
     gtk3 = {
       theme = {
-        name = "Dracula";
-        package = pkgs.dracula-theme;
+        name = "catppuccin-mocha-blue-standard+default";
+        package = pkgs.catppuccin-gtk.override {
+          accents = [ "blue" ];
+          size = "standard";
+          variant = "mocha";
+        };
       };
     };
-
     gtk2 = {
       theme = {
-        name = "Dracula";
-        package = pkgs.dracula-theme;
+        name = "catppuccin-mocha-blue-standard+default";
+        package = pkgs.catppuccin-gtk.override {
+          accents = [ "blue" ];
+          size = "standard";
+          variant = "mocha";
+        };
       };
     };
   };
-
 }
