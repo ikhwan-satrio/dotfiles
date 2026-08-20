@@ -559,7 +559,6 @@
       fontSize = 13;
     })
     wf-recorder
-    inputs.iris.packages.${pkgs.system}.default
 
     # System utilities
     ntfs3g

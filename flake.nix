@@ -29,7 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    iris.url = "github:versenilvis/iris/main";
     pixie-sddm.url = "github:xCaptaiN09/pixie-sddm";
     nixos-plymouth.url = "github:BeatLink/nixos-plymouth";
     nur.url = "github:nix-community/NUR";
