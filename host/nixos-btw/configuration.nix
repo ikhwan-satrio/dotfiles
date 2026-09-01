@@ -426,7 +426,6 @@
         obs-pipewire-audio-capture
         obs-vaapi
         obs-gstreamer
-        obs-move-transition
       ];
     };
   };
@@ -502,22 +501,22 @@
     github-cli
     aria2
     tree
-    yarn-berry
     deno
     nodejs_24
     gcc
     android-tools
-    aube
     bun
     unzip
     wget
     curl
     uv
+    bun
     jdk21
     devbox
     opencode
     distrobox
     yazi
+    go
     (rust-bin.stable.latest.default.override {
       extensions = [
         "rust-src"
@@ -525,6 +524,7 @@
       ];
     })
     steel
+    flatpak-builder
 
     # Gaming
     mangohud

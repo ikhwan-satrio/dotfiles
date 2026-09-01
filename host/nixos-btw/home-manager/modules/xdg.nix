@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  terminal = "wezterm.desktop";
+  terminal = "kitty.desktop";
   browser = "zen.desktop";
   filepicker = "yazi.desktop";
   editor = "neovim.desktop";

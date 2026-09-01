@@ -51,7 +51,6 @@
     easyeffects
     onlyoffice-desktopeditors
     gimp
-    wezterm
     kitty
     file-roller # Add this
     swappy
