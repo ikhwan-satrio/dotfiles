@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   ...
@@ -85,7 +84,7 @@ in
 {
   home.packages = [
     (pkgs.wrapFirefox
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+      pkgs.firefox-unwrapped
       {
         extraPrefs = lib.concatLines (
           lib.mapAttrsToList (

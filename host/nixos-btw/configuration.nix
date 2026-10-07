@@ -105,11 +105,11 @@
       "video=eDP-1:1920x1080@60"
       "loglevel=3"
       "rd.udev.log_level=3"
-
+      
       "i915.enable_guc=3" # Enable GuC/HuC firmware
       "i915.force_probe=46a3" # Force probe Alder Lake GPU
-      "i915.enable_fbc=1" # framebuffer compression, hemat memory bandwidth
-      "i915.enable_psr=1" # panel self refresh (bagus untuk laptop)
+      "i915.enable_psr=0"
+      "i915.enable_fbc=0"
     ];
 
     # GRUB bootloader
@@ -504,33 +504,31 @@
     deno
     nodejs_24
     gcc
-    android-tools
     bun
     unzip
     wget
     curl
     uv
-    bun
-    jdk21
     devbox
     opencode
     distrobox
     yazi
     go
-    (rust-bin.stable.latest.default.override {
-      extensions = [
-        "rust-src"
-        "rust-analyzer"
-      ];
-    })
     steel
     flatpak-builder
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-src" "rust-analyzer" ];
+      targets = [ "arm-unknown-linux-gnueabihf" ];
+    })
+    ffmpeg
+    secretspec 
 
     # Gaming
     mangohud
 
     # Container tools
     podman-compose
+    podman-desktop
 
     # Desktop support
     grim
@@ -592,9 +590,6 @@
   # ============================================================================
 
   environment.sessionVariables = {
-    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
-    ANDROID_HOME = "$HOME/Android/Sdk";
-      
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";

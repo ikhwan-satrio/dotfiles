@@ -36,23 +36,19 @@
     # LSP & Formatters
     clang-tools
     arduino-language-server
-    android-studio
-    android-studio-tools
     marksman
     lua-language-server
     stylua
     basedpyright
-    
+    ruff
+
     # yazi
     yaziPlugins.omni-trash
 
     # Apps
-    kdePackages.kdenlive
     easyeffects
-    onlyoffice-desktopeditors
     gimp
     kitty
-    file-roller # Add this
     swappy
     mpv
     telegram-desktop

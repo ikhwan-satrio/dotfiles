@@ -2,7 +2,7 @@
 
 let
   terminal = "kitty.desktop";
-  browser = "zen.desktop";
+  browser = "firefox.desktop";
   filepicker = "yazi.desktop";
   editor = "neovim.desktop";
 in
@@ -49,6 +49,9 @@ in
         "application/xhtml+xml" = browser;
         "application/x-extension-xhtml" = browser;
         "application/x-extension-xht" = browser;
+        "image/png" = "swappy.desktop";
+        "image/jpeg" = "swappy.desktop";
+        "image/gif" = "swappy.desktop";
       };
       associations.added = {
         "image/png" = [
