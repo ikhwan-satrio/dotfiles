@@ -17,7 +17,6 @@
     ./modules/browsers.nix
     ./modules/vesktop.nix
     ./modules/xdg.nix
-    ./modules/spicetify.nix
     ./modules/fuzzel.nix
     # ./modules/gtk.nix
     # ./modules/zed.nix
@@ -34,6 +33,8 @@
   # === PACKAGES (OPTIMIZED) ===
   home.packages = with pkgs; [
     # LSP & Formatters
+    nixfmt
+    nil
     clang-tools
     arduino-language-server
     marksman
@@ -46,6 +47,7 @@
     yaziPlugins.omni-trash
 
     # Apps
+    beekeeper-studio
     easyeffects
     gimp
     kitty
