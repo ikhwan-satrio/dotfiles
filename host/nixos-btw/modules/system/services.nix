@@ -12,6 +12,7 @@
       services = {
         playerctld.enable = true;
 
+        autorandr.enable = true;
         ollama = {
           enable = true;
           package = pkgs.ollama-vulkan;
@@ -50,7 +51,9 @@
         # X Server configuration
         xserver = {
           enable = true;
-          videoDrivers = [ "modesetting" ];
+          videoDrivers = [
+            "modesetting"
+          ];
 
           xkb = {
             layout = "us";

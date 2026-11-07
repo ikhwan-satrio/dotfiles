@@ -14,6 +14,7 @@
         QT_IM_MODULE = "fcitx";
         XMODIFIERS = "@im=fcitx";
 
+        FLAKE = "$HOME/nixos-wanto";
         STEEL_HOME = "$HOME/.steel";
         DXVK_FRAME_RATE = "60";
         VDPAU_DRIVER = "va_gl";

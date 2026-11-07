@@ -7,16 +7,15 @@
       lib,
       self,
       system,
+      config,
       ...
     }:
     {
       boot = {
-        # Plymouth splash screen
 
         plymouth = {
           enable = true;
         };
-
         kernelPackages = pkgs.linuxPackages_latest;
         # kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
         consoleLogLevel = 3;
@@ -34,8 +33,8 @@
           "loglevel=3"
           "rd.udev.log_level=3"
 
-          "i915.enable_guc=3" # Enable GuC/HuC firmware
-          "i915.force_probe=46a3" # Force probe Alder Lake GPU
+          "i915.enable_guc=3"
+          "i915.force_probe=46a3"
           "i915.enable_psr=0"
           "i915.enable_fbc=0"
         ];

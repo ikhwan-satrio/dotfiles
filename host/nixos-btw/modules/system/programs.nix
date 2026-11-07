@@ -11,6 +11,7 @@
     {
       programs = {
         niri.enable = false;
+
         sway = {
           enable = true;
           extraPackages = lib.mkForce [ ];

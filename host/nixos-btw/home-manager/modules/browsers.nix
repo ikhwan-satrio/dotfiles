@@ -16,12 +16,6 @@ let
     "extensions.autoDisableScopes" = 0;
     "extensions.pocket.enabled" = false;
 
-    # Privacy & Security
-    "browser.contentblocking.category" = "strict";
-    "privacy.trackingprotection.enabled" = true;
-    "privacy.trackingprotection.socialtracking.enabled" = true;
-    "privacy.donottrackheader.enabled" = true;
-
     # Performance
     "browser.cache.disk.enable" = false;
     "browser.cache.memory.enable" = true;

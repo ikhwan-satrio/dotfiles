@@ -20,7 +20,11 @@
 
       environment.systemPackages = with pkgs; [
         # Development tools
-        emacs
+        displaylink
+        arandr
+        autorandr
+        nh
+        nvd
         arduino-cli
         xwayland-satellite
         starship-jj
@@ -37,7 +41,6 @@
         curl
         uv
         devbox
-        opencode
         distrobox
         yazi
         go

@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zapfast.url = "github:crmne/zapfast";
+    opencode.url = "github:GutMutCode/opencode-nix";
     import-tree.url = "github:vic/import-tree";
     pixie-sddm.url = "github:xCaptaiN09/pixie-sddm";
     nixos-plymouth.url = "github:BeatLink/nixos-plymouth";

@@ -18,6 +18,7 @@
     ./modules/vesktop.nix
     ./modules/xdg.nix
     ./modules/fuzzel.nix
+    # ./modules/zapfast.nix
     # ./modules/gtk.nix
     # ./modules/zed.nix
     # ./modules/git.nix
@@ -47,6 +48,7 @@
     yaziPlugins.omni-trash
 
     # Apps
+    beeper
     beekeeper-studio
     easyeffects
     gimp
@@ -58,6 +60,7 @@
     chatterino2
 
     # Terminal
+    opencode
     posting
     matugen
     zoxide
