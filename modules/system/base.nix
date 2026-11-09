@@ -26,7 +26,6 @@
     in
     {
       imports = [
-        /etc/nixos/hardware-configuration.nix
         inputs.noctalia.nixosModules.default
         inputs.nixos-plymouth.nixosModules.default
       ]

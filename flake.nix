@@ -37,5 +37,7 @@
       home-manager,
       ...
     }:
-    flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./host/nixos-btw/modules);
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      (inputs.import-tree.addPath ./modules).addPath ./hosts
+    );
 }

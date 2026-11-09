@@ -10,7 +10,6 @@
     }:
     {
       networking = {
-        hostName = "nixos-wanto";
         networkmanager = {
           enable = true;
         };

@@ -15,16 +15,18 @@ nix develop
 
 ## Structure
 
-- **`host/nixos-btw/configuration.nix`** — single NixOS config (one host: `nixos-btw`)
-- **`host/nixos-btw/root-modules/`** — NixOS-level modules (intel graphics, grub, starship, smooth-scroll)
-- **`host/nixos-btw/home-manager/modules/`** — user-level home-manager modules (fish, browsers, gtk, xdg, vesktop, vscode, noctalia)
-- **`host/pkgs/`** — custom package expressions (cockpit-machines, free-download-manager, smooth-scroll)
+- **`flake.nix`** — flake-parts entrypoint; imports `modules/` and `hosts/` via import-tree
+- **`modules/`** — shared flake/NixOS modules auto-registered as `flake.nixosModules.*` (`base`, `boot`, `hardware`, ...)
+- **`hosts/<host>/default.nix`** — per-host `flake.nixosConfigurations.<host>`; add a new directory here to add a host
+- **`home-manager/`** — shared user-level home-manager config and modules (fish, browsers, gtk, xdg, vesktop, vscode, noctalia)
+- **`pkgs/`** — custom package expressions (cockpit-machines, free-download-manager, smooth-scroll)
 - **`config/`** — static dotfiles (kitty, starship, tmux, fastfetch, neofetch) — *not* nix-managed; ~/stow or manual copy
 - **`vesktop-themes/`** — imported into home-manager via `home.file`
 
 ## Quirks
 
 - `home-manager.backupFileExtension = "hm-backup"` — existing files get renamed with `.hm-backup` suffix on home-manager apply
+- `modules/` and `hosts/` are imported with import-tree: every `.nix` file below them is auto-imported, and paths containing `/_` are ignored. Prefix non-module files/directories with `_` (e.g. `_hardware-configuration.nix`)
 - Flake requires `--impure` for nixos-rebuild (uses `/etc/nixos/hardware-configuration.nix` + unfree)
 - Gitignore only covers `.git-credentials` and `.gitconfig` — be careful with secrets
 - No tests, no CI, no formatter/lint config in repo
