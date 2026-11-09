@@ -35,7 +35,7 @@
   home.packages = with pkgs; [
     # LSP & Formatters
     nixfmt
-    nil
+    nixd
     clang-tools
     arduino-language-server
     marksman
